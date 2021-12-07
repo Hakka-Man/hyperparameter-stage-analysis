@@ -25,7 +25,7 @@ def product(df,index):
 def checkIfStage1(price,volumePerc, RS, slope, WMA,P4WH,P4WL):
     stageOneIndicator = 0
     falseReason = ""
-    if volumePerc<0.2:
+    if volumePerc<0.7:
         stageOneIndicator+=1
     else:
         falseReason += "volume "
@@ -45,27 +45,31 @@ def checkIfStage1(price,volumePerc, RS, slope, WMA,P4WH,P4WL):
         return True
     return "False " + falseReason
 def checkIfStage2(price,volumePerc, RS, slope, WMA,prevStage):
-    if volumePerc < 0.2:
+    if volumePerc < 0.7:
         if prevStage != "Stage 2":
             #print(prevStage)
             return "Volume"
-    if RS < 0.1:
+    if RS < 0.1 and prevStage != "Stage 2":
         return "RS"
-    if slope < 0.5:
+    if RS < 0 and prevStage == "Stage 2":
+        return "RS"
+    if slope < 0.5 and prevStage != "Stage 2":
         return "Slope"
-    if price < WMA*1.1:
+    if slope < 0.3 and prevStage == "Stage 2":
+        return "Slope"
+    if price < WMA*1.1 and prevStage != "Stage 2":
+        return "Price"
+    if price < WMA*0.95 and prevStage == "Stage 2":
         return "Price"
     return "Clear"
 def checkStage(price,volumePerc, RS, slope, WMA,P4WH,P4WL,prevStage):
     stage1Check = checkIfStage1(price,volumePerc, RS, slope, WMA,P4WH,P4WL)
     stage2Check = checkIfStage2(price,volumePerc, RS, slope, WMA,prevStage)
-    if stage1Check == True and stage2Check == "Clear":
-        return "Error"
-    if stage1Check == True:
-        return "Stage 1 " + stage2Check 
     if stage2Check == "Clear":
         return "Stage 2"
-    return stage2Check  
+    if stage1Check == True:
+        return "Stage 1 " + stage2Check 
+    return stage2Check    
 
 ## Main Function
 def returnStageDf(ticker):
@@ -76,8 +80,8 @@ def returnStageDf(ticker):
         'Volume': 'sum'
     }
     deltaX = 10.4
-    df = pdr.get_data_yahoo(ticker, start="2016-01-01",end="2021-11-26")
-    spdf = pdr.get_data_yahoo(sp, start="2016-01-01",end="2021-11-26")
+    df = pdr.get_data_yahoo(ticker, start="2010-01-01",end="2021-11-26")
+    spdf = pdr.get_data_yahoo(sp, start="2010-01-01",end="2021-11-26")
     dfSorted = df.resample("W-FRI").agg(sortLogic)
     spDfSorted = spdf.resample("W-FRI").agg(sortLogic)
     weights = np.arange(1,31)
