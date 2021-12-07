@@ -44,7 +44,7 @@ def checkIfStage1(price,volumePerc, RS, slope, WMA,P4WH,P4WL):
     if stageOneIndicator>=3:
         return True
     return "False " + falseReason
-def checkIfStage2(price,volumePerc, RS, slope, WMA,prevStage):
+def checkIfStage2(price,volumePerc, RS, slope, WMA,prevStage,prevClose):
     if volumePerc < 0.7:
         if prevStage != "Stage 2":
             #print(prevStage)
@@ -62,9 +62,9 @@ def checkIfStage2(price,volumePerc, RS, slope, WMA,prevStage):
     if price < WMA*0.95 and prevStage == "Stage 2":
         return "Price"
     return "Clear"
-def checkStage(price,volumePerc, RS, slope, WMA,P4WH,P4WL,prevStage):
+def checkStage(price,volumePerc, RS, slope, WMA,P4WH,P4WL,prevStage,prevClose):
     stage1Check = checkIfStage1(price,volumePerc, RS, slope, WMA,P4WH,P4WL)
-    stage2Check = checkIfStage2(price,volumePerc, RS, slope, WMA,prevStage)
+    stage2Check = checkIfStage2(price,volumePerc, RS, slope, WMA,prevStage,prevClose)
     if stage2Check == "Clear":
         return "Stage 2"
     if stage1Check == True:
@@ -99,5 +99,5 @@ def returnStageDf(ticker):
     for index, element in dfSorted.iterrows():
         if dfSorted.index.get_loc(index) == 0:
             continue
-        dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('Stage')] = checkStage(dfSorted.loc[index]['Close'],dfSorted.loc[index]['VolumePerc'],dfSorted.loc[index]['RS'],dfSorted.loc[index]['30WMASlope'],dfSorted.loc[index]['30WMA'],dfSorted.loc[index]['P4WH'],dfSorted.loc[index]['P4WL'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['Stage'])
+        dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('Stage')] = checkStage(dfSorted.loc[index]['Close'],dfSorted.loc[index]['VolumePerc'],dfSorted.loc[index]['RS'],dfSorted.loc[index]['30WMASlope'],dfSorted.loc[index]['30WMA'],dfSorted.loc[index]['P4WH'],dfSorted.loc[index]['P4WL'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['Stage'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['Close'])
     return dfSorted[["Close","Stage"]]
