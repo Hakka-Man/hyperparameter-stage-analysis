@@ -8,8 +8,6 @@ import datetime
 from datetime import date, timedelta
 import yfinance as yf
 yf.pdr_override()
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 
 ## TOOL FUNCTIONS
 def fullPrint(df):
@@ -80,8 +78,8 @@ def returnStageDf(ticker):
         'Volume': 'sum'
     }
     deltaX = 10.4
-    df = pdr.get_data_yahoo(ticker, start="2010-01-01",end="2021-11-26")
-    spdf = pdr.get_data_yahoo(sp, start="2010-01-01",end="2021-11-26")
+    df = pdr.get_data_yahoo(ticker, start="1995-01-01",end="2021-11-26")
+    spdf = pdr.get_data_yahoo(sp, start="1995-01-01",end="2021-11-26")
     dfSorted = df.resample("W-FRI").agg(sortLogic)
     spDfSorted = spdf.resample("W-FRI").agg(sortLogic)
     weights = np.arange(1,31)
