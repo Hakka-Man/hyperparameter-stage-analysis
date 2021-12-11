@@ -8,8 +8,6 @@ import datetime
 from datetime import date, timedelta
 import yfinance as yf
 yf.pdr_override()
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
 
 ## TOOL FUNCTIONS
 def fullPrint(df):
@@ -72,18 +70,8 @@ def checkStage(price,volumePerc, RS, slope, WMA,P4WH,P4WL,prevStage,prevClose):
     return stage2Check    
 
 ## Main Function
-def returnStageDf(ticker):
-    ##Variables
-    sp = "^GSPC"
-    sortLogic = {
-        'Close': 'last',
-        'Volume': 'sum'
-    }
+def returnStageDf(dfSorted,spDfSorted):
     deltaX = 10.4
-    df = pdr.get_data_yahoo(ticker, start="2010-01-01",end="2021-11-26")
-    spdf = pdr.get_data_yahoo(sp, start="2010-01-01",end="2021-11-26")
-    dfSorted = df.resample("W-FRI").agg(sortLogic)
-    spDfSorted = spdf.resample("W-FRI").agg(sortLogic)
     weights = np.arange(1,31)
     sumWeights = np.sum(weights)
     dfSorted['30WMA'] = dfSorted['Close'].rolling(window=30).apply(lambda x: np.sum(weights*x)/sumWeights)
@@ -96,8 +84,26 @@ def returnStageDf(ticker):
     dfSorted['RS'] = dfSorted['Percent'] - spDfSorted['Percent']
     dfSorted = dfSorted.dropna()
     dfSorted['Stage'] = ""
+    if dfSorted.loc[-1]['Close']>100:
+        return "too Expensive!!!"
     for index, element in dfSorted.iterrows():
         if dfSorted.index.get_loc(index) == 0:
             continue
         dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('Stage')] = checkStage(dfSorted.loc[index]['Close'],dfSorted.loc[index]['VolumePerc'],dfSorted.loc[index]['RS'],dfSorted.loc[index]['30WMASlope'],dfSorted.loc[index]['30WMA'],dfSorted.loc[index]['P4WH'],dfSorted.loc[index]['P4WL'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['Stage'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['Close'])
     return dfSorted[["Close","Stage"]]
+
+def getStage(ticker):
+    today = date.today()
+    startDate = today - timedelta(weeks=156)
+    today = today.strftime('%Y-%m-%d')
+    startDate = startDate.strftime('%Y-%m-%d')
+    df = pdr.get_data_yahoo(ticker, start=startDate,end=today)
+    sp = "^GSPC"
+    spdf = pdr.get_data_yahoo(sp, start=startDate,end=today)
+    sortLogic = {
+        'Close': 'last',
+        'Volume': 'sum'
+    }
+    dfSorted = df.resample("W-FRI").agg(sortLogic)
+    spDfSorted = spdf.resample("W-FRI").agg(sortLogic)
+    return returnStageDf(dfSorted,spDfSorted)
