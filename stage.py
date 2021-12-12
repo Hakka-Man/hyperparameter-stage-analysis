@@ -28,7 +28,7 @@ def calculateSlope(df,index):
 def checkIfStage1(price,volumePerc, RS, slope, WMA,P4WH,P4WL):
     stageOneIndicator = 0
     falseReason = ""
-    if volumePerc<0.7:
+    if volumePerc<0.3:
         stageOneIndicator+=1
     else:
         falseReason += "volume "
@@ -48,7 +48,7 @@ def checkIfStage1(price,volumePerc, RS, slope, WMA,P4WH,P4WL):
         return True
     return "False " + falseReason
 def checkIfStage2(price,volumePerc, RS, slope, WMA,prevStage,prevClose):
-    if volumePerc < 0.7:
+    if volumePerc < 0.3:
         if prevStage != "Stage 2":
             #print(prevStage)
             return "Volume"
