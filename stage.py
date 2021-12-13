@@ -28,7 +28,7 @@ def calculateSlope(df,index):
 def checkIfStage1(price,volumePerc, RS, slope, WMA,P4WH,P4WL):
     stageOneIndicator = 0
     falseReason = ""
-    if volumePerc<0.7:
+    if volumePerc<0.6:
         stageOneIndicator+=1
     else:
         falseReason += "volume "
@@ -48,7 +48,7 @@ def checkIfStage1(price,volumePerc, RS, slope, WMA,P4WH,P4WL):
         return True
     return "False " + falseReason
 def checkIfStage2(price,volumePerc, RS, slope, WMA,prevStage,prevClose):
-    if volumePerc < 0.7:
+    if volumePerc < 0.6:
         if prevStage != "Stage 2":
             #print(prevStage)
             return "Volume"
@@ -105,7 +105,7 @@ def returnStageDf(dfSorted,spDfSorted,hold):
 
 def getStage(ticker,hold):
     today = date.today()
-    startDate = today - timedelta(weeks=156)
+    startDate = today - timedelta(weeks=200)
     threeDays = today - timedelta(days=3)
     today = today.strftime('%Y-%m-%d')
     startDate = startDate.strftime('%Y-%m-%d')
