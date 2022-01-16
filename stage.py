@@ -23,20 +23,12 @@ def calculateSlope(df,index):
 #*Stage Checker
 def checkIfStage2(price,volumePerc, RS, slope, WMA,prevStage,prevClose):
     if volumePerc < 0.3:
-        if prevStage != "Stage 2":
-            #print(prevStage)
             return "Volume"
-    if RS < 0.1 and prevStage != "Stage 2":
+    if RS < 0.1:
         return "RS"
-    if RS < 0 and prevStage == "Stage 2":
-        return "RS"
-    if slope < 1.03 and prevStage != "Stage 2":
-        return "Slope"
-    if slope < 1.005 and prevStage == "Stage 2":
+    if slope < 1.03:
         return "Slope"
     if price < WMA*1.1 and prevStage != "Stage 2":
-        return "Price"
-    if price < WMA*0.95 and prevStage == "Stage 2":
         return "Price"
     return "Clear"
 def checkStage(price,volumePerc, RS, slope, WMA,prevStage,prevClose):
