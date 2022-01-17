@@ -33,7 +33,7 @@ def checkIfStage2(price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSup
         if price < prevSupport*param[7]:
             return "Sell"
         dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('initialSupport')] = initialSupport
-        if price == peak and prevPeak != prevClose and prevTrough < prevPeak*param[6]:
+        if price == peak and prevTrough < prevPeak*param[6]:
             dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('support')] = prevTrough
         if secondBought == True:
             dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('secondBuy')] = True
