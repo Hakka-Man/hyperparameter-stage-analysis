@@ -24,29 +24,7 @@ SectorDict = {
 ## TOOL FUNCTIONS
 def fullPrint(df):
     with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
-        print(df)   
-def product(df,index):
-    if index < 30:
-        return 0
-    else:
-        return df.iloc[index].close/df.iloc[index-30].close
-def calculateSlope(df,index):
-    if index < 31:
-        return 0
-    else:
-        return df.iloc[index]['wMA30']/df.iloc[index-1]['wMA30']
-def peakCheck(df, index):
-    if index == 0:
-        return df.iloc[index]["close"]
-    else:
-        return max(df.iloc[index-1]["peak"], df.iloc[index]["close"])
-def troughCheck(df, index):
-    if index == 0:
-        return df.iloc[index]["close"]
-    elif df.iloc[index]["peak"]==df.iloc[index]["close"]:
-        return df.iloc[index]["close"]
-    else:
-        return min(df.iloc[index-1]["trough"], df.iloc[index]["close"])
+        print(df)  
 
 #*Stage Checker
 def checkIfStage2(price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSupport,peak,prevPeak,prevTrough,index,dfSorted,secondBought,initialSupport,fiveYearHigh,param):
@@ -101,15 +79,6 @@ def checkStage(price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSuppor
 
 ## Main Function
 def returnStageDf(dfSorted,param):
-    dfSorted['peak'] = 0
-    dfSorted['trough'] = 0
-    dfSorted['support'] = 0
-    dfSorted['initialSupport'] = 0
-    for index, element in dfSorted.iterrows():
-        dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('peak')] = peakCheck(dfSorted,dfSorted.index.get_loc(element.name))
-        dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('trough')] = troughCheck(dfSorted,dfSorted.index.get_loc(element.name))
-    dfSorted['Stage'] = ""
-    dfSorted['secondBuy'] = False
     for index, element in dfSorted.iterrows():
         if dfSorted.index.get_loc(index) == 0:
             continue
