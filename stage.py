@@ -6,7 +6,20 @@ import numpy as np
 from datetime import date, timedelta
 from yahoo_fin.stock_info import get_data
 
-
+goodSector = pd.read_pickle("stockData/goodSector.pkl")
+sectorOfTicker = pd.read_pickle("stockData/sector.pkl")
+SectorDict = {
+    "Energy":"XLE",
+    "Technology":"XLK",
+    "Communication Services":"XLC",
+    "Consumer Defensive":"XLP",
+    "Healthcare":"XLV",
+    "Consumer Cyclical":"XLY",
+    "Industrials":"XLI",
+    "Utilities":"XLU",
+    "Basic Materials":"XLB",
+    "Financial Services":"XLF",
+    "Real Estate":"XLRE"}
 
 ## TOOL FUNCTIONS
 def fullPrint(df):
@@ -45,11 +58,17 @@ def checkIfStage2(price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSup
         if price == peak and prevPeak != prevClose and prevTrough < prevPeak*0.975:
             dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('support')] = prevTrough
         if secondBought == True:
+            dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('secondBuy')] = True
             if price <= initialSupport*1.05 and dfSorted.loc[index]['trough'] < dfSorted.loc[index]['peak']:
                 dfSorted.iloc[dfSorted.index.get_loc(index)]['secondBuy'] = False
                 return "Buy"
         return "Clear"
-    
+    goodSectorIndex = goodSector.index.get_loc(index.strftime('%Y-%m-%d'))
+    for sector in sectorOfTicker:
+        if dfSorted.loc[index]['ticker'] in sectorOfTicker[sector]:
+            thisSector = sector
+    if SectorDict[thisSector] not in goodSector.iloc[goodSectorIndex]['Sectors']:
+        return "bad sector"
     if volumePerc < 0.3:
             return "volume"
     if RS < 0.1:
@@ -86,7 +105,7 @@ def returnStageDf(dfSorted):
     for index, element in dfSorted.iterrows():
         if dfSorted.index.get_loc(index) == 0:
             continue
-        dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('Stage')] = checkStage(dfSorted.loc[index]['close'],dfSorted.loc[index]['volumePerc'],dfSorted.loc[index]['RS'],dfSorted.loc[index]['wMA30Slope'],dfSorted.loc[index]['wMA30'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['Stage'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['close'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['support'],dfSorted.loc[index]['peak'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['peak'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['trough'],index,dfSorted,dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['secondBuy'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['initialSupport'])
+        dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('Stage')] = checkStage(dfSorted.loc[index]['close'],dfSorted.loc[index]['volumePerc'],dfSorted.loc[index]['RS'],dfSorted.loc[index]['WMA30Slope'],dfSorted.loc[index]['WMA30'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['Stage'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['close'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['support'],dfSorted.loc[index]['peak'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['peak'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['trough'],index,dfSorted,dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['secondBuy'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['initialSupport'])
     return dfSorted[["close","Stage","support","trough","peak"]]
 
 def getStage(ticker):
@@ -97,4 +116,4 @@ def getStage(ticker):
     # startDate = startDate.strftime('%Y-%m-%d')
     # df = get_data(ticker, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
     df = pd.read_pickle("stockData/S&P500/"+ticker+".pkl")
-    return returnStageDf(df,spdf)
+    return returnStageDf(df)
