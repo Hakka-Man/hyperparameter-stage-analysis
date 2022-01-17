@@ -6,6 +6,8 @@ import numpy as np
 from datetime import date, timedelta
 from yahoo_fin.stock_info import get_data
 
+
+
 ## TOOL FUNCTIONS
 def fullPrint(df):
     with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
@@ -36,9 +38,9 @@ def troughCheck(df, index):
 #*Stage Checker
 def checkIfStage2(price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSupport,peak,prevPeak,prevTrough,index,dfSorted,secondBought,initialSupport):
     dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('support')] = prevSupport
-    if price < prevSupport*1:
-        return "Sell"
     if prevStage == "Stage 2" or prevStage == "Buy":
+        if price < prevSupport*1:
+            return "Sell"
         dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('initialSupport')] = initialSupport
         if price == peak and prevPeak != prevClose and prevTrough < prevPeak*0.975:
             dfSorted.iloc[dfSorted.index.get_loc(index), dfSorted.columns.get_loc('support')] = prevTrough
@@ -47,6 +49,7 @@ def checkIfStage2(price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSup
                 dfSorted.iloc[dfSorted.index.get_loc(index)]['secondBuy'] = False
                 return "Buy"
         return "Clear"
+    
     if volumePerc < 0.3:
             return "volume"
     if RS < 0.1:
@@ -70,16 +73,7 @@ def checkStage(price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSuppor
     return stage2Check    
 
 ## Main Function
-def returnStageDf(dfSorted,spDfSorted):
-    weights = np.arange(1,31)
-    sumWeights = np.sum(weights)
-    dfSorted['wMA30'] = dfSorted['close'].rolling(window=30).apply(lambda x: np.sum(weights*x)/sumWeights)
-    dfSorted['wMA30Slope'] = dfSorted.apply(lambda x: calculateSlope(dfSorted,dfSorted.index.get_loc(x.name)),axis=1)
-    dfSorted['volumePerc'] = dfSorted['volume'].pct_change()
-    dfSorted['percent'] = dfSorted.apply(lambda x: product(dfSorted,dfSorted.index.get_loc(x.name)),axis=1)
-    spDfSorted['percent'] = dfSorted.apply(lambda x: product(spDfSorted,spDfSorted.index.get_loc(x.name)),axis=1)
-    dfSorted['RS'] = dfSorted['percent'] - spDfSorted['percent']
-    dfSorted = dfSorted.dropna()
+def returnStageDf(dfSorted):
     dfSorted['peak'] = 0
     dfSorted['trough'] = 0
     dfSorted['support'] = 0
@@ -96,12 +90,11 @@ def returnStageDf(dfSorted,spDfSorted):
     return dfSorted[["close","Stage","support","trough","peak"]]
 
 def getStage(ticker):
-    today = date.today()
-    #200->1000
-    startDate = today - timedelta(weeks=1000)
-    today = today.strftime('%Y-%m-%d')
-    startDate = startDate.strftime('%Y-%m-%d')
-    df = get_data(ticker, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
-    sp = "^GSPC"
-    spdf = get_data(sp, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
+#     today = date.today()
+#     # #200->1000
+#     startDate = today - timedelta(weeks=1000)
+    # today = today.strftime('%Y-%m-%d')
+    # startDate = startDate.strftime('%Y-%m-%d')
+    # df = get_data(ticker, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
+    df = pd.read_pickle("stockData/S&P500/"+ticker+".pkl")
     return returnStageDf(df,spdf)
