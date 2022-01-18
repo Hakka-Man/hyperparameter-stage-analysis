@@ -9,7 +9,6 @@ from yahoo_fin.stock_info import get_data
 goodSector = pd.read_pickle("stockData/goodSector.pkl")
 sectorOfTicker = pd.read_pickle("stockData/sector.pkl")
 
-
 ## TOOL FUNCTIONS
 def fullPrint(df):
     with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
@@ -17,7 +16,6 @@ def fullPrint(df):
 
 #*Stage Checker
 def checkIfStage2(price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSupport,peak,prevPeak,prevTrough,index,dfSorted,secondBought,initialSupport,fiveYearHigh,param):
-    dfSorted.at[index, 'support'] = prevSupport
     if prevStage == "Stage 2" or prevStage == "Buy":
         if price < prevSupport*param[7]:
             return "Sell"
@@ -26,12 +24,13 @@ def checkIfStage2(price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSup
             dfSorted.at[index, 'support'] = prevTrough
         if secondBought == True:
             dfSorted.at[index, 'secondBuy'] = True
-            if price <= initialSupport*param[5] and dfSorted.loc[index]['trough'] < dfSorted.loc[index]['peak']:
+            if price <= initialSupport*param[5] and dfSorted.at[index,'trough'] < dfSorted.at[index,'peak']:
                 dfSorted.at[index, 'secondBuy'] = False                
                 return "Buy"
+        dfSorted.at[index, 'support'] = prevSupport
         return "Stage 2"
     try:
-        if sectorOfTicker[dfSorted.at[index,'ticker']] in goodSector.at[index.strftime('%Y-%m-%d'),'Sectors']:
+        if sectorOfTicker[dfSorted.at[index,'ticker']] in goodSector.at[index,'Sectors']:
             pass
         else:
             return "bad sector"
@@ -49,27 +48,33 @@ def checkIfStage2(price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSup
         return "Price"
     dfSorted.at[index, 'support'] = prevClose
     dfSorted.at[index, 'initialSupport'] = prevClose
+    indexI = index
     i = dfSorted.index.get_loc(index)
     while i < dfSorted.shape[0] and dfSorted.at[index, 'trough']<prevClose:
-        dfSorted.iloc[i, dfSorted.columns.get_loc('trough')] = prevClose
+        dfSorted.at[indexI, 'trough'] = prevClose
         i=i+1
+        indexI = indexI + timedelta(weeks=1)
     dfSorted.at[index, 'secondBuy'] = True
     return "Buy"
 
 
 ## Main Function
 def returnStageDf(dfSorted,param):
-    for index, element in dfSorted.iterrows():
-        if dfSorted.index.get_loc(index) == 0:
-            continue
-        dfSorted.at[index, 'Stage'] =  checkIfStage2(100,1,1,1,80,"Stage 2",100,80,100,95,80,index,dfSorted,True,60,100,param)
-        #dfSorted.at[index, 'Stage'] =  checkIfStage2(dfSorted.loc[index]['close'],dfSorted.loc[index]['volumePerc'],dfSorted.loc[index]['RS'],dfSorted.loc[index]['WMA30Slope'],dfSorted.loc[index]['WMA30'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['Stage'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['close'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['support'],dfSorted.loc[index]['peak'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['peak'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['trough'],index,dfSorted,dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['secondBuy'],dfSorted.iloc[dfSorted.index.get_loc(index) - 1]['initialSupport'],dfSorted.loc[index]['fiveYearHigh'],param)
+    first = True
+    for index in dfSorted.index:
+        if first:
+            if dfSorted.index.get_loc(index) == 0:
+                first = False
+                continue
+        prevIndex = index - timedelta(weeks=1)
+        dfSorted.at[index, 'Stage'] = checkIfStage2(dfSorted.at[index,'close'],dfSorted.at[index,'volumePerc'],dfSorted.at[index,'RS'],dfSorted.at[index,'WMA30Slope'],dfSorted.at[index,'WMA30'],dfSorted.at[prevIndex,'Stage'],dfSorted.at[prevIndex,'close'],dfSorted.at[prevIndex,'support'],dfSorted.at[index,'peak'],dfSorted.at[prevIndex,'peak'],dfSorted.at[prevIndex,'trough'],index,dfSorted,dfSorted.at[prevIndex,'secondBuy'],dfSorted.at[prevIndex,'initialSupport'],dfSorted.at[index,'fiveYearHigh'],param)
+    first = True
     return dfSorted[["close","Stage"]]
 
 def getStage(ticker,param):
 #     today = date.today()
 #     # #200->1000
-#     startDate = today - timedelta(weeks=1000)
+    
     # today = today.strftime('%Y-%m-%d')
     # startDate = startDate.strftime('%Y-%m-%d')
     # df = get_data(ticker, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
