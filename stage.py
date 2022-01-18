@@ -19,6 +19,7 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
     if prevStage == "Stage 2" or prevStage == "Buy":
         if price < prevSupport*param[7]:
             return "Sell"
+        dfSorted.iat[i,15] = prevSupport
         dfSorted.at[index, 'initialSupport'] = initialSupport
         if price == peak and prevTrough < prevPeak*param[6]:
             dfSorted.iat[i,15] = prevTrough
@@ -27,7 +28,6 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
             if price <= initialSupport*param[5] and dfSorted.at[index,'trough'] < dfSorted.at[index,'peak']:
                 dfSorted.iat[i, 18] = False                
                 return "Buy"
-        dfSorted.iat[i,15] = prevSupport
         return "Stage 2"
     try:
         if sectorOfTicker[dfSorted.at[index,'ticker']] in goodSector.at[index,'Sectors']:
@@ -82,3 +82,18 @@ def getStage(ticker,param):
     # df = get_data(ticker, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
     df = pd.read_pickle("stockData/S&P500/"+ticker+".pkl")
     return returnStageDf(df,param)
+
+def getFullDf(ticker,param):
+    dfSorted = pd.read_pickle("stockData/S&P500/"+ticker+".pkl")
+    first = True
+    for index in dfSorted.index:
+        if first:
+            if dfSorted.index.get_loc(index) == 0:
+                first = False
+                continue
+        prevIndex = index - timedelta(weeks=1)
+        i = dfSorted.index.get_loc(index)
+        dfSorted.at[index, 'Stage'] = checkIfStage2(i,dfSorted.at[index,'close'],dfSorted.at[index,'volumePerc'],dfSorted.at[index,'RS'],dfSorted.at[index,'WMA30Slope'],dfSorted.at[index,'WMA30'],dfSorted.at[prevIndex,'Stage'],dfSorted.at[prevIndex,'close'],dfSorted.iat[i-1,15],dfSorted.at[index,'peak'],dfSorted.at[prevIndex,'peak'],dfSorted.at[prevIndex,'trough'],index,dfSorted,dfSorted.at[prevIndex,'secondBuy'],dfSorted.iat[i-1,16],dfSorted.at[index,'fiveYearHigh'],param,prevIndex)
+    first = True
+    return dfSorted
+    
