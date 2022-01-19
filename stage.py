@@ -80,8 +80,11 @@ def getStage(ticker,param):
     # today = today.strftime('%Y-%m-%d')
     # startDate = startDate.strftime('%Y-%m-%d')
     # df = get_data(ticker, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
-    df = pd.read_pickle("stockData/S&P500/"+ticker+".pkl")
-    return returnStageDf(df,param)
+    try:
+        df = pd.read_pickle("stockData/tickers/"+ticker+".pkl")
+        return returnStageDf(df,param)
+    except:
+        return pd.DataFrame()
 
 def getFullDf(ticker,param):
     dfSorted = pd.read_pickle("stockData/S&P500/"+ticker+".pkl")
