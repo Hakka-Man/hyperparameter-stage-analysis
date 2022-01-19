@@ -81,7 +81,7 @@ def getStage(ticker,param):
     # startDate = startDate.strftime('%Y-%m-%d')
     # df = get_data(ticker, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
     try:
-        df = pd.read_pickle("stockData/tickers/"+ticker+".pkl")
+        df = pd.read_pickle("stockData/S&P500/"+ticker+".pkl")
         return returnStageDf(df,param)
     except:
         return pd.DataFrame()
