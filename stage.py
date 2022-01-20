@@ -81,13 +81,13 @@ def getStage(ticker,param):
     # startDate = startDate.strftime('%Y-%m-%d')
     # df = get_data(ticker, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
     try:
-        df = pd.read_pickle("stockData/S&P500/"+ticker+".pkl")
+        df = pd.read_pickle("stockData/nyseNasdaq/"+ticker+".pkl")
         return returnStageDf(df,param)
     except:
         return pd.DataFrame()
 
 def getFullDf(ticker,param):
-    dfSorted = pd.read_pickle("stockData/S&P500/"+ticker+".pkl")
+    dfSorted = pd.read_pickle("stockData/nyseNasdaq/"+ticker+".pkl")
     first = True
     for index in dfSorted.index:
         if first:
