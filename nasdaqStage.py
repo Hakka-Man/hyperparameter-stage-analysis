@@ -87,7 +87,7 @@ def getStage(ticker,param):
         return pd.DataFrame()
 
 def getFullDf(ticker,param):
-    dfSorted = pd.read_pickle("stockData/S&P500/"+ticker+".pkl")
+    dfSorted = pd.read_pickle("stockData/nasdaq/"+ticker+".pkl")
     first = True
     for index in dfSorted.index:
         if first:
