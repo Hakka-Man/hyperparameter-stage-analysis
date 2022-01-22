@@ -7,7 +7,9 @@ from datetime import date, timedelta
 from yahoo_fin.stock_info import get_data
 
 goodSector = pd.read_pickle("stockData/goodSector.pkl")
-sectorOfTicker = pd.read_pickle("stockData/sector.pkl")
+sectorOfTicker = pd.read_pickle("stockData/nasdaq.pkl")
+sectorOfNyse = pd.read_pickle("stockData/nyse.pkl")
+sectorOfTicker.update(sectorOfNyse)
 
 ## TOOL FUNCTIONS
 def fullPrint(df):
@@ -98,5 +100,6 @@ def getFullDf(ticker,param):
         i = dfSorted.index.get_loc(index)
         dfSorted.at[index, 'Stage'] = checkIfStage2(i,dfSorted.at[index,'close'],dfSorted.at[index,'volumePerc'],dfSorted.at[index,'RS'],dfSorted.at[index,'WMA30Slope'],dfSorted.at[index,'WMA30'],dfSorted.at[prevIndex,'Stage'],dfSorted.at[prevIndex,'close'],dfSorted.iat[i-1,11],dfSorted.at[index,'peak'],dfSorted.at[prevIndex,'peak'],dfSorted.at[prevIndex,'trough'],index,dfSorted,dfSorted.at[prevIndex,'secondBuy'],dfSorted.iat[i-1,12],dfSorted.at[index,'fiveYearHigh'],param,prevIndex)
     first = True
+    print(len(sectorOfTicker))
     return dfSorted
     
