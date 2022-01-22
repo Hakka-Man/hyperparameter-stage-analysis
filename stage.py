@@ -20,26 +20,24 @@ def fullPrint(df):
 def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSupport,peak,prevPeak,prevTrough,index,dfSorted,secondBought,initialSupport,fiveYearHigh,param,prevIndex):
     if prevStage == "Stage 2" or prevStage == "Buy":
         if price < prevSupport*param[7]:
-            print("sell "+dfSorted.at[index,'ticker']+" "+str(price))
             return "Sell"
         dfSorted.iat[i,11] = prevSupport
-        dfSorted.at[index, 'initialSupport'] = initialSupport
+        dfSorted.iat[i, 12] = initialSupport
         if price == peak and prevTrough < prevPeak*param[6]:
             dfSorted.iat[i,11] = prevTrough
         if secondBought == True:
             dfSorted.at[index, 'secondBuy'] = True
             if price <= initialSupport*param[5] and dfSorted.at[index,'trough'] < dfSorted.at[index,'peak']:
-                print("buy "+dfSorted.at[index,'ticker']+" "+str(price))
                 dfSorted.iat[i, 14] = False             
                 return "Buy"
         return "Stage 2"
-    try:
-        if sectorOfTicker[dfSorted.at[index,'ticker']] in goodSector.at[index,'Sectors']:
-            pass
-        else:
-            return "bad sector"
-    except:
-        return "bad sector"
+    # try:
+    #     if sectorOfTicker[dfSorted.at[index,'ticker']] in goodSector.at[index,'Sectors']:
+    #         pass
+    #     else:
+    #         return "bad sector"
+    # except:
+    #     return "bad sector"
     if price < fiveYearHigh * param[0]:
         return "resistance"
     if volumePerc < param[1]:
@@ -62,7 +60,6 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
         i=i+1
         indexI = indexI + timedelta(weeks=1)
     dfSorted.at[index, 'secondBuy'] = True
-    print("buy "+dfSorted.at[index,'ticker']+" "+str(price))
     return "Buy"
 
 
