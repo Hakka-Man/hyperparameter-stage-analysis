@@ -8,6 +8,7 @@ from datetime import date, timedelta
 from yahoo_fin.stock_info import get_data
 
 goodSector = pd.DataFrame()
+spdf = pd.read_pickle("stockData/Spy.pkl")
 sectorOfTicker = pd.read_pickle("stockData/nasdaq.pkl")
 sectorOfNyse = pd.read_pickle("stockData/nyse.pkl")
 sectorOfTicker.update(sectorOfNyse)
@@ -20,6 +21,10 @@ def fullPrint(df):
 #*Stage Checker
 def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSupport,peak,prevPeak,prevTrough,index,dfSorted,secondBought,initialSupport,fiveYearHigh,param,goodSectorDf):
     if prevStage == "Stage 2" or prevStage == "Buy":
+        if spdf.at[index, 'close'] < spdf.at[index, 'WMA30'] * param[13]:
+            return "Sell"
+        if spdf.at[index, 'WMA30Slope'] < param[14]:
+            return "Sell"
         if price>prevPeak:
             dfSorted.iat[i,9] = price
             dfSorted.iat[i,10] = price
@@ -45,6 +50,10 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
             return "bad sector"
     except:
         return "bad sector"
+    if spdf.at[index, 'close'] < spdf.at[index, 'WMA30'] * param[11]:
+        return "bearish"
+    if spdf.at[index, 'WMA30Slope'] < param[12]:
+        return "bearish"
     if price < fiveYearHigh * param[0]:
         return "resistance"
     if volumePerc < param[1]:
