@@ -7,7 +7,7 @@ import numpy as np
 from datetime import date, timedelta
 from yahoo_fin.stock_info import get_data
 
-goodSector = pd.read_pickle("stockData/goodSector.pkl")
+goodSector = pd.DataFrame()
 sectorOfTicker = pd.read_pickle("stockData/nasdaq.pkl")
 sectorOfNyse = pd.read_pickle("stockData/nyse.pkl")
 sectorOfTicker.update(sectorOfNyse)
@@ -18,7 +18,7 @@ def fullPrint(df):
         print(df)
 
 #*Stage Checker
-def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSupport,peak,prevPeak,prevTrough,index,dfSorted,secondBought,initialSupport,fiveYearHigh,param):
+def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSupport,peak,prevPeak,prevTrough,index,dfSorted,secondBought,initialSupport,fiveYearHigh,param,goodSectorDf):
     if prevStage == "Stage 2" or prevStage == "Buy":
         if price>prevPeak:
             dfSorted.iat[i,9] = price
@@ -39,7 +39,7 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
                 return "Buy"
         return "Stage 2"
     try:
-        if sectorOfTicker[dfSorted.at[index,'ticker']] in goodSector.at[index,'Sectors']:
+        if sectorOfTicker[dfSorted.at[index,'ticker']] in goodSectorDf.at[index,'Sectors']:
             pass
         else:
             return "bad sector"
@@ -75,7 +75,7 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
 
 
 ## Main Function
-def returnStageDf(dfSorted,param):
+def returnStageDf(dfSorted,param,goodSectorDf):
     first = True
     for index in dfSorted.index:
         if first:
@@ -84,11 +84,11 @@ def returnStageDf(dfSorted,param):
                 continue
         prevIndex = index - timedelta(weeks=1)
         i = dfSorted.index.get_loc(index)
-        dfSorted.at[index, 'Stage'] = checkIfStage2(i,dfSorted.at[index,'close'],dfSorted.at[index,'volumePerc'],dfSorted.at[index,'RS'],dfSorted.at[index,'WMA30Slope'],dfSorted.at[index,'WMA30'],dfSorted.at[prevIndex,'Stage'],dfSorted.at[prevIndex,'close'],dfSorted.iat[i-1,11],dfSorted.iat[i,9],dfSorted.iat[i-1,9],dfSorted.iat[i-1,10],index,dfSorted,dfSorted.at[prevIndex,'secondBuy'],dfSorted.iat[i-1,12],dfSorted.at[index,'fiveYearHigh'],param)
+        dfSorted.at[index, 'Stage'] = checkIfStage2(i,dfSorted.at[index,'close'],dfSorted.at[index,'volumePerc'],dfSorted.at[index,'RS'],dfSorted.at[index,'WMA30Slope'],dfSorted.at[index,'WMA30'],dfSorted.at[prevIndex,'Stage'],dfSorted.at[prevIndex,'close'],dfSorted.iat[i-1,11],dfSorted.iat[i,9],dfSorted.iat[i-1,9],dfSorted.iat[i-1,10],index,dfSorted,dfSorted.at[prevIndex,'secondBuy'],dfSorted.iat[i-1,12],dfSorted.at[index,'fiveYearHigh'],param,goodSectorDf)
     first = True
     return dfSorted[["close","Stage"]]
 
-def getStage(ticker,param):
+def getStage(ticker,param, goodSectorDf):
 #     today = date.today()
 #     # #200->1000
     
@@ -97,7 +97,7 @@ def getStage(ticker,param):
     # df = get_data(ticker, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
     try:
         df = pd.read_pickle("stockData/nyseNasdaq/"+ticker+".pkl")
-        return returnStageDf(df,param)
+        return returnStageDf(df,param, goodSectorDf)
     except:
         return pd.DataFrame()
 
