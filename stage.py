@@ -30,9 +30,7 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
             return "Sell"
         dfSorted.iat[i,11] = prevSupport
         dfSorted.iat[i, 12] = initialSupport
-        print(str(i)+" "+str(prevTrough)+" "+str(prevPeak))
         if price == dfSorted.iat[i,9] and prevTrough < prevPeak*param[6]:
-            print("Hi")
             dfSorted.iat[i,11] = prevTrough
         if secondBought == True:
             dfSorted.at[index, 'secondBuy'] = True
