@@ -20,6 +20,8 @@ def fullPrint(df):
 #*Stage Checker
 def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSupport,peak,prevPeak,prevTrough,index,dfSorted,secondBought,initialSupport,fiveYearHigh,param):
     if prevStage == "Stage 2" or prevStage == "Buy":
+        if sectorOfTicker[dfSorted.at[index,'ticker']] in goodSector.at[index,'BadSectors']:
+            return "Buy"
         if price>prevPeak:
             dfSorted.iat[i,9] = price
             dfSorted.iat[i,10] = price
@@ -38,13 +40,13 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
                 dfSorted.iat[i, 14] = False        
                 return "Buy"
         return "Stage 2"
-    # try:
-    #     if sectorOfTicker[dfSorted.at[index,'ticker']] in goodSector.at[index,'Sectors']:
-    #         pass
-    #     else:
-    #         return "bad sector"
-    # except:
-    #     return "bad sector"
+    try:
+        if sectorOfTicker[dfSorted.at[index,'ticker']] in goodSector.at[index,'Sectors']:
+            pass
+        else:
+            return "bad sector"
+    except:
+        return "bad sector"
     if price < fiveYearHigh * param[0]:
         return "resistance"
     if volumePerc < param[1]:
