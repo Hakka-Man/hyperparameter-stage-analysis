@@ -68,11 +68,14 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
         return "Short"  
 
     
-    indexI = index
-    if price>prevClose:
+    if price > prevClose:
+        # peak
         dfSorted.iat[i,9] = price
+        # trough
         dfSorted.iat[i,10] = price
+        # support
         dfSorted.iat[i,11] = prevClose
+        # initialSupport
         dfSorted.iat[i,12] = prevClose
     else:
         dfSorted.iat[i,9] = price
