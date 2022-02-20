@@ -13,6 +13,13 @@ sectorOfTicker = pd.read_pickle("stockData/nasdaq.pkl")
 sectorOfNyse = pd.read_pickle("stockData/nyse.pkl")
 sectorOfTicker.update(sectorOfNyse)
 
+#CONSTANTS
+PEAK = 9
+TROUGH = 10
+SUPPORT = 11
+INITIAL_SUPPORT = 12
+SECOND_BUY = 14
+
 ## TOOL FUNCTIONS
 def fullPrint(df):
     with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
@@ -26,21 +33,21 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
         if spdf.at[index, 'WMA30Slope'] < param[14]:
             return "Sell"
         if price>prevPeak:
-            dfSorted.iat[i,9] = price
-            dfSorted.iat[i,10] = price
+            dfSorted.iat[i,PEAK] = price
+            dfSorted.iat[i,TROUGH] = price
         else:
-            dfSorted.iat[i,9] = prevPeak
-            dfSorted.iat[i,10] = min(prevTrough, price)
+            dfSorted.iat[i,PEAK] = prevPeak
+            dfSorted.iat[i,TROUGH] = min(prevTrough, price)
         if price < prevSupport*param[7]:
             return "Sell"
-        dfSorted.iat[i,11] = prevSupport
-        dfSorted.iat[i, 12] = initialSupport
-        if price == dfSorted.iat[i,9] and prevTrough < prevPeak*param[6]:
-            dfSorted.iat[i,11] = prevTrough
+        dfSorted.iat[i,SUPPORT] = prevSupport
+        dfSorted.iat[i, INITIAL_SUPPORT] = initialSupport
+        if price == dfSorted.iat[i,PEAK] and prevTrough < prevPeak*param[6]:
+            dfSorted.iat[i,SUPPORT] = prevTrough
         if secondBought == True:
             dfSorted.at[index, 'secondBuy'] = True
             if price <= initialSupport*param[5] and dfSorted.at[index,'trough'] < dfSorted.at[index,'peak']:
-                dfSorted.iat[i, 14] = False        
+                dfSorted.iat[i, SECOND_BUY] = False        
                 return "Buy"
         return "Stage 2"
     try:
@@ -70,18 +77,18 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
     
     if price > prevClose:
         # peak
-        dfSorted.iat[i,9] = price
+        dfSorted.iat[i,PEAK] = price
         # trough
-        dfSorted.iat[i,10] = price
+        dfSorted.iat[i,TROUGH] = price
         # support
-        dfSorted.iat[i,11] = prevClose
+        dfSorted.iat[i,SUPPORT] = prevClose
         # initialSupport
-        dfSorted.iat[i,12] = prevClose
+        dfSorted.iat[i,INITIAL_SUPPORT] = prevClose
     else:
-        dfSorted.iat[i,9] = price
-        dfSorted.iat[i,10] = price*0.95
-        dfSorted.iat[i,11] = price*0.95
-        dfSorted.iat[i,12] = price*0.95
+        dfSorted.iat[i,PEAK] = price
+        dfSorted.iat[i,TROUGH] = price*0.95
+        dfSorted.iat[i,SUPPORT] = price*0.95
+        dfSorted.iat[i,INITIAL_SUPPORT] = price*0.95
     dfSorted.at[index, 'secondBuy'] = True
     return "Buy"
 
@@ -96,7 +103,7 @@ def returnStageDf(dfSorted,param,goodSectorDf):
                 continue
         prevIndex = index - timedelta(weeks=1)
         i = dfSorted.index.get_loc(index)
-        dfSorted.at[index, 'Stage'] = checkIfStage2(i,dfSorted.at[index,'close'],dfSorted.at[index,'volumePerc'],dfSorted.at[index,'RS'],dfSorted.at[index,'WMA30Slope'],dfSorted.at[index,'WMA30'],dfSorted.at[prevIndex,'Stage'],dfSorted.at[prevIndex,'close'],dfSorted.iat[i-1,11],dfSorted.iat[i,9],dfSorted.iat[i-1,9],dfSorted.iat[i-1,10],index,dfSorted,dfSorted.at[prevIndex,'secondBuy'],dfSorted.iat[i-1,12],dfSorted.at[index,'fiveYearHigh'],param,goodSectorDf)
+        dfSorted.at[index, 'Stage'] = checkIfStage2(i,dfSorted.at[index,'close'],dfSorted.at[index,'volumePerc'],dfSorted.at[index,'RS'],dfSorted.at[index,'WMA30Slope'],dfSorted.at[index,'WMA30'],dfSorted.at[prevIndex,'Stage'],dfSorted.at[prevIndex,'close'],dfSorted.iat[i-1,11],dfSorted.iat[i,PEAK],dfSorted.iat[i-1,PEAK],dfSorted.iat[i-1,TROUGH],index,dfSorted,dfSorted.at[prevIndex,'secondBuy'],dfSorted.iat[i-1,INITIAL_SUPPORT],dfSorted.at[index,'fiveYearHigh'],param,goodSectorDf)
     first = True
     return dfSorted[["close","Stage"]]
 
@@ -123,7 +130,7 @@ def getFullDf(ticker,param):
                 continue
         prevIndex = index - timedelta(weeks=1)
         i = dfSorted.index.get_loc(index)
-        dfSorted.at[index, 'Stage'] = checkIfStage2(i,dfSorted.at[index,'close'],dfSorted.at[index,'volumePerc'],dfSorted.at[index,'RS'],dfSorted.at[index,'WMA30Slope'],dfSorted.at[index,'WMA30'],dfSorted.at[prevIndex,'Stage'],dfSorted.at[prevIndex,'close'],dfSorted.iat[i-1,11],dfSorted.iat[i,9],dfSorted.iat[i-1,9],dfSorted.iat[i-1,10],index,dfSorted,dfSorted.at[prevIndex,'secondBuy'],dfSorted.iat[i-1,12],dfSorted.at[index,'fiveYearHigh'],param)
+        dfSorted.at[index, 'Stage'] = checkIfStage2(i,dfSorted.at[index,'close'],dfSorted.at[index,'volumePerc'],dfSorted.at[index,'RS'],dfSorted.at[index,'WMA30Slope'],dfSorted.at[index,'WMA30'],dfSorted.at[prevIndex,'Stage'],dfSorted.at[prevIndex,'close'],dfSorted.iat[i-1,11],dfSorted.iat[i,PEAK],dfSorted.iat[i-1,PEAK],dfSorted.iat[i-1,TROUGH],index,dfSorted,dfSorted.at[prevIndex,'secondBuy'],dfSorted.iat[i-1,INITIAL_SUPPORT],dfSorted.at[index,'fiveYearHigh'],param)
     first = True
     print(len(sectorOfTicker))
     return dfSorted
