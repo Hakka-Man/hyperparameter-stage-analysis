@@ -110,7 +110,6 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
 ## Main Function
 def returnStageDf(dfSorted,param,goodSectorDf):
     first = True
-    fullPrint(dfSorted)
     for index in dfSorted.index:
         if first:
             if dfSorted.index.get_loc(index) == 0:
