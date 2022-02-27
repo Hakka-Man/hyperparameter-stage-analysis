@@ -129,8 +129,9 @@ def getStage(ticker,param, goodSectorDf):
     # startDate = startDate.strftime('%Y-%m-%d')
     # df = get_data(ticker, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
     df = pd.read_pickle("stockData/nyseNasdaq/"+ticker+".pkl")
+    if df.empty:
+        return pd.DataFrame()
     return returnStageDf(df,param, goodSectorDf)
-    return pd.DataFrame()
 
 # def getFullDf(ticker,param):
 #     dfSorted = pd.read_pickle("stockData/nyseNasdaq/"+ticker+".pkl")
