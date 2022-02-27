@@ -39,9 +39,9 @@ def fullPrint(df):
 def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevSupport,peak,prevPeak,prevTrough,index,dfSorted,secondBought,initialSupport,fiveYearHigh,param,goodSectorDf):
     if prevStage == "Stage 2" or prevStage == "Buy":
         if spdf.at[index, 'close'] < spdf.at[index, 'WMA30'] * param[13]:
-            return "Sell"
+            return "Sell" +" " + str(spdf.at[index, 'close']) + " " + str(spdf.at[index, 'WMA30']) +" " + str(param[13])
         if spdf.at[index, 'WMA30Slope'] < param[14]:
-            return "Sell"
+            return "Sell" +" " + str(spdf.at[index, 'WMA30Slope']) +" " + str(param[14])
         if price>prevPeak:
             dfSorted.iat[i,PEAK] = price
             dfSorted.iat[i,TROUGH] = price
@@ -49,7 +49,7 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
             dfSorted.iat[i,PEAK] = prevPeak
             dfSorted.iat[i,TROUGH] = min(prevTrough, price)
         if price < prevSupport*param[7]:
-            return "Sell"
+            return "Sell" +" " + str(prevSupport) +" " + str(param[7])
         dfSorted.iat[i,SUPPORT] = prevSupport
         dfSorted.iat[i, INITIAL_SUPPORT] = initialSupport
         if price == dfSorted.iat[i,PEAK] and prevTrough < prevPeak*param[6]:
@@ -67,7 +67,7 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
         if sectorOfTicker[dfSorted.at[index,"ticker"]] in goodSectorDf.at[index,"Sectors"]:
             pass
         else:
-            return "bad sector"
+            return "bad sector " + str(sectorOfTicker[dfSorted.at[index,"ticker"]]) + str(goodSectorDf.at[index,"Sectors"])
     else:
         #print(goodSectorDf)
         return "bad sector"
@@ -76,17 +76,17 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
     # if spdf.at[index, 'WMA30Slope'] < param[12]:
     #     return "bearish"
     if price < fiveYearHigh * param[0]:
-        return "resistance"
+        return "resistance" +" " + str(price) +" " + str(fiveYearHigh) +" " + str(param[0])
     if volumePerc < param[1]:
-        return "volume"
+        return "volume" +" " + str(volumePerc) +" " + str(param[1])
     if RS < param[2]:
-        return "RS"
+        return "RS" +" " + str(RS) +" " + str(param[2])
     if slope < param[3]:
-        return "Slope"
+        return "Slope" +" " + str(slope) +" " + str(param[3])
     if price < wMA30*param[4]:
-        return "Price"
+        return "Price" +" " + str(wMA30) +" " + str(param[4])
     if price > prevClose*param[8]:
-        return "Short"  
+        return "Short"  + " " +str(prevClose) + " " +str(param[8])
 
     
     if price > prevClose:
