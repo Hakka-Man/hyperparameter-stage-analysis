@@ -62,7 +62,7 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
         return "Stage 2"
     indexDate = index.strftime('%Y-%m-%d')
     dates = "1998-12-20"
-    datee = "2022-02-14"
+    datee = "2022-02-26"
     if indexDate > dates and indexDate < datee:
         if sectorOfTicker[dfSorted.at[index,"ticker"]] in goodSectorDf.at[index,"Sectors"]:
             pass
@@ -71,10 +71,10 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
     else:
         #print(goodSectorDf)
         return "bad sector"
-    if spdf.at[index, 'close'] < spdf.at[index, 'WMA30'] * param[11]:
-        return "bearish"
-    if spdf.at[index, 'WMA30Slope'] < param[12]:
-        return "bearish"
+    # if spdf.at[index, 'close'] < spdf.at[index, 'WMA30'] * param[11]:
+    #     return "bearish"
+    # if spdf.at[index, 'WMA30Slope'] < param[12]:
+    #     return "bearish"
     if price < fiveYearHigh * param[0]:
         return "resistance"
     if volumePerc < param[1]:
@@ -110,6 +110,7 @@ def checkIfStage2(i,price,volumePerc, RS, slope, wMA30,prevStage,prevClose,prevS
 ## Main Function
 def returnStageDf(dfSorted,param,goodSectorDf):
     first = True
+    fullPrint(dfSorted)
     for index in dfSorted.index:
         if first:
             if dfSorted.index.get_loc(index) == 0:
