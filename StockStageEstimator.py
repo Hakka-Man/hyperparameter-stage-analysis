@@ -3,6 +3,7 @@ from stage import getStage
 import pandas as pd
 import numpy as np
 from datetime import timedelta
+from sklearn.model_selection import train_test_split
 
 ## CONSTANTS
 HOLDING = 0
@@ -13,9 +14,11 @@ class StockStageEstimator(BaseEstimator):
         self.paramList = paramList
         self.goodSectorDf = goodSectorDf
         self.returns = [0,0,0,0,0,0]
-        self.sets = sets
+        self.sets = pd.read_pickle("testSetPickle/trainSet.pkl")
         self.scores = [0,0,0]
+        self.ratio = pd.read_pickle("testSetPickle/trainSetRatio.pkl")
     
+    ## Calculate Returns base
     def evalFit(self, tickers, goodSectorDf):
         transactionFit = pd.read_pickle("transactionTemplate.pkl")
         transactionFit['holding'] = np.empty((len(transactionFit), 0)).tolist()
@@ -124,7 +127,7 @@ class StockStageEstimator(BaseEstimator):
         if self.fit() == -1:
             return -1
         for i in range(3):
-            self.scores[i] = np.absolute(((self.returns[i*2])/100/sum[i])**(1/22)-((self.returns[i*2+1])/100/sum[3+i])**(1/22))
+            self.scores[i] = np.absolute(((self.returns[i*2])/100/self.ratio[i])**(1/22)-((self.returns[i*2+1])/100/self.ratio[3+i])**(1/22))
         return self.scores
     
     def result(self):
