@@ -2,7 +2,7 @@ from StockStageEstimator import StockStageEstimator
 import pandas as pd
 import numpy as np
 import random
-import datetime
+from datetime import datetime
 
 
 ### CONSTANT VARIABLES ###
@@ -60,7 +60,7 @@ def calculateGroupReturn(list):
     return monthlyReturn
 
 ## Calculate Goodsector & Initialize Estimator Object 
-def evalReturn(individual,trainSets):
+def evalReturn(individual):
     print(individual[0])
     now = datetime.now()
     now = now.strftime("%Y-%m-%d-%H:%M")
@@ -99,7 +99,7 @@ def evalReturn(individual,trainSets):
                 # print(listOfSector)
             goodSectorDf.iat[index,0] = set(listOfSector)
             index = index + 1
-    stockStageEstimator = StockStageEstimator(individual[0], goodSectorDf, trainSets)
+    stockStageEstimator = StockStageEstimator(individual[0], goodSectorDf)
     scores = stockStageEstimator.score()
     result = stockStageEstimator.result()
     print(scores)

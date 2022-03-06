@@ -8,6 +8,7 @@ import pandas as pd
 import yahoo_fin.stock_info as yf
 from sklearn.model_selection import train_test_split
 import warnings
+import pickle
 
 ## Warning Statements
 warnings.filterwarnings("ignore", category=pd.errors.PerformanceWarning) 
@@ -42,6 +43,8 @@ nasdaqList = pd.read_pickle("stockData/tickerList.pkl")
 train, test = train_test_split(nasdaqList, test_size=0.3, shuffle=True)
 trainSet1, trainSet2, trainSet3  = np.array_split(train,3)
 trainSets = [trainSet1, trainSet2, trainSet3]
+with open('testSetPickle/trainSet.pkl', 'wb') as f:
+    pickle.dump(trainSets, f)
 
 #Initilize Output File & Write Testsets to the TXT File
 resultFile = open("resultML.txt","a")
@@ -52,7 +55,7 @@ resultFile.close()
 #Initilize Backtest Transaction Database
 transactionTemplate = yf.get_data('AAPL', start_date="1995-01-06",end_date= now, index_as_date = True).drop(['open','high','low','close','adjclose','volume','ticker'],axis=1)
 transactionTemplate['Dates'] = pd.to_datetime(transactionTemplate.index)
-transactionTemplate = transactionTemplate[transactionTemplate['Dates'].dt.weekday == 0]
+transactionTemplate = transactionTemplate[transactionTemplate['Dates'].dt.weekday == 4]
 transactionTemplate = transactionTemplate.drop('Dates', axis = 1)
 transactionTemplate.to_pickle("transactionTemplate.pkl")
 
@@ -60,7 +63,7 @@ transactionTemplate.to_pickle("transactionTemplate.pkl")
 listOfDf = calculateGroupReturn(train)
 
 ## Calculate (and normalize) returns of each folds 
-sum = [1,1,1,1,1,1]
+ratio = [1,1,1,1,1,1]
 for i in range(6):
     if i < 3:
         l = trainSets[i]
@@ -78,19 +81,21 @@ for i in range(6):
         while 1.0 in listOfStockRet:
             listOfStockRet.remove(1.0)
         if len(listOfStockRet) != 0:
-            sum[i] = sum[i] * np.mean(listOfStockRet)     
+            ratio[i] = ratio[i] * np.mean(listOfStockRet)     
 for i in range(1,6):
-    sum[i] = sum[i] / sum[0]
-sum[0] = 1.0
+    ratio[i] = ratio[i] / ratio[0]
+ratio[0] = 1.0
+with open('testSetPickle/trainSetRatio.pkl', 'wb') as f:
+    pickle.dump(ratio, f)
+
 
 pop = toolbox.population(n=128)
 # Evaluate the entire population
 # here
 # pool = Pool()
 # tempResult = pool.map(toolbox.evaluate, pop)
-tempResult = map(toolbox.evaluate, pop, trainSets)
-print(tempResult)
-fitnesses = list(tempResult)
+fitnesses = map(toolbox.evaluate, pop)
+print(fitnesses)
 # here
 # pool.close()
 for ind, fit in zip(pop, fitnesses):
@@ -105,7 +110,7 @@ while len(badInd)!=0:
         pop[index] = temp
         del pop[index].fitness.values
     badInd = [ind for ind in pop if not ind.fitness.valid]
-    fitnesses = map(toolbox.evaluate, badInd, trainSets)
+    fitnesses = map(toolbox.evaluate, badInd)
     for ind, fit in zip(badInd, fitnesses):
         ind.fitness.values = fit
         if ind.fitness.values[0]<=100:
@@ -118,6 +123,8 @@ for g in range(7):
     np.random.shuffle(train)
     trainSet1, trainSet2, trainSet3  = np.array_split(train,3)
     trainSets = [trainSet1, trainSet2, trainSet3]
+    with open('testSetPickle/trainSet.pkl', 'wb') as f:
+        pickle.dump(trainSets, f)
     print("-- Generation %i --" % g)
     resultFile = open("resultML.txt","a")
     resultFile.write("-- Generation %i --" % g+"\n")
@@ -146,7 +153,7 @@ for g in range(7):
     # pool = Pool()
     # fitnesses = pool.map(toolbox.evaluate, invalid_ind)
     # pool.close()
-    fitnesses = map(toolbox.evaluate, invalid_ind, trainSets)
+    fitnesses = map(toolbox.evaluate, invalid_ind)
     for ind, fit in zip(invalid_ind, fitnesses):
         ind.fitness.values = fit
     
