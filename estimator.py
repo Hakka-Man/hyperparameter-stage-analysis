@@ -125,6 +125,31 @@ for g in range(7):
     trainSets = [trainSet1, trainSet2, trainSet3]
     with open('testSetPickle/trainSet.pkl', 'wb') as f:
         pickle.dump(trainSets, f)
+    ## Calculate (and normalize) returns of each folds 
+    ratio = [1,1,1,1,1,1]
+    for i in range(6):
+        if i < 3:
+            l = trainSets[i]
+        else:
+            l = np.concatenate((trainSets[(i+1)%3],trainSets[(i+2)%3]))
+        index = 0
+        while index != len(l):
+            if l[index] not in listOfDf.columns:
+                l = np.delete(l, index)
+            else:
+                index += 1
+        for index, element in listOfDf[l].iterrows():
+            #print(element.to_list())
+            listOfStockRet = element.to_list()
+            while 1.0 in listOfStockRet:
+                listOfStockRet.remove(1.0)
+            if len(listOfStockRet) != 0:
+                ratio[i] = ratio[i] * np.mean(listOfStockRet)     
+    for i in range(1,6):
+        ratio[i] = ratio[i] / ratio[0]
+    ratio[0] = 1.0
+    with open('testSetPickle/trainSetRatio.pkl', 'wb') as f:
+        pickle.dump(ratio, f)
     print("-- Generation %i --" % g)
     resultFile = open("resultML.txt","a")
     resultFile.write("-- Generation %i --" % g+"\n")

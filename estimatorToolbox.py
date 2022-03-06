@@ -126,7 +126,21 @@ def evalReturn(individual):
 
 ## Generating individuals
 def generate_random_num_attr():
-  original = np.array([0,0,0,0,0,0,0,0,0,1,0.1,1,0.995,0.9,0.985])
+  original = np.array([0,  # 0 - Five Year High
+                        0, # 1 - Volume Perc
+                        0, # 2 - RS
+                        0, # 3 - Slope
+                        0, # 4 - Price v WMA30
+                        0, # 5 - Price v Initial Support
+                        0, # 6 - Prev Trough v Peak
+                        0, # 7 - Price v Prev Support
+                        0, # 8 - Price v Prev Close
+                        0.995, # 9 - Sector MA30 Slope
+                        0, # 10 - Sector RS
+                        1, # 11 - SPDF Price v WMA30
+                        0.995, # 12 - SPDF WMA30 Slope
+                        0.9, # 13 - SPDF Sell P v WMA30
+                        0.985]) # 14 - SPDF Sell WMA30 Slope
   noises = []
   sum_list = []
 
@@ -139,8 +153,8 @@ def generate_random_num_attr():
   noises.append(random.uniform(0.8, 1))
   noises.append(random.uniform(0.8, 1.1))
   noises.append(random.uniform(1.2, 1.5))
-  noises.append(np.random.normal(0, 0.001))
-  noises.append(np.random.normal(0, 0.1))
+  noises.append(np.random.normal(0, 0.004))
+  noises.append(np.random.normal(0, 0.2))
 
   noises.append(np.random.normal(0, 0.05))
   noises.append(np.random.normal(0, 0.004))
