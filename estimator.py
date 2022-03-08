@@ -48,7 +48,7 @@ with open('testSetPickle/trainSet.pkl', 'wb') as f:
 
 #Initilize Output File & Write Testsets to the TXT File
 resultFile = open("resultML.txt","a")
-resultFile.write("train "+str(train)+"\n")
+resultFile.write("trainSets "+str(trainSets)+"\n")
 resultFile.write("test "+str(test)+"\n")
 resultFile.close()
 
@@ -123,6 +123,9 @@ for g in range(7):
     np.random.shuffle(train)
     trainSet1, trainSet2, trainSet3  = np.array_split(train,3)
     trainSets = [trainSet1, trainSet2, trainSet3]
+    resultFile = open("resultML.txt","a")
+    resultFile.write("train "+str(trainSets)+"\n")
+    resultFile.close()
     with open('testSetPickle/trainSet.pkl', 'wb') as f:
         pickle.dump(trainSets, f)
     ## Calculate (and normalize) returns of each folds 

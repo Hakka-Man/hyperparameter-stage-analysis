@@ -103,10 +103,12 @@ def evalReturn(individual):
     stockStageEstimator = StockStageEstimator(individual[0], goodSectorDf)
     scores = stockStageEstimator.score()
     result = stockStageEstimator.result()
-    print(scores)
-    print(np.average(scores))
-    print(result)
-    print(stockStageEstimator.getReturns())
+    debugFile = open("debug.txt","a")
+    debugFile.write(str(individual[0])+"\n")
+    debugFile.write(str(np.average(scores))+"\n")
+    debugFile.write(str(stockStageEstimator.getReturns())+"\n")
+    debugFile.write(str(result)+"\n")
+    debugFile.close()
     if scores == -1:
         return 0,
     if np.average(scores) >  0.1:
