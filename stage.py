@@ -63,7 +63,7 @@ def checkIfStage2(indexNum,price,volumePerc, RS, slope, wMA30,prevStage,prevClos
     indexDate = index.strftime('%Y-%m-%d')
     dates = "1998-12-20"
     if indexDate > dates:
-        if sectorOfTicker[dfSorted.at[index,"ticker"]] in goodSectorDf.at[index,"Sectors"]:
+        if sectorOfTicker[dfSorted.at[index,"ticker"]] in goodSectorDf.at[pd.Timestamp(indexDate),"Sectors"]:
             pass
         else:
             return "bad sector " + str(sectorOfTicker[dfSorted.at[index,"ticker"]]) + str(goodSectorDf.at[index,"Sectors"])

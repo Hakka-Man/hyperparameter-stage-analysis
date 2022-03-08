@@ -25,7 +25,7 @@ class StockStageEstimator(BaseEstimator):
         #print("Reach #1")
         for symbol in tickers:
             df = getStage(symbol,self.paramList,goodSectorDf)
-            buyDf = pd.read_pickle('stockData/nysenasdaq/'+symbol+'Buy.pkl')
+            buyDf = pd.read_pickle('stockData/nyseNasdaq/'+symbol+'Buy.pkl')
             inStage = False
             buyTwice = False
             if df.empty:

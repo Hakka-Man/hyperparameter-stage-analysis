@@ -50,6 +50,7 @@ def calculateGroupReturn(list):
         initialPrice = df.iat[0,0]
         for index, element in df.iterrows():
             if (index.strftime("%Y:%m") != monthCheck):
+                if (initialPrice == 0): continue
                 if (lastPrice / initialPrice >= 1.01 and lastPrice / initialPrice < 2):
                     rowNumber = monthlyReturn.index.get_loc(index.strftime("%Y:%m"))
                     monthlyReturn.iat[rowNumber, currentColumn] = (lastPrice / initialPrice)
@@ -137,9 +138,9 @@ def generate_random_num_attr():
                         0, # 8 - Price v Prev Close
                         0.995, # 9 - Sector MA30 Slope
                         0, # 10 - Sector RS
-                        1, # 11 - SPDF Price v WMA30
+                        0.9, # 11 - SPDF Price v WMA30
                         0.995, # 12 - SPDF WMA30 Slope
-                        0.9, # 13 - SPDF Sell P v WMA30
+                        0.85, # 13 - SPDF Sell P v WMA30
                         0.985]) # 14 - SPDF Sell WMA30 Slope
   noises = []
   sum_list = []
@@ -153,13 +154,13 @@ def generate_random_num_attr():
   noises.append(random.uniform(0.8, 1))
   noises.append(random.uniform(0.8, 1.1))
   noises.append(random.uniform(1.2, 1.5))
-  noises.append(np.random.normal(0, 0.004))
+  noises.append(np.random.normal(0, 0.008))
   noises.append(np.random.normal(0, 0.2))
 
   noises.append(np.random.normal(0, 0.05))
-  noises.append(np.random.normal(0, 0.004))
+  noises.append(np.random.normal(0, 0.008))
   noises.append(np.random.normal(0, 0.05))
-  noises.append(np.random.normal(0, 0.004))
+  noises.append(np.random.normal(0, 0.008))
 
   while original[11] + noises[11] < original[13] + noises[13]:
     noises[11] = np.random.normal(0, 0.05)
