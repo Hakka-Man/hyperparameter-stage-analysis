@@ -57,8 +57,8 @@ transactionTemplate = yf.get_data('AAPL', start_date="1995-01-06",end_date= now,
 transactionTemplate['Dates'] = pd.to_datetime(transactionTemplate.index)
 transactionTemplate = transactionTemplate[transactionTemplate['Dates'].dt.weekday == 4]
 transactionTemplate = transactionTemplate.drop('Dates', axis = 1)
+transactionTemplate = transactionTemplate[~transactionTemplate.index.duplicated()]
 transactionTemplate.to_pickle("transactionTemplate.pkl")
-
 ## Get list of returns of tickers
 listOfDf = calculateGroupReturn(train)
 
