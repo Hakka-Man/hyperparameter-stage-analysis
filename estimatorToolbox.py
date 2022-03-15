@@ -7,6 +7,15 @@ from datetime import datetime
 
 ### CONSTANT VARIABLES ###
 
+####### #       #########
+#     # #              #
+#     # #             #
+####### #            #
+#       #           #
+#       #          #
+#       #         #
+#       ######   ########
+
 ## Mutation Noise 
 mutationNoises = []
 mutationNoises.append(np.random.normal(0, 0.025)) # 0 - Five Year High
