@@ -1,0 +1,7 @@
+GLNG sell
+HNRG buy
+HPK sell
+NCSM sell
+NSEC sell
+ROCC buy
+USEG buy

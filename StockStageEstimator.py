@@ -39,7 +39,8 @@ class StockStageEstimator(BaseEstimator):
                         open = buyDf.at[monday,'open']
                     else:
                         open = element.close
-                    transactionFit.iat[i,HOLDING].append((symbol,open,0))
+                    #delete
+                    transactionFit.iat[int(i),HOLDING].append((symbol,open,0))
                     if buyTwice:
                         transactionFit.iat[i, HOLDING].append((symbol,open,0))
                     if element.Stage == "Buy" and inStage:

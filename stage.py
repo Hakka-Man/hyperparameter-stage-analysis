@@ -68,7 +68,6 @@ def checkIfStage2(indexNum,price,volumePerc, RS, slope, wMA30,prevStage,prevClos
         else:
             return "bad sector " + str(sectorOfTicker[dfSorted.at[index,"ticker"]]) + str(goodSectorDf.at[index,"Sectors"])
     else:
-        #print(goodSectorDf)
         return "bad sector"
     if spdf.at[index, 'close'] < spdf.at[index, 'WMA30'] * param[11]:
         return "bearish"
