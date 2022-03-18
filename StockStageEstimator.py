@@ -30,6 +30,8 @@ class StockStageEstimator(BaseEstimator):
             buyTwice = False
             if df.empty:
                 continue
+            if buyDf['open'].eq(0).any().any():
+                continue
             for index, element in df.iterrows():
                 open = 0
                 monday = index + timedelta(3)
