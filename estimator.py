@@ -3,7 +3,7 @@ from deap import creator, tools, base
 import numpy as np
 import random
 from stage import fullPrint, getStage
-from datetime import datetime
+from datetime import datetime, date
 import pandas as pd
 import yahoo_fin.stock_info as yf
 from sklearn.model_selection import train_test_split
@@ -37,7 +37,6 @@ toolbox.register("select", tools.selTournament, tournsize=3)
 ## Initialize Variables 
 now = datetime.now()
 
-
 # Initialize Test/Train Stock Lists
 nasdaqList = pd.read_pickle("stockData/tickerList.pkl")
 train, test = train_test_split(nasdaqList, test_size=0.3, shuffle=True)
@@ -47,7 +46,7 @@ with open('testSetPickle/trainSet.pkl', 'wb') as f:
     pickle.dump(trainSets, f)
 
 #Initilize Output File & Write Testsets to the TXT File
-resultFile = open("resultML.txt","a")
+resultFile = open("estimatorData/resultML"+date.today().strftime('%Y-%m-%d')+".txt","a")
 resultFile.write("trainSets "+str(trainSets)+"\n")
 resultFile.write("test "+str(test)+"\n")
 resultFile.close()
@@ -123,7 +122,7 @@ for g in range(7):
     np.random.shuffle(train)
     trainSet1, trainSet2, trainSet3  = np.array_split(train,3)
     trainSets = [trainSet1, trainSet2, trainSet3]
-    resultFile = open("resultML.txt","a")
+    resultFile = open("estimatorData/resultML"+date.today().strftime('%Y-%m-%d')+".txt","a")
     resultFile.write("train "+str(trainSets)+"\n")
     resultFile.close()
     with open('testSetPickle/trainSet.pkl', 'wb') as f:
@@ -154,7 +153,7 @@ for g in range(7):
     with open('testSetPickle/trainSetRatio.pkl', 'wb') as f:
         pickle.dump(ratio, f)
     print("-- Generation %i --" % g)
-    resultFile = open("resultML.txt","a")
+    resultFile = open("estimatorData/resultML"+date.today().strftime('%Y-%m-%d')+".txt","a")
     resultFile.write("-- Generation %i --" % g+"\n")
     resultFile.close()
     
