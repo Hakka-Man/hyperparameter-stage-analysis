@@ -9,6 +9,7 @@ import yahoo_fin.stock_info as yf
 from sklearn.model_selection import train_test_split
 import warnings
 import pickle
+from multiprocessing import Pool
 
 ## Warning Statements
 warnings.filterwarnings("ignore", category=pd.errors.PerformanceWarning) 
@@ -88,12 +89,12 @@ with open('testSetPickle/trainSetRatio.pkl', 'wb') as f:
     pickle.dump(ratio, f)
 
 
-pop = toolbox.population(n=128)
+pop = toolbox.population(n=512)
 # Evaluate the entire population
 # here
-# pool = Pool()
+pool = Pool()
 # tempResult = pool.map(toolbox.evaluate, pop)
-fitnesses = map(toolbox.evaluate, pop)
+fitnesses = pool.map(toolbox.evaluate, pop)
 print(fitnesses)
 # here
 # pool.close()
@@ -109,7 +110,7 @@ while len(badInd)!=0:
         pop[index] = temp
         del pop[index].fitness.values
     badInd = [ind for ind in pop if not ind.fitness.valid]
-    fitnesses = map(toolbox.evaluate, badInd)
+    fitnesses = pool.map(toolbox.evaluate, badInd)
     for ind, fit in zip(badInd, fitnesses):
         ind.fitness.values = fit
         if ind.fitness.values[0]<=100:
@@ -118,7 +119,7 @@ while len(badInd)!=0:
 
     
 # Begin the evolution
-for g in range(7):
+for g in range(10):
     np.random.shuffle(train)
     trainSet1, trainSet2, trainSet3  = np.array_split(train,3)
     trainSets = [trainSet1, trainSet2, trainSet3]
@@ -180,7 +181,7 @@ for g in range(7):
     # pool = Pool()
     # fitnesses = pool.map(toolbox.evaluate, invalid_ind)
     # pool.close()
-    fitnesses = map(toolbox.evaluate, invalid_ind)
+    fitnesses = pool.map(toolbox.evaluate, invalid_ind)
     for ind, fit in zip(invalid_ind, fitnesses):
         ind.fitness.values = fit
     
