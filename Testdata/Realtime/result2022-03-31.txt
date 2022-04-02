@@ -1,0 +1,6 @@
+AGRI buy
+ARTW buy
+CAPR buy
+ESLT buy
+SAMG buy
+SND buy
