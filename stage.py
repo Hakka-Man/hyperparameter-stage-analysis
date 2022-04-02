@@ -117,12 +117,11 @@ def returnStageDf(dfSorted,param,goodSectorDf):
         indexNum = dfSorted.index.get_loc(index)
         dfSorted.iat[indexNum, STAGE] = checkIfStage2(indexNum,dfSorted.iat[indexNum,CLOSE],dfSorted.iat[indexNum,VOLUME_PERC],dfSorted.iat[indexNum,RS],dfSorted.iat[indexNum,WMA30_SLOPE],dfSorted.iat[indexNum,WMA30],dfSorted.iat[indexNum-1,STAGE],dfSorted.iat[indexNum-1,CLOSE],dfSorted.iat[indexNum-1,SUPPORT],dfSorted.iat[indexNum,PEAK],dfSorted.iat[indexNum-1,PEAK],dfSorted.iat[indexNum-1,TROUGH],index,dfSorted,dfSorted.iat[indexNum-1,SECOND_BUY],dfSorted.iat[indexNum-1,INITIAL_SUPPORT],dfSorted.iat[indexNum,FIVE_YEAR_HIGH],param,goodSectorDf)
     first = True
-    return dfSorted[["close","Stage"]]
+    return dfSorted[["close","Stage", "support"]]
 
 def getStage(ticker,param, goodSectorDf):
-#     today = date.today()
-#     # #200->1000
-    
+    # today = date.today()
+    # #200->1000
     # today = today.strftime('%Y-%m-%d')
     # startDate = startDate.strftime('%Y-%m-%d')
     # df = get_data(ticker, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
@@ -130,6 +129,7 @@ def getStage(ticker,param, goodSectorDf):
     if df.empty:
         return pd.DataFrame()
     return returnStageDf(df,param, goodSectorDf)
+
 
 # def getFullDf(ticker,param):
 #     dfSorted = pd.read_pickle("stockData/nyseNasdaq/"+ticker+".pkl")
