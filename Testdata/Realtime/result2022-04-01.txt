@@ -1,0 +1,16 @@
+ACET buy
+AGRI sell
+ARTW buy
+CALM buy
+CPLP hold
+HBP hold
+KROS buy
+LAND buy
+NFE buy
+PNBK hold
+SAMG hold
+SGML buy
+TCDA buy
+TH buy
+TWNK buy
+UG buy
