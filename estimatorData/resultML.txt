@@ -1,0 +1,579 @@
+trainSets [array(['MLAIU', 'WAFU', 'MITA', 'GEEXW', 'VIVO', 'VECT', 'CCNEP', 'MSVB',
+       'TWLVU', 'ORLY', 'NOVVU', 'SGIIU', 'DCTH', 'CJJD', 'SRRA', 'ASND',
+       'TRMK', 'DSACU', 'GXIIU', 'GOVX', 'FLMN', 'NTIC', 'FSEA', 'CMPX',
+       'PRGS', 'KRTX', 'AOSL', 'TEDU', 'APPN', 'MCAF', 'AMAO', 'ORIC',
+       'EZGO', 'GO', 'RIBT', 'AGEN', 'BTCY', 'CDK', 'RRGB', 'SLDP',
+       'AVGR', 'VJET', 'NXST', 'ICMB', 'BBIO', 'XRTX', 'GLHA', 'KTRA',
+       'ELTK', 'SIVBP', 'KLAQ', 'SCKT', 'SBGI', 'CHRW', 'HIFS', 'HALO',
+       'MAR', 'COMS', 'LRMR', 'AZTA', 'IDBA', 'IQMD', 'GTH', 'CCOI',
+       'CTSO', 'RTLR', 'CSQ', 'AWH', 'MFIN', 'HOTH', 'PRTG', 'WLFC', 'GH',
+       'ASYS', 'NVIV', 'DSAC', 'UGRO', 'HCAT', 'REVB', 'RMBS', 'TCBS',
+       'GLNG', 'MTBCO', 'CVAC', 'BWFG', 'KEQU', 'HTIA', 'MDGL', 'BCSA',
+       'CERS', 'FCRD', 'SALM', 'IART', 'NYMT', 'TCRX', 'NTUS', 'UPC',
+       'EPHYU', 'WKME', 'BEAT', 'OCFC', 'NWFL', 'GLLIW', 'JRSH', 'AGIL',
+       'DISCA', 'TEKK', 'ATHX', 'SCWX', 'ZY', 'IHRT', 'IOBT', 'FMAO',
+       'CRKN', 'NSEC', 'TMKR', 'ICAD', 'MODD', 'WEJO', 'NOAC', 'PCCTU',
+       'GMVD', 'OXLCP', 'ORGN', 'TLMD', 'FAMI', 'PFDR', 'JFIN', 'CHEF',
+       'ALTUU', 'NLIT', 'LYTS', 'NVEE', 'REED', 'GCBC', 'RICO', 'DTEA',
+       'HMCOU', 'GPP', 'TMDI', 'YVR', 'IDN', 'RKDA', 'BENEU', 'LPTX',
+       'SNBR', 'VLYPP', 'USAU', 'KRMD', 'VRTX', 'NEPT', 'UMBF', 'MITC',
+       'FSSIU', 'SPRC', 'EXEL', 'NGMS', 'GTEC', 'HWKN', 'FNWB', 'UPWK',
+       'MACUU', 'NTCT', 'TCFC', 'GOGL', 'MCAGU', 'REVH', 'RMBL', 'CTG',
+       'MCAAU', 'JMACU', 'LDHAU', 'CAR', 'EYEN', 'CPAAU', 'PTEN', 'KALU',
+       'ARCT', 'JYNT', 'VWE', 'RCKT', 'AGNC', 'CRZNU', 'IMNM', 'PXS',
+       'HHR', 'AGNCO', 'AAOI', 'OPRT', 'GOOG', 'RENT', 'HURC', 'ISLE',
+       'LION', 'CTRN', 'PBLA', 'DLPN', 'ACBAU', 'FLXS', 'MNTV', 'DCOMP',
+       'GTYH', 'ACMR', 'RENO', 'MRM', 'THTX', 'HPLT', 'CURI', 'TMDX',
+       'ZSAN', 'UPTDU', 'VORBW', 'ASPS', 'ARYE', 'ITRM', 'VCXAU', 'THRX',
+       'NEXT', 'WWAC', 'IMPL', 'BLTSU', 'KOSS', 'MLVF', 'ARGUU', 'CRMT',
+       'IMOS', 'PTIC', 'ACTDU', 'SP', 'AKAM', 'ZT', 'DTRT', 'TURN',
+       'BTAI', 'SIBN', 'KVSA', 'XPAXU', 'PCH', 'KE', 'GEVO', 'OSUR',
+       'MPRAW', 'FTPAU', 'ANGO', 'ATNI', 'DHAC', 'NFE', 'SWAG', 'ZI',
+       'FOSL', 'CBIO', 'BNIX', 'PCSB', 'NCTY', 'WEJOW', 'LANC', 'FORR',
+       'DMAC', 'RAMMU', 'GRABW', 'INOD', 'LIVE', 'CYTK', 'ROSE', 'ENPH',
+       'AEACU', 'JCTCF', 'CELZ', 'ALIM', 'TCRR', 'RWAY', 'AGRI', 'VSAT',
+       'IVCBU', 'ALXO', 'SLN', 'SIER', 'NRBO', 'HSDT', 'QFIN', 'DLTR',
+       'MMSI', 'ESPR', 'MIME', 'ENTF', 'IMAB', 'GLDD', 'CHSCL', 'DGII',
+       'TILE', 'PBAXU', 'GOBI', 'ALYA', 'LHAA', 'HTGM', 'SINT', 'CCXI',
+       'SKIN', 'BNR', 'SPTK', 'CDNS', 'ETON', 'XPDBU', 'DAVEW', 'MRUS',
+       'PCXCW', 'MFH', 'AUVI', 'MTEX', 'AVAH', 'AEHR', 'NMTR', 'USAP',
+       'RIVN', 'NYMTM', 'LVLU', 'FSLR', 'ABVC', 'HYPR', 'ENTG', 'IRDM',
+       'KZR', 'CSCW', 'GSHD', 'OYST', 'SPSC', 'INDT', 'WASH', 'TXRH',
+       'VRME', 'VENA', 'FSRX', 'HBANP', 'STTK', 'CRZN', 'VRTS', 'GLPI',
+       'BOKF', 'EBC', 'CMRX', 'CCAP', 'CRSR', 'DSWL', 'BJDX', 'CLBT',
+       'GWRS', 'CISO', 'GLAQ', 'AVID', 'SEEL', 'CFFI', 'SREV', 'ACB',
+       'TUEM', 'EDTK', 'GSBC', 'LOCO', 'CSWI', 'CNXN', 'SMSI', 'AEIS',
+       'HSKA', 'GBRGU', 'WTMA', 'CLBS', 'FRPH', 'BASE', 'ZWRK', 'DWACU',
+       'SCPS', 'SRSA', 'ANAB', 'FHLT', 'QNST', 'KRT', 'RMNI', 'RGNX',
+       'EKSO', 'VIAV', 'VIIAU', 'ITCI', 'JAMF', 'SCMAU', 'SQL', 'OXSQ',
+       'FRSGU', 'USCB', 'INDP', 'NPAB', 'UBX', 'MNTX', 'OPEN', 'AMEH',
+       'ACBI', 'GAIA', 'FSBC', 'BBSI', 'ZIMVV', 'PRLHU', 'EHTH', 'CFIV',
+       'HUBG', 'AMKR', 'HPK', 'AY', 'CLAQU', 'DGLY', 'TACO', 'ROSEU',
+       'AROW', 'SWKS', 'BSKYU', 'AFMD', 'AGMH', 'AVGOP', 'PPBT', 'WSBF',
+       'PHIC', 'WVVI', 'APTM', 'ESGR', 'VAQC', 'XFINW', 'CLAR', 'IMBI',
+       'SPFI', 'PAAS', 'BTAQU', 'TCBIO', 'HMPT', 'UROY', 'APLT', 'LSXMK',
+       'PEBO', 'QIWI', 'HFFG', 'BIOC', 'HQI', 'MARPS', 'APCX', 'FNCB',
+       'BHFAM', 'NRC', 'TGA', 'SHIP', 'HMNF', 'STRRP', 'UK', 'GLBLU',
+       'PRIM', 'XBIO', 'DISA', 'KPLT', 'ARCC', 'QLGN', 'FWONA', 'SONN',
+       'APR', 'BFI', 'AVGO', 'IBCP', 'CBAT', 'KALV', 'CMLS', 'MACA',
+       'MTAC', 'WKEY', 'GSKY', 'III', 'EPSN', 'BHAT', 'UTME', 'RCRT',
+       'IPDN', 'COLB', 'RPTX', 'AMAL', 'LCA', 'DOOO', 'ABUS', 'GERN',
+       'QUIK', 'PWFL', 'DADA', 'APDN', 'MEOH', 'GIGM', 'REKR', 'PLSE',
+       'PWP', 'VENAU', 'SUNW', 'SISI', 'SHCR', 'HSIC', 'FLGT', 'IDEX',
+       'LDHA', 'WW', 'CNNB', 'VIRX', 'IPWR', 'VICR', 'LOV', 'SAVA',
+       'RILYL', 'LGTOU', 'AEPPZ', 'FTCV', 'FATBB', 'CRVL', 'AMRS',
+       'MOBQW', 'RVSB', 'HLXA', 'BNOX', 'SBT', 'TBBK', 'CRNC', 'CRTD',
+       'MGRC', 'CSSEP', 'CLSD', 'RXT', 'TGAA', 'ALKT', 'EXAI', 'FLL',
+       'DTST', 'BLSA', 'LMAT', 'SPWR', 'WAVD', 'TTSH', 'MESO', 'RADI',
+       'TTEC', 'HRTX', 'CYBE', 'DH', 'PSNL', 'KLAQU', 'NURO', 'FNWD',
+       'DGICB', 'HEAR', 'BFRA', 'XAIR', 'MCAEU', 'EDNC', 'PFTA', 'MIRO',
+       'VLDR', 'IROQ', 'MNTK', 'NCACU', 'TYME', 'TELA', 'THCP', 'GDYN',
+       'APTO', 'DSKE', 'SVC', 'ARCK', 'NMRD', 'CDAQU', 'HUGE', 'CDXC',
+       'POAI', 'OTEX', 'NXTD', 'SPRO', 'LGVCU', 'MGEE', 'COOL', 'PCRX',
+       'DWAC', 'ALAC', 'GLG', 'FGFPP', 'AVDX', 'GLMD', 'LVTX', 'TTMI',
+       'WDAY', 'CRTO', 'MSAC', 'FRBA', 'MMAT', 'MUDS', 'MCBS', 'EXPD',
+       'NWL', 'CGNT', 'AVT', 'IGTAU', 'GENE', 'FRBNU', 'DSGN', 'OZK',
+       'VCYT', 'AYRO', 'IESC', 'PKBK', 'GMTX', 'BRPM', 'GBNY', 'HVBC',
+       'CVLY', 'KRNLU', 'ATXS', 'VRCA', 'BIOSU', 'CSIQ', 'ADVM', 'FRAF',
+       'ARHS', 'TRIB', 'SMAPU', 'IPW', 'AAWW', 'LOGI', 'PGC', 'ENLV',
+       'CNOB', 'CATY', 'GVP', 'ATEC', 'VNDA', 'PBBK', 'CMCTP', 'NYMTL',
+       'NICE', 'ALRN', 'PTSI', 'CLOE', 'SOPH', 'AGYS', 'TW', 'LMNR',
+       'POSH', 'EVLV', 'BBQ', 'ALBO', 'POWW', 'FOUNU', 'RSVR', 'ONEM',
+       'CYCC', 'BRFH', 'IPAXU', 'BOCNU', 'EDSA', 'LKFN', 'GNAC', 'ZNTEU',
+       'GIFI', 'KRON', 'GLBE', 'ICLR', 'BWCAU', 'STRR', 'HBANM', 'AVCO',
+       'GRCY', 'YELL', 'ISIG', 'SYBX', 'CMCO', 'HCDI', 'SYNL', 'AIRTP',
+       'IMCR', 'ACXP', 'NXPI', 'OBSV', 'ETNB', 'PRSO', 'SCVL', 'VYNE',
+       'MTCR', 'WALDU', 'APA', 'EEIQ', 'OSPN', 'GTPBU', 'BYND', 'SSP',
+       'JANX', 'OCFCP', 'KMDA', 'ARBG', 'NHTC', 'KFRC', 'TROO', 'SANA',
+       'HTLD', 'AVTE', 'PPC', 'HRMY', 'MANT', 'OLITU', 'ASTE', 'DNLI',
+       'FWBI', 'PFG', 'BCTX', 'WINVU', 'EQOS', 'VIGL', 'VACC', 'EQBK',
+       'ODFL', 'PAHC', 'RMR', 'AMZN', 'BHAC', 'OHPA', 'APPS', 'AEHAU',
+       'LSXMA', 'AEAC', 'STRA', 'OGI', 'HYACU', 'ACTD', 'NVNO', 'PTON',
+       'OXBRW', 'VINC', 'TBCP', 'BENE', 'ACGL', 'SLS', 'LCAA', 'FSTR',
+       'PTVE', 'CMMB', 'XTLB', 'INKT', 'IKT', 'WVE', 'MACK', 'WATT',
+       'HCVIU', 'EVK', 'GTPAU', 'GRAY', 'HWBK', 'MDIA', 'NEWT', 'LAZR',
+       'FATE', 'PTOCU', 'BGCP', 'CNEY', 'SNOA', 'LQDT', 'LGND', 'GLSI',
+       'AKUS', 'XM', 'DNAB', 'OCCIN', 'JKHY', 'CMCT', 'SRZN', 'CHDN',
+       'PGRW', 'CDZI', 'DUOL', 'ZIVO', 'AGBA', 'RCACU', 'PNRG', 'ASTR',
+       'TRUE', 'ADP', 'KNTE', 'HOFV', 'INCY', 'SVRA', 'WHLR', 'CDAQW',
+       'INDI', 'DFH', 'ONYX', 'VRAR', 'GECC', 'CALT', 'ONEW', 'CNTA',
+       'CGO', 'LAND', 'UVSP', 'INMB', 'CDXS', 'FUSB', 'CCD', 'URGN',
+       'FXNC', 'LVAC', 'PLUG', 'CSGS', 'KNSA', 'ENSG', 'PDSB', 'AFBI',
+       'ECOR', 'SELB', 'SSBK', 'FIACU', 'XEL', 'CRTX', 'LPTH', 'CTIC',
+       'AHI', 'SPTKU', 'DLHC', 'FANH', 'HBIO', 'PCCT', 'LAAAU', 'WSFS',
+       'NPABU', 'USIO', 'SRRK', 'INZY', 'MASI', 'ARQT', 'TIVC', 'FUNC',
+       'TCBK', 'MOTS', 'USEG', 'TFFP', 'BIIB', 'CHNG', 'PHAR', 'PIRS',
+       'FISV', 'AVDL', 'TSBK', 'JD', 'DYNS', 'OIIM', 'MAAQU', 'KTOS',
+       'DTIL', 'TITN', 'IRIX', 'ITRI', 'DJCO', 'KLAC', 'IMUX', 'HORIU',
+       'QIPT', 'GDNRU', 'NVAX', 'COLM', 'SGTX', 'ADAG', 'VYGR', 'ALJJ',
+       'NHIC', 'LSBK', 'DORM', 'ALTU', 'AEHA', 'MEDS', 'AEAEW', 'PXLW',
+       'FSBW', 'APAC', 'LINC', 'NCSM', 'RXRX', 'TWCBU', 'BRY', 'AEP',
+       'ISAA', 'MSGM', 'SVFC', 'BBIG', 'GXII', 'VTAQ', 'KELYA', 'ARTNA',
+       'VEV', 'SUMO', 'MIGI', 'LTBR', 'PETS', 'ITOS', 'SWSSU', 'BDSI',
+       'SSSS', 'ASPCU', 'JJSF', 'ECOL', 'SVFA', 'NXTP', 'GGPIU', 'FIVE',
+       'FSTX', 'CBAY', 'CRNX', 'XRAY', 'AHCO', 'RAIL', 'POOL', 'SFBC',
+       'WRAP', 'AKYA', 'RNA', 'CDAQ', 'DYAI', 'SMLR', 'OHAA', 'USWS',
+       'STEP', 'KLTR', 'FIAC', 'VFF', 'AXTI', 'AACIU', 'MBWM', 'TLIS',
+       'ARRY', 'ISO', 'KPTI', 'EM', 'HQY', 'GRWG', 'GPCOU', 'CFFEU',
+       'AHPAU', 'BKYI', 'STOK', 'PGEN', 'LARK', 'SBFG', 'DMTK', 'MHUA',
+       'WINT', 'ADGI', 'RAIN', 'PBAX', 'BNTC', 'BIOT', 'HCNE', 'CAN',
+       'NTRB', 'LCAPU', 'BBI', 'RAPT', 'OCAXU', 'AOGOU', 'BON', 'FBNC',
+       'EYES', 'FUTU', 'MDXG', 'AGNCN', 'MKSI', 'SURF', 'TSHA', 'CDEV',
+       'ROST', 'AEI', 'RNER', 'KIDS', 'PMTS', 'VPCBU', 'VNET', 'ANIK',
+       'LITE', 'SECO', 'OBLG', 'SGRP', 'HOOK', 'SAMA', 'VBFC', 'CGC',
+       'EGBN', 'GSEVU', 'BRLT', 'VRRM', 'RNW', 'NATI', 'SDAC', 'IEA',
+       'USAK', 'AACG', 'ALTR', 'LUNA', 'AKTX', 'DTRTU', 'ASPU', 'XENE'],
+      dtype='<U5'), array(['EPIX', 'DGICA', 'VLATU', 'ZION', 'AMCX', 'ULBI', 'PGNY', 'RGLD',
+       'OTECU', 'KVSC', 'AGGRU', 'SNES', 'BPACU', 'VERU', 'CLEU', 'QNRX',
+       'IOACU', 'SLM', 'NVSA', 'METX', 'BELFA', 'GIW', 'RNDB', 'CLSN',
+       'DOGZ', 'RNLX', 'FITBI', 'QRVO', 'DILAU', 'BCML', 'BYRN', 'ROCK',
+       'MDGS', 'REPH', 'IPHA', 'LGSTW', 'PHUN', 'PAFOU', 'CAMP', 'VHNA',
+       'MOBQ', 'LOOP', 'CLVRW', 'ETSY', 'KYMR', 'BKR', 'SYPR', 'REVEU',
+       'PROC', 'ACRX', 'FINM', 'PBYI', 'PUCKU', 'LJPC', 'EVOP', 'BFC',
+       'AEYE', 'GATE', 'SV', 'SONO', 'VERV', 'ORPH', 'ANPC', 'IIIV',
+       'HCDIP', 'TAYD', 'VRNA', 'RSSS', 'TWNK', 'TROW', 'SRTS', 'GGMC',
+       'XOMAO', 'PMD', 'BREZ', 'DISCB', 'IMPPP', 'SWBI', 'EMBK', 'WLDN',
+       'SIEN', 'EVGN', 'DAKT', 'WILC', 'LIFE', 'WETF', 'JMACW', 'ITQRU',
+       'PBHC', 'FFBC', 'KMPH', 'ATRC', 'SRNE', 'NWLI', 'ENTX', 'DKNG',
+       'SLNH', 'SABRP', 'VEON', 'XPAX', 'OP', 'UAL', 'MINM', 'ATXI',
+       'ELOX', 'SVSVU', 'CALB', 'FOXWU', 'PULM', 'RDNT', 'ATHE', 'NNBR',
+       'THRY', 'EGLE', 'PROG', 'CENQ', 'PT', 'GTX', 'PAFO', 'CMPO',
+       'PHCF', 'PNTG', 'FOX', 'WHLRP', 'ORGS', 'LNDC', 'OPI', 'HCARU',
+       'GRUB', 'UCBIO', 'HBT', 'LHCG', 'BSET', 'PPIH', 'BNTX', 'MILE',
+       'SNPS', 'NESR', 'BRIV', 'CECE', 'ICCM', 'KRBP', 'OTEC', 'GLYC',
+       'PCTTU', 'JBHT', 'TGAN', 'NDRA', 'NUVL', 'BZ', 'ZVO', 'BTBD',
+       'SUMR', 'CCRN', 'METC', 'AZPN', 'FUSN', 'BROG', 'LMFA', 'SCOB',
+       'MODV', 'BLRX', 'DENN', 'CRESY', 'GDEN', 'CYTH', 'GNACU', 'HOPE',
+       'GRNQ', 'AUR', 'BIVI', 'FLAC', 'ADN', 'VLY', 'THACU', 'ACAD',
+       'HNRG', 'CDMO', 'FANG', 'BIOS', 'PTRA', 'GMBLP', 'IMTX', 'OKTA',
+       'NSSC', 'ZEAL', 'GRVI', 'NDLS', 'ROC', 'RESN', 'IMRN', 'EWCZ',
+       'BCOV', 'THMO', 'PRTS', 'ADALU', 'AMPG', 'BLCT', 'PPGH', 'SZZLU',
+       'GTPA', 'CERN', 'VRNS', 'SERA', 'MYNA', 'SRCL', 'PBFS', 'ROIC',
+       'IZEA', 'SNRHU', 'FREE', 'MGI', 'PCSA', 'FITB', 'EOSE', 'NUVA',
+       'FGEN', 'GVCIU', 'VCKA', 'ERYP', 'PBCTP', 'NYMTZ', 'MSDAU', 'PNFP',
+       'ORIA', 'PRCH', 'HGSH', 'VSTM', 'SOHOB', 'KTCC', 'FATPW', 'ARVL',
+       'KOPN', 'OXUSU', 'IPGP', 'INSE', 'SLAB', 'ARKO', 'CLBK', 'PLBY',
+       'LFST', 'MELI', 'LIBY', 'CVRX', 'QRHC', 'MBIO', 'STAB', 'VIEW',
+       'BFIN', 'AGTC', 'RCMT', 'IIVI', 'SBNY', 'OPRA', 'ATHA', 'FCAP',
+       'GTIM', 'PFIN', 'FNLC', 'AXSM', 'ASPC', 'APCXW', 'HSAQ', 'HSTM',
+       'OXACU', 'UNCY', 'CSTL', 'KINZU', 'MTSI', 'OCGN', 'ENTFW', 'ABIO',
+       'SOHON', 'CSTE', 'XBIT', 'ALPAU', 'KDNY', 'PNT', 'ELDN', 'ANZU',
+       'VREX', 'KDP', 'MON', 'SHCAW', 'APTX', 'PROF', 'FCCO', 'GOSS',
+       'LULU', 'KRNL', 'ATY', 'IMPP', 'VAXX', 'NEOG', 'TZPS', 'NRXPW',
+       'ATOM', 'KLIC', 'XLO', 'CBNK', 'TEKKU', 'BMEA', 'PSTX', 'APXIU',
+       'PDD', 'UBCP', 'MCRB', 'QCOM', 'ICCC', 'NOVT', 'INTEW', 'TUGCU',
+       'TCON', 'VTIQ', 'GDEV', 'TGTX', 'FRGAP', 'AUID', 'XELB', 'BLDE',
+       'GLEE', 'TIG', 'LNTH', 'ACABU', 'CACC', 'BZFD', 'TWOU', 'BELFB',
+       'HTIBP', 'BYTSU', 'BLPH', 'CBSH', 'AVHI', 'ISTR', 'MUDSU', 'MSBI',
+       'CVV', 'TCMD', 'AKU', 'ACIU', 'BTNB', 'BKSC', 'EZFL', 'TVTX',
+       'FINW', 'CSCO', 'CLRMU', 'REFI', 'GFGDU', 'LIAN', 'XPER', 'BLMN',
+       'OLMA', 'THCAU', 'CFVIU', 'HWC', 'ROCC', 'TC', 'SY', 'JVA',
+       'ARKOW', 'LBRDP', 'MATW', 'CING', 'AUDC', 'BECN', 'KAIIU', 'SPKBU',
+       'ZUMZ', 'CINC', 'LFTRU', 'OPOF', 'HBNC', 'CONXU', 'EVLO', 'SEV',
+       'WNW', 'OFS', 'BPYPP', 'BYTS', 'PFIE', 'COVAU', 'YGMZ', 'LPLA',
+       'ZNTE', 'NCBS', 'RDHL', 'DUO', 'LVOX', 'GLBZ', 'CCEL', 'AQMS',
+       'DRMA', 'NTRS', 'DNUT', 'DMLP', 'FLIC', 'UPLD', 'FCFS', 'MBRX',
+       'LTRY', 'MGIC', 'AHPI', 'BTWNU', 'SSNT', 'ACVA', 'PIII', 'IGAC',
+       'CLAY', 'ARDX', 'FRLAW', 'TCVA', 'EDRY', 'HCICU', 'BRTX', 'EVOL',
+       'UBSI', 'INM', 'OPK', 'EJFAU', 'HYRE', 'CHCO', 'CWBR', 'SPCB',
+       'PERI', 'TZOO', 'CELUW', 'GPRO', 'ONCY', 'XOS', 'ONYXU', 'RADA',
+       'AFAQ', 'KLXE', 'ME', 'ADIL', 'NGM', 'GANX', 'FELE', 'AUBAP',
+       'FFHL', 'BOXL', 'ROCAU', 'SGMO', 'SSNC', 'MACU', 'ZG', 'SWIM',
+       'OPRX', 'APTMU', 'DMRC', 'WB', 'TNDM', 'GAMC', 'ANGI', 'CCNC',
+       'DRUG', 'CRMD', 'ZNTL', 'OXAC', 'BIOTU', 'AINV', 'ALPP', 'OCG',
+       'OVLY', 'UEIC', 'PRLH', 'IMAQU', 'RNERW', 'FTVI', 'AUVIP', 'ANNX',
+       'MNDO', 'RGEN', 'BTB', 'BBBY', 'NWSA', 'MDJH', 'THFF', 'CIDM',
+       'SLDB', 'OXUS', 'FRBK', 'NEPH', 'SCOA', 'RRBI', 'DYNT', 'FTRP',
+       'FRSG', 'LILM', 'KSI', 'BLDP', 'HLMN', 'BLIN', 'PI', 'ADXN',
+       'VMEO', 'AUBN', 'COMSP', 'TIOA', 'ITRN', 'SCOR', 'CLVR', 'MAAQ',
+       'GIAC', 'CRNT', 'EEFT', 'ULH', 'HMST', 'CFFN', 'SHLS', 'MBIN',
+       'BNFT', 'DXCM', 'SMTI', 'FTHM', 'TRIP', 'HCWB', 'DHHC', 'RGP',
+       'IMAQ', 'FGBIP', 'ADTHW', 'BKCC', 'JWEL', 'OEPW', 'CIIGU', 'ANDE',
+       'AFCG', 'SABS', 'SBFMW', 'BILI', 'SEIC', 'APWC', 'REE', 'GYRO',
+       'ZIONO', 'PTIX', 'ASLN', 'STAF', 'SATS', 'LYEL', 'LYFT', 'DWSN',
+       'GPCO', 'OSBC', 'MPAC', 'WDC', 'NKSH', 'CMPOW', 'LPCN', 'PINC',
+       'BIOL', 'AMRK', 'HCIC', 'DSP', 'SNPX', 'CREG', 'ABMD', 'BATRK',
+       'NH', 'HROW', 'CLST', 'WFCF', 'RLYB', 'BSGM', 'WVVIP', 'FOUNW',
+       'CVBF', 'MBUU', 'OHPAU', 'CELU', 'XPEL', 'RCHG', 'DISH', 'BYSI',
+       'MESA', 'SLMBP', 'CSX', 'PLRX', 'LIZI', 'ALPA', 'MULN', 'HFBL',
+       'AIP', 'TUGC', 'NTLA', 'PEGRU', 'EVOJU', 'RUSHB', 'INTG', 'MCBC',
+       'PECO', 'DUNEU', 'EXAS', 'COLI', 'ADSE', 'LWAY', 'CORT', 'SQFTW',
+       'ZEST', 'CPLP', 'NBN', 'FMIV', 'GGGVU', 'ALPN', 'RNXT', 'CMPI',
+       'ELMS', 'PCTI', 'GLUE', 'JZXN', 'MRKR', 'SIMO', 'SNPO', 'PSAGU',
+       'PRVB', 'NMMCU', 'MBINO', 'MOFG', 'GSM', 'TIGR', 'ITIC', 'SWETU',
+       'HEES', 'PLXP', 'KSICU', 'GT', 'SCMA', 'MSTR', 'IIN', 'TOAC',
+       'GDRX', 'BSFC', 'INTEU', 'REG', 'KRKR', 'CEVA', 'ROLLP', 'FTPA',
+       'GHSI', 'TUSK', 'VIOT', 'RNERU', 'CMBM', 'FDBC', 'FRSX', 'IGMS',
+       'SRDX', 'MMLP', 'BATRA', 'FTCI', 'PODD', 'ALOR', 'EGAN', 'OZON',
+       'PUCK', 'DCBO', 'NXTC', 'WKHS', 'FB', 'COHU', 'ABCB', 'SBLK',
+       'LBPS', 'CRCT', 'ACGLO', 'VCSA', 'APMI', 'CLVS', 'SNGX', 'RVNC',
+       'AMAOU', 'SAFT', 'QDEL', 'AYLA', 'CLGN', 'GPAC', 'AIKI', 'ETAC',
+       'HSII', 'RGF', 'IMXI', 'CTAQ', 'QTNT', 'LNSR', 'GHRS', 'CPAR',
+       'RPRX', 'MBII', 'IMRX', 'SPWH', 'FCEL', 'MINDP', 'CFLT', 'RNWK',
+       'FIACW', 'MAPS', 'MLAI', 'HGEN', 'TCX', 'CVET', 'APEI', 'MORF',
+       'LJAQU', 'HARP', 'LABP', 'CENTA', 'ASUR', 'BEEM', 'VINP', 'FSRXU',
+       'BCLI', 'LBRDA', 'CIGI', 'ASTS', 'CZNC', 'SPI', 'FATP', 'FNGR',
+       'FLWS', 'WING', 'HAIAU', 'RVMD', 'NDAQ', 'IVAC', 'EPZM', 'DCRD',
+       'ATER', 'SSBI', 'UEPS', 'RRR', 'OPBK', 'OTLY', 'ALNY', 'STRNW',
+       'MCRI', 'NCNO', 'LYL', 'PENN', 'CRIS', 'CWST', 'ATLO', 'MARK',
+       'AHPA', 'IMGO', 'GRPH', 'CUEN', 'LAZY', 'CWBC', 'FTAA', 'PCYO',
+       'ATAI', 'DTOC', 'LBRDK', 'BHFAO', 'STKL', 'VCKAU', 'AVAC', 'MTBCP',
+       'GTACW', 'ASPA', 'LINK', 'ENTFU', 'SGMS', 'ALSAU', 'IBRX', 'KERN',
+       'PEBK', 'PLUS', 'LAWS', 'SEAC', 'INSG', 'CVCO', 'DICE', 'BLI',
+       'WSBCP', 'WTFC', 'ENOB', 'RGLS', 'BPAC', 'MEOAU', 'FLEX', 'PCYG',
+       'SKYW', 'VIEWW', 'NVDA', 'SND', 'ATLC', 'ACT', 'AVRO', 'ASAXU',
+       'BRCN', 'VWTR', 'PFLT', 'RANI', 'SGMA', 'CLMT', 'CRECU', 'BWAY',
+       'CLDX', 'SOFI', 'CTXR', 'AXLA', 'SHBI', 'SFM', 'MCAFU', 'OPGN',
+       'CHUY', 'AXON', 'NWS', 'VIVE', 'FEMY', 'CTLP', 'VITL', 'LVRAU',
+       'BANF', 'AMYT', 'FLUX', 'UNTY', 'EH', 'TBK', 'LGTOW', 'OTRA',
+       'STRT', 'PSMT', 'WKSP', 'COGT', 'TGLS', 'EQRX', 'PRQR', 'TRVI',
+       'ALCO', 'GATEW', 'MTEM', 'LTRPB', 'FIXX', 'SGLB', 'ADSEW', 'LMB',
+       'LASR', 'ALACW', 'VIRC', 'TMC', 'ADOC', 'CRWD', 'SPTN', 'FLGC',
+       'MITK', 'BWACU', 'IOSP', 'INNV', 'TSIBU', 'CYCCP', 'OB', 'CTAQU',
+       'OMGA', 'LMAOU', 'PRAX', 'SMIH', 'ATSG', 'HCCC', 'AFAC', 'MNOV',
+       'RNST', 'GGAL', 'ABGI', 'DSGX', 'GBIO', 'WTFCP', 'KROS', 'CHSCO',
+       'SBCF', 'CEMI', 'ACIW', 'FRLAU', 'PRTA', 'TOI', 'WTBA', 'YMAB',
+       'GFED', 'GDS', 'KIIIU', 'LGACU', 'WRLD', 'SFET', 'RLMD', 'CKPT',
+       'NOACU', 'HOOD', 'OM', 'ALLR', 'MYRG', 'FRONU', 'NSYS', 'MDXH',
+       'ESBK', 'ALORU', 'LLL', 'VRA', 'WAFD', 'REFR', 'JYAC', 'TMKRU',
+       'KTTA', 'DYN', 'CASS', 'INFN', 'ATNF', 'SBFM', 'OTRK', 'CLWT',
+       'BKEP', 'HLNE', 'WYNN', 'FCNCA', 'BRP', 'BIGC', 'VTAQU', 'SLDPW',
+       'ADI', 'VSAC', 'BPTS', 'CRDL', 'GSIT', 'AVACW', 'KAIR', 'BFST',
+       'LGO', 'BLCM', 'MF', 'KRNY', 'VLCN', 'ASRV', 'UNB', 'GLAD', 'TRS',
+       'CNSP', 'CETXP', 'UG', 'PSHG', 'XMTR', 'VERX', 'MTBC', 'FWP',
+       'BUSE', 'GET', 'AATC', 'HELE', 'GIIXU', 'CFVI', 'ADTN', 'LIVN',
+       'EVFM', 'BPYPN', 'ACHL', 'MAQCU', 'NBTX', 'SHQA', 'PACW', 'STSA',
+       'ACLX', 'ARGX', 'VLYPO', 'SLHG', 'PYPD', 'IMGN', 'XELA', 'HUDI',
+       'AMCIU', 'FA', 'FIVN', 'COIN', 'HLTH', 'BGFV', 'DBX', 'CGBD',
+       'TTNP', 'PTC', 'LEXX', 'JNCE', 'STKS', 'INSM', 'ONVO', 'PEGA',
+       'PLMI', 'TBSA', 'LIBYW', 'SAGAU', 'GABC', 'ARAY', 'KHC', 'ARNA',
+       'XXII', 'CCBG', 'DBGI', 'LVOXU', 'BCSAU', 'CLOEU'], dtype='<U5'), array(['PDEX', 'ARDS', 'OEPWU', 'ARTE', 'PEPLU', 'TRHC', 'OFIX', 'CMTL',
+       'MEOA', 'VTGN', 'GWII', 'CWCO', 'CFFE', 'MIDD', 'NEON', 'ARKR',
+       'BAND', 'VOXX', 'GOEV', 'GREE', 'FCNCP', 'NLITU', 'NVOS', 'LSTR',
+       'IXAQ', 'LGVC', 'PDCE', 'AUB', 'ALT', 'EAC', 'GHAC', 'SMCI', 'SLP',
+       'CAC', 'ALGN', 'TWST', 'UFPT', 'DGHI', 'CSII', 'RIGL', 'TWCB',
+       'WHLRD', 'TXMD', 'SURG', 'KBNT', 'AFYA', 'CSTR', 'QLI', 'SLCRU',
+       'VMD', 'ARCE', 'TALK', 'HIMX', 'GMBL', 'VTNR', 'EVCM', 'FUV',
+       'KPRX', 'GACQ', 'SVFD', 'TKNO', 'QK', 'VXRT', 'CHK', 'FRON',
+       'VMAR', 'TPST', 'GNTA', 'VTSI', 'PNNT', 'UBFO', 'HYZN', 'GEG',
+       'HWEL', 'DKDCA', 'AVEO', 'PLMIU', 'CPIX', 'TAOP', 'SONM', 'CVLG',
+       'SHC', 'CREC', 'AMTI', 'AAON', 'MDRRP', 'ANAT', 'RVAC', 'FRGI',
+       'AWRE', 'PTICU', 'VSACU', 'BRLIU', 'EUCRU', 'PYXS', 'CCAI', 'RBKB',
+       'GLBS', 'PCTY', 'OCDX', 'WULF', 'CONE', 'IGACU', 'MPACU', 'TOACU',
+       'PCXCU', 'TARS', 'PLAY', 'WISH', 'ONCS', 'PEGR', 'BCEL', 'RMGC',
+       'FORD', 'ORRF', 'RMBI', 'ARBGU', 'PKOH', 'LMAO', 'APMIU', 'LAMR',
+       'WBA', 'ADER', 'TSCO', 'ABEO', 'QH', 'MYPS', 'SNEX', 'MMMB',
+       'CASA', 'SMTC', 'MTLS', 'SWKH', 'WNEB', 'XFINU', 'FISI', 'MTRY',
+       'MNST', 'FARO', 'CROX', 'OLLI', 'BVS', 'HYFM', 'CARE', 'RACB',
+       'SIVB', 'HIHO', 'LTRPA', 'PBIP', 'SEER', 'RCLFU', 'NYMTN', 'TETCU',
+       'LGVN', 'VIRI', 'FREQ', 'CMPR', 'FSV', 'HLBZ', 'BPTH', 'LUCD',
+       'CTMX', 'ONB', 'SMMF', 'ICPT', 'DOCU', 'NHICU', 'GOODN', 'KAVL',
+       'ACHC', 'APLS', 'FIZZ', 'SRAD', 'ISBC', 'FWONK', 'TRMD', 'VORB',
+       'FMNB', 'ERAS', 'MCAG', 'SDH', 'OCX', 'BRKR', 'ALHC', 'RDVT',
+       'LUNG', 'OMAB', 'OSTRU', 'VINO', 'PRAA', 'VTVT', 'UONEK', 'SIGIP',
+       'MXCT', 'GSMGW', 'AGLE', 'SYRS', 'ITQ', 'SMED', 'JUPW', 'GTACU',
+       'CASY', 'REDU', 'CNTB', 'LBPH', 'COFS', 'ACEV', 'TREE', 'NTGR',
+       'MTP', 'NVFY', 'DOYU', 'WSTG', 'DHIL', 'ENERW', 'SSAA', 'SCPL',
+       'LOVE', 'IMMR', 'IMMX', 'RZLT', 'SAMG', 'CLPT', 'IMTE', 'BGRY',
+       'DRIO', 'BDTX', 'WSC', 'LOTZ', 'MLAC', 'HTOO', 'QLYS', 'ACET',
+       'WAFDP', 'LOGC', 'SIERU', 'VERA', 'FKWL', 'EBON', 'GOOD', 'TEAM',
+       'PTE', 'CRWS', 'GP', 'FNVT', 'Z', 'AEZS', 'BLUE', 'XNCR', 'AMGN',
+       'IRTC', 'AMST', 'RKLB', 'CCTS', 'ARIZ', 'SEED', 'STIM', 'CMAX',
+       'MTRX', 'SRGA', 'GALT', 'HOUR', 'CALA', 'EVOK', 'ALLO', 'HSON',
+       'SMBC', 'FGF', 'ASMB', 'KINZ', 'ADTX', 'SLNO', 'PFTAU', 'PHIO',
+       'TGVCW', 'KVHI', 'OXLCO', 'BTTX', 'VCXA', 'SEVN', 'SBTX', 'SPK',
+       'CHTR', 'ELEV', 'GCMG', 'OSIS', 'SAFM', 'EXC', 'GGMCU', 'ALRM',
+       'EBTC', 'ANEB', 'SZZL', 'PHVS', 'CUTR', 'INAB', 'SOHU', 'SSKN',
+       'DXLG', 'MRNA', 'MIRM', 'ADPT', 'SNY', 'OPNT', 'AEMD', 'LGST',
+       'CNSL', 'FOXF', 'CLNE', 'MNDY', 'SGEN', 'NDAC', 'OBNK', 'ADV',
+       'WALD', 'HPLTU', 'FRST', 'ADUS', 'FFIC', 'JOFF', 'NODK', 'MGYR',
+       'BWMN', 'EIGR', 'NSPR', 'HYAC', 'ATVI', 'OLB', 'WABC', 'CABA',
+       'YTEN', 'LCAHU', 'WERN', 'HLG', 'HTZ', 'FIBK', 'PACXU', 'ATNX',
+       'FVCB', 'UFCS', 'TSC', 'SLGG', 'AGGR', 'CIH', 'CFRX', 'NECB',
+       'BLU', 'PTOC', 'GILD', 'DCGO', 'VLAT', 'TLRY', 'TECTP', 'CFMS',
+       'AZYO', 'HUMA', 'TCBC', 'SHYF', 'ARRW', 'EBET', 'TAST', 'COOP',
+       'HWELU', 'APM', 'ERII', 'IDRA', 'STRO', 'MPAA', 'HSTO', 'NLOK',
+       'SPNE', 'JRVR', 'HMCO', 'MORN', 'MPWR', 'ASLE', 'GSEV', 'SMPL',
+       'SOLO', 'MVIS', 'EUCR', 'WTW', 'RMGCU', 'NVNOW', 'MYMD', 'BLFS',
+       'REGN', 'MNDT', 'EBACU', 'PUYI', 'SHACU', 'TOIIW', 'ABNB', 'HAYN',
+       'VIVK', 'DIBS', 'XSPA', 'UCBI', 'ARTL', 'LSPRU', 'SFIX', 'CYXT',
+       'NUWE', 'SKYT', 'XFIN', 'EBIX', 'CPSS', 'CHRS', 'LEE', 'AMSWA',
+       'NMIH', 'EBAC', 'GNCA', 'FTAAU', 'ETACU', 'MRAI', 'FRLN', 'CPARU',
+       'SSRM', 'CNTY', 'HUSN', 'ICCH', 'BRKL', 'ACAHU', 'ABCM', 'TSVT',
+       'HAS', 'ARCB', 'HOLX', 'PLL', 'COMM', 'HURN', 'SIRI', 'MOHO',
+       'TTOO', 'STRS', 'LCUT', 'INVZ', 'SMMT', 'ATIF', 'KAIRU', 'PRCT',
+       'ZKIN', 'GBDC', 'LUXAU', 'CLXT', 'INGN', 'HYMCL', 'BRPMU', 'OPT',
+       'PEAR', 'NAOV', 'REAL', 'TBNK', 'EMCF', 'LUXA', 'NVSAU', 'NVAC',
+       'EMLDU', 'AIH', 'WTER', 'LANDO', 'COHR', 'FSSI', 'ARQQ', 'ECPG',
+       'SANB', 'ADAL', 'DBVT', 'HALL', 'LCAAU', 'HGBL', 'KSPN', 'LKQ',
+       'PONOU', 'ELSE', 'TPTX', 'SVFAU', 'JOAN', 'NVCR', 'NTNX', 'FATPU',
+       'IQ', 'YTRA', 'SKYA', 'NCNA', 'CHX', 'RXST', 'RAM', 'APRE', 'ENDP',
+       'TMCI', 'NCAC', 'HEXO', 'DERM', 'ICUI', 'RELL', 'HLIT', 'NAII',
+       'AVACU', 'AMWD', 'JMAC', 'TETC', 'LXEH', 'SWAGU', 'WTRH', 'ROIV',
+       'MANH', 'IBKR', 'SPKB', 'LBTYA', 'CCAIU', 'AMED', 'KURA', 'VPCB',
+       'TLSA', 'SCSC', 'SANW', 'CENX', 'BPRN', 'YQ', 'EFOI', 'AGIO',
+       'CIVB', 'LEDS', 'TNGX', 'PIK', 'FRTA', 'LSCC', 'AVIR', 'UDMY',
+       'AADI', 'INO', 'CHWA', 'GBRG', 'BSQR', 'NMTC', 'DXPE', 'CNXC',
+       'BRIVU', 'SWSS', 'AUTL', 'RILYP', 'AIRG', 'ALKS', 'SITM', 'RELY',
+       'IRMD', 'VERO', 'PPHPU', 'CYRX', 'ELYM', 'TALS', 'CARV', 'MYFW',
+       'CVGW', 'XP', 'SSB', 'VHNAU', 'CTBI', 'ZLAB', 'SNT', 'QRTEB',
+       'EVO', 'IGNY', 'FTNT', 'GLTO', 'LTRX', 'ISPC', 'PRDO', 'HOWL',
+       'BSGA', 'IREN', 'DAOOU', 'VIASP', 'POLA', 'NAVI', 'CGRN', 'OXLCM',
+       'NVTS', 'LRFC', 'TSAT', 'MNKD', 'SPKAU', 'ZD', 'FCNCO', 'PRDS',
+       'PCVX', 'ROCG', 'GTAC', 'HITI', 'TVTY', 'RMCF', 'APYX', 'OCCIO',
+       'RDFN', 'MAQC', 'FNCH', 'ANTE', 'MIST', 'CLOV', 'AVO', 'HST',
+       'TIL', 'BHSEU', 'GEOS', 'CVT', 'MTACU', 'MTRYW', 'ARTW', 'FDMT',
+       'PONO', 'EACPU', 'FFIN', 'MTCH', 'LZ', 'BEAM', 'RVACU', 'BWBBP',
+       'UTAAU', 'GPACU', 'SMID', 'IBEX', 'ALTO', 'CLFD', 'APPF', 'BLNG',
+       'ZGNX', 'HBCP', 'AKTS', 'COLIU', 'GRIL', 'CTKB', 'RCAT', 'AFACU',
+       'LGAC', 'UNAM', 'BLBX', 'TRON', 'CCLP', 'REYN', 'ADMA', 'CPRT',
+       'JAQCU', 'BMRN', 'DCT', 'CREX', 'PFHD', 'NVCN', 'IONS', 'ATAX',
+       'CZWI', 'LAXXU', 'BVXV', 'BSVN', 'SMFR', 'TRDA', 'CNTQ', 'ALLT',
+       'ACBA', 'ANSS', 'XCUR', 'RELI', 'MITAU', 'CAMT', 'SCLE', 'LFTR',
+       'BRID', 'QMCO', 'ORTX', 'SLGL', 'HAPP', 'TERN', 'LSEA', 'OCCI',
+       'VIA', 'PBCT', 'ITI', 'DRRX', 'MGPI', 'GTHX', 'CINF', 'LFMD',
+       'BNSO', 'MIND', 'EWTX', 'LUMO', 'TTWO', 'QUMU', 'AHG', 'SSTI',
+       'ARBK', 'NWPX', 'DFFN', 'ROSEW', 'REAX', 'TTD', 'CELH', 'SBUX',
+       'MRCC', 'CDTX', 'ICVX', 'APPH', 'RILY', 'REVHU', 'SFNC', 'LFVN',
+       'FTVIU', 'SNAX', 'MNMD', 'OMEX', 'AMBA', 'ROKU', 'BSKY', 'AREC',
+       'COVA', 'PRSR', 'NRSN', 'SAGA', 'SUNS', 'PRTK', 'TSCAP', 'HOLI',
+       'KXIN', 'OPCH', 'NVVE', 'ASAX', 'CLSK', 'VKTX', 'BHFAN', 'CHI',
+       'OTMOW', 'LMST', 'OLK', 'ANY', 'SENEB', 'LYRA', 'SGHT', 'CATC',
+       'LEGA', 'ABOS', 'BZFDW', 'WVFC', 'LCID', 'VC', 'INVO', 'FNVTU',
+       'DISCK', 'OTTR', 'LMACA', 'LEVLP', 'AUPH', 'DAIO', 'JOUT', 'CONX',
+       'PLXS', 'PTGX', 'NVMI', 'DWACW', 'ELYS', 'PFDRU', 'HHGC', 'ROOT',
+       'ONTX', 'SLNG', 'BFRI', 'UPST', 'TRONU', 'BWB', 'PRFX', 'HNST',
+       'BIMI', 'BHSE', 'CTIB', 'GNTY', 'RAND', 'SPPI', 'OXBR', 'NSTG',
+       'LHDX', 'ANGN', 'VELO', 'TTGT', 'ZTAQU', 'XFOR', 'GENC', 'ESQ',
+       'AMPL', 'IDAI', 'NDACU', 'HLAH', 'JAN', 'CCNE', 'IGIC', 'CYCN',
+       'JCS', 'EYE', 'IPA', 'WIMI', 'VOR', 'CCEP', 'BITF', 'LIQT', 'CYAD',
+       'CPOP', 'GRTX', 'LNT', 'PPTA', 'OLPX', 'AMAT', 'ZNGA', 'CCSI',
+       'WORX', 'SVNAU', 'ASTC', 'BPOP', 'DBTX', 'ITHXU', 'JUGGU', 'RUN',
+       'LIONU', 'AYTU', 'MYGN', 'SBET', 'LYLT', 'NEXI', 'MSDA', 'DNAD',
+       'TIGO', 'PEP', 'MRVI', 'MOXC', 'PPSI', 'SIOX', 'QTRX', 'HTHT',
+       'FROG', 'PRFT', 'TGAAU', 'AGNCM', 'TMUS', 'FATBP', 'DNAC', 'BCAB',
+       'LXRX', 'OMEG', 'HCAR', 'TBCPU', 'AIHS', 'RBB', 'BBLG', 'LESL',
+       'AVCT', 'EMKR', 'IGAP', 'SRCE', 'XGN', 'LSXMB', 'EGRX', 'DRVN',
+       'SIEB', 'SWIR', 'EVER', 'PRLD', 'BCDA', 'XENT', 'SNFCA', 'GTBP',
+       'IRWD', 'HMTV', 'MCAA', 'RBCN', 'OVBC', 'GOCO', 'AQB', 'CSBR',
+       'AMTB', 'ISSC', 'INTZ', 'SILK', 'SGC', 'SOFO', 'FTDR', 'PFIS',
+       'USCTU', 'XRX', 'EBAY', 'DALN', 'GBT', 'SQFT', 'UCTT', 'UFPI',
+       'KOD', 'EVBG', 'KINS', 'OPTN', 'ARBEW', 'EYPT', 'NTRSO', 'CBRG',
+       'RETA', 'SGML', 'ESTA', 'KAII', 'RDBX', 'ENSC', 'UIHC', 'CFIVU',
+       'CHY', 'ATRA', 'FRME', 'SNDX', 'CMCSA', 'TGVC', 'MKD', 'CLIR',
+       'PLAB', 'MRNS', 'SGA', 'BIRD', 'AKIC', 'FBIOP', 'AFIB', 'LVRA',
+       'IOAC', 'AIRT', 'CARG', 'GGPI', 'MRVL', 'OLED', 'EDUC', 'TA',
+       'IOVA', 'TGVCU', 'SYBT', 'TBLA', 'LMNL', 'NKLA', 'VABK', 'FCUV',
+       'LAUR', 'TATT', 'ICHR', 'CHCI', 'LAX', 'CTXS', 'LIXT', 'STRL',
+       'CFB', 'FFIV', 'MOVE', 'AEAE', 'ADALW', 'TBPH', 'FBIZ', 'CENT',
+       'THCA', 'DTOCU', 'HEPS', 'TCRT', 'SLGCW', 'HRZN', 'ORIAU', 'AKICU',
+       'FRG', 'VMGAU', 'AIRS', 'ARVN', 'AVAV', 'GLLIU', 'EXTR', 'ZYNE',
+       'TIOAU', 'PMGMU', 'CBRGW', 'CIIG', 'VWEWW', 'ATLCP', 'GIIX',
+       'DISAU', 'LMDX', 'GIWWU', 'OVID', 'MNPR', 'MBCN', 'FOXW', 'CRECW',
+       'PLYA', 'GILT', 'CBFV', 'FRW', 'MCHP', 'PAVM', 'DPCS', 'TESS',
+       'PESI', 'VBLT', 'ORGO', 'BTBT'], dtype='<U5')]
+test ['CTSH', 'SNDL', 'CSSE', 'IPVI', 'CPRX', 'HCKT', 'AMD', 'WEYS', 'TPIC', 'JUGG', 'MEACU', 'ROVR', 'GRPN', 'SLVR', 'GNOG', 'CBRGU', 'GAIN', 'TCBX', 'NWE', 'FLYW', 'CENQU', 'ALVR', 'GROW', 'ENG', 'CNFR', 'GMFIU', 'PATI', 'DSEY', 'PTPI', 'LRCX', 'INDB', 'PAYO', 'FGBI', 'CHSCN', 'SBRA', 'GLHAU', 'GEEX', 'IMRA', 'SCOBU', 'XERS', 'VALN', 'SUPN', 'DRAY', 'HERAU', 'ACNB', 'IGNYU', 'CERE', 'DTSS', 'CBTX', 'CLRM', 'AERI', 'GOGO', 'LILAK', 'AXGN', 'FULC', 'FMIVU', 'COKE', 'PAQC', 'HLAHU', 'AGBAU', 'VALU', 'NTES', 'HCTI', 'VSTA', 'PAA', 'SABR', 'AEHL', 'BMAQ', 'AEY', 'NTAP', 'PROV', 'FSFG', 'VTRU', 'SDACU', 'CRSP', 'INBK', 'PBTS', 'CSGP', 'CCCC', 'TH', 'NRDS', 'SYNA', 'HTLF', 'PYPL', 'PAYA', 'ULCC', 'OSTR', 'CRDF', 'PRTC', 'EAST', 'MTTR', 'ATVCU', 'SPOK', 'ACAXU', 'RPD', 'MDB', 'DZSI', 'ALEC', 'PCB', 'BLKB', 'BCPC', 'TDUP', 'TXN', 'EZPW', 'CDRO', 'AZN', 'WFRD', 'ARTEU', 'LILA', 'CHWAU', 'NNOX', 'CLAYU', 'HCIIU', 'PRPL', 'ADSK', 'AREB', 'SESN', 'WDFC', 'ATRO', 'AESE', 'TWKS', 'ILMN', 'CTAS', 'AAME', 'PCX', 'FTCVU', 'AMNB', 'FRHC', 'TENX', 'QURE', 'PUBM', 'GGAAU', 'CODA', 'OZKAP', 'LIDR', 'SHCA', 'PSTV', 'JOFFU', 'VCEL', 'QRTEA', 'GRAB', 'BRAG', 'PYR', 'NAUT', 'VTIQU', 'YORW', 'ARIZU', 'SCOAU', 'MBOT', 'HCII', 'AMLX', 'HCP', 'ROCGU', 'ZBRA', 'INKA', 'OXLC', 'HUT', 'VMGA', 'EAR', 'BYFC', 'VELOU', 'FULT', 'LVACU', 'BANR', 'HBP', 'BCAC', 'SQFTP', 'TOWN', 'SFST', 'FLDM', 'NBSE', 'UXIN', 'MBINP', 'CYRN', 'LWLG', 'APACU', 'NRAC', 'XOMA', 'TOPS', 'NAACU', 'KLDO', 'OSS', 'RDI', 'NLTX', 'TBKCP', 'FEIM', 'NVEI', 'LIBYU', 'CDLX', 'MRCY', 'QSI', 'EPAY', 'CG', 'BLTS', 'HON', 'VCTR', 'IRBT', 'ZYXI', 'GMBT', 'INTC', 'CONN', 'COCP', 'MDRX', 'SOTK', 'BLFY', 'ACER', 'SGII', 'SRPT', 'MTRYU', 'OPHC', 'ACQR', 'IPSC', 'SNSE', 'ARTA', 'BCBP', 'ATCX', 'GACQU', 'ONCT', 'ITHX', 'FBRX', 'CAAS', 'VSEC', 'PTRS', 'BBGI', 'AXDX', 'EOLS', 'LTRN', 'AMTX', 'FAST', 'CUBA', 'AGFY', 'ATRI', 'LI', 'REGI', 'DUOT', 'LEGN', 'ARBE', 'CBRL', 'HTBI', 'RPHM', 'VCNX', 'SOHOO', 'ARAV', 'AURCU', 'HCNEU', 'PTLO', 'VEEE', 'NEGG', 'MVBF', 'SOPA', 'MCAE', 'HAACU', 'BWMX', 'SRAX', 'WIX', 'CHSCP', 'CRBU', 'DARE', 'PLCE', 'JBLU', 'LFMDP', 'LGTO', 'JAKK', 'TLS', 'EXPE', 'MXL', 'TRST', 'TSEM', 'GRCL', 'ALNA', 'TWIN', 'FVAM', 'PEPL', 'BSRR', 'TRIN', 'TRMR', 'LBC', 'WHF', 'HHGCU', 'ACEVU', 'ASML', 'CXDO', 'AGFS', 'AACI', 'BKNG', 'HCVI', 'RCLF', 'WINV', 'IIII', 'GLEEU', 'LITT', 'SMIT', 'YJ', 'LBTYB', 'KRNT', 'BXRX', 'SCHN', 'GAMB', 'GMBTU', 'GATEU', 'FENC', 'GLBL', 'DDI', 'NKTX', 'LCAP', 'MOR', 'OFED', 'SPLK', 'IQMDU', 'ERESU', 'HCCCU', 'SVVC', 'PAX', 'PANL', 'NFLX', 'RGCO', 'RPAY', 'CETX', 'FHTX', 'CLAQ', 'BCRX', 'VLNS', 'YNDX', 'COUP', 'NOVN', 'BPYPO', 'CGEM', 'OBAS', 'IIVIP', 'TARA', 'LBTYK', 'WWACW', 'OFLX', 'RCM', 'STGW', 'BAFN', 'NOTV', 'LMPX', 'MGNI', 'PDLB', 'LEVL', 'RUSHA', 'CHEK', 'ALGT', 'LGVCW', 'MHLD', 'BJRI', 'MKTW', 'SCHL', 'SYTA', 'SSYS', 'ONCR', 'XNET', 'TBSAU', 'ON', 'DLTH', 'BMAQU', 'AVXL', 'IPAR', 'ARCKU', 'COCO', 'GRTS', 'GURE', 'TPBAU', 'MAAQW', 'YY', 'ETTX', 'VUZI', 'PFX', 'PCOM', 'GNLN', 'MPRAU', 'AAPL', 'STX', 'KZIA', 'SNCE', 'ALORW', 'RNAZ', 'OCUP', 'SCAQU', 'SOHO', 'API', 'IDXX', 'MYSZ', 'FOUN', 'ATVC', 'BTAQ', 'FORA', 'VS', 'COST', 'ATEX', 'ICLK', 'FTEK', 'NBTB', 'FWRD', 'SSAAU', 'IKNA', 'RXDX', 'STXB', 'VERI', 'ABST', 'ALZN', 'ZM', 'DHCA', 'SLGN', 'DVAX', 'LKCO', 'DMAQ', 'OCUL', 'SANBU', 'BNNRU', 'DKDCU', 'HAFC', 'SCPH', 'HIIIU', 'ADTH', 'CIFR', 'TSCBP', 'PNFPP', 'SIGI', 'EFTR', 'GHACU', 'AMPH', 'NEO', 'BPMC', 'OMIC', 'TSRI', 'RPID', 'OTIC', 'PRTH', 'OMER', 'RCON', 'ENERU', 'MNSBP', 'ALLK', 'ALACU', 'DNAY', 'CTRM', 'RARE', 'CRUS', 'CALM', 'NUZE', 'ESAC', 'BOTJ', 'COLL', 'LITTU', 'OTRAU', 'RDWR', 'DHACU', 'IIIIU', 'ACCD', 'SMBK', 'TTEK', 'GROM', 'ACST', 'POWI', 'CME', 'WWD', 'GAME', 'DNAA', 'LCNB', 'MGTX', 'MEKA', 'JBSS', 'MCHX', 'POWL', 'BCOR', 'SMIHU', 'IONM', 'BRLI', 'GSAQ', 'TCDA', 'SLRC', 'HHS', 'TRUP', 'TER', 'ESLT', 'DHHCU', 'THRN', 'CNDT', 'TRVG', 'BTWN', 'MBTCU', 'PFC', 'NXGL', 'NN', 'BZUN', 'LTCH', 'OHAAU', 'ACHV', 'MNSB', 'ESSC', 'JCIC', 'CUE', 'OMQS', 'BRQS', 'APOG', 'FRLA', 'SHOO', 'VRSN', 'ONDS', 'WOOF', 'FITBP', 'CBAN', 'NARI', 'ADMP', 'RWLK', 'SGBX', 'PACB', 'PIXY', 'ERIE', 'CRXT', 'LEGAU', 'POW', 'STNE', 'BCACU', 'NTRA', 'JOBS', 'BDSX', 'KNDI', 'DLO', 'KBAL', 'AAL', 'AVHIU', 'CHNR', 'IFBD', 'SWET', 'VRNT', 'VBTX', 'FRPT', 'NRIX', 'NDSN', 'DGNU', 'MU', 'GTPB', 'FFWM', 'HZNP', 'ASTL', 'GWGH', 'ACTG', 'UBOH', 'MPRA', 'BIOX', 'ASO', 'VLON', 'SMAP', 'CYAN', 'MEDP', 'ERIC', 'PFBC', 'PALI', 'IMMP', 'ABCL', 'GFS', 'HERA', 'TMPM', 'BCYC', 'BTX', 'GRCYU', 'PPBI', 'PANA', 'PTNR', 'AKRO', 'CHPMU', 'HCCI', 'BKEPP', 'CDW', 'HAIN', 'IMV', 'MOGO', 'CELC', 'SHCAU', 'WSBC', 'CITEU', 'LX', 'ESACU', 'JFU', 'TCOM', 'BMRC', 'JAZZ', 'HIBB', 'RYAAY', 'GRIN', 'NBST', 'DAWN', 'STCN', 'MNTS', 'APEN', 'THCPU', 'FDUS', 'CD', 'CASI', 'CRAI', 'PWOD', 'FNKO', 'OCSL', 'ENER', 'CLLS', 'DATS', 'AFRM', 'DILA', 'MBNKP', 'GSMG', 'AURA', 'LVO', 'LAAA', 'RCEL', 'SGRY', 'CGTX', 'MDWT', 'SBNYP', 'BMRA', 'VIR', 'ALF', 'ZEUS', 'CPSH', 'RLAY', 'ALDX', 'IEP', 'THRM', 'KIRK', 'DRTT', 'SNRH', 'GIII', 'TSP', 'LPRO', 'URBN', 'ABTX', 'NMRK', 'VG', 'SENEA', 'NBRV', 'MCFT', 'CRVS', 'UHAL', 'MONCU', 'YMTX', 'AQST', 'PCT', 'LOPE', 'KIII', 'BHF', 'REVBU', 'IMVT', 'SDIG', 'BSY', 'JAGX', 'LEGH', 'STLD', 'PRVA', 'WPRT', 'SWTX', 'ENVB', 'PAYX', 'PACX', 'JG', 'AERC', 'GMDA', 'TYRA', 'FBIO', 'STRM', 'AXNX', 'CTRE', 'CHKP', 'MRAM', 'SCAQ', 'ACGLN', 'NERV', 'FWAC', 'CNTX', 'PAGP', 'HCSG', 'INTE', 'LIONW', 'VISL', 'IINN', 'SCYX', 'GRVY', 'DHBC', 'NBEV', 'GNSS', 'ZWRKU', 'CPSI', 'PHAT', 'ULTA', 'PFSW', 'RUBY', 'PLBC', 'DIOD', 'GIPR', 'COWN', 'UTRS', 'MSFT', 'EDTX', 'RMTI', 'TOUR', 'DHCAU', 'BWAC', 'JSPR', 'VECO', 'HTLFP', 'AVTX', 'ISEE', 'SPT', 'INTU', 'DXYN', 'WTFCM', 'ACRS', 'MNRO', 'RVPH', 'IRCP', 'IAC', 'RUTH', 'CLNN', 'EQIX', 'IBOC', 'MGNX', 'SHAC', 'WMG', 'SLAMU', 'PPHP', 'FFBW', 'XOMAP', 'CCTSU', 'WTMAU', 'PASG', 'SHEN', 'NPCE', 'GLAQU', 'FPAY', 'ESCA', 'NAAC', 'CGNX', 'TFSL', 'BHACW', 'FULTP', 'HFWA', 'EDIT', 'NRXP', 'OCC', 'SLRX', 'ACQRU', 'JCICU', 'FRWAU', 'PPGHU', 'BHFAP', 'CCB', 'GLPG', 'HBAN', 'SDC', 'TACT', 'RXRA', 'SASR', 'RFIL', 'NRIM', 'HTBK', 'BMBL', 'INMD', 'IMKTA', 'FLNC', 'UNIT', 'PETQ', 'SXTC', 'MAT', 'AKBA', 'MPB', 'PIIIW', 'EDTXU', 'TNXP', 'PMVP', 'STAA', 'PATK', 'MBINN', 'SLAM', 'PDCO', 'EA', 'VQS', 'TWLV', 'PANW', 'EPHY', 'HYMCW', 'KC', 'PNBK', 'PVBC', 'INVE', 'CVLT', 'ALGM', 'OESX', 'LITM', 'TRMB', 'ARGU', 'BHACU', 'FCBC', 'RSLS', 'PLTK', 'POWWP', 'CDNA', 'VRAY', 'VTRS', 'LGSTU', 'TCACU', 'ROAD', 'WAVE', 'FNVTW', 'AMOT', 'INVA', 'MKTX', 'CLRO', 'MDVL', 'DLCAU', 'PRPH', 'MYNZ', 'VIRT', 'RICK', 'OLIT', 'OTMO', 'RCKY', 'BNNR', 'EDAP', 'LGHL', 'TBLT', 'TCAC', 'HCM', 'IMCC', 'CAPR', 'CSWC', 'VRM', 'SLGC', 'FORTY', 'ARWR', 'NWBI', 'SVNA', 'CNET', 'GAN', 'WIRE', 'MMYT', 'EJH', 'FHLTU', 'RDUS', 'FTFT', 'INKAU', 'ENVX', 'BGNE', 'PTMN', 'MRSN', 'RAVE', 'PFMT', 'CADL', 'SAIA', 'SIFY', 'TRNS', 'CMPS', 'BWEN', 'HDSN', 'TRKA', 'PMGM', 'IVA', 'EVGO', 'MAYS', 'ADERU', 'SDGR', 'KALA', 'IPVIU', 'QUBT', 'FOCS', 'GNPX', 'CNTQU', 'BRKHU', 'NATR', 'SPNS', 'UPTD', 'ARRWU', 'HNNA', 'USCT', 'IDCC', 'ALRS', 'RCHGU', 'UMPQ', 'PGRWU', 'NFBK', 'ZENV', 'HMHC', 'CODX', 'MCLD', 'GPRE', 'COOLU', 'LECO', 'VII', 'HONE', 'TECH', 'MBTC', 'RBCAA', 'YI', 'NCMI', 'NMMC', 'ADBE', 'PAYS', 'GAMCU', 'ODP', 'NATH', 'SBSI', 'INCR', 'VRPX', 'EDNCU', 'AZ', 'ICFI', 'ADAP', 'BSBK', 'HTOOW', 'ANIP', 'SVFB', 'KFFB', 'MICT', 'SNCY', 'KRYS', 'OSW', 'FNHC', 'CNCE', 'ERES', 'TNYA', 'AVNW', 'FLACU', 'AVPT', 'MDLZ', 'LMACU', 'ATOS', 'SLNHP', 'BSGAU', 'PBPB', 'BAOS', 'RETO', 'SAGE', 'SKYAU', 'HUIZ', 'EJFA', 'GOOGL', 'LJAQ', 'NXPL', 'CRON', 'SCLEU', 'PLMR', 'OBT', 'TAIT', 'FFNW', 'ROLL', 'OBCI', 'FRSH', 'RGC', 'GMAB', 'VGFC', 'NKTR', 'FHB', 'CULL', 'CYN', 'SJ', 'STBA', 'FUND', 'RCII', 'ARLP', 'AOUT', 'UCL', 'SLHGP', 'CHPM', 'CERT', 'NISN', 'VBIV', 'NBSTU', 'RICOU', 'CAKE', 'PZZA', 'BANX', 'MDNA', 'HOFT', 'CIZN', 'DPCSU', 'CHSCM', 'INFI', 'DALS', 'INBX', 'EBMT', 'DCRDU', 'NTWK', 'RDCM', 'AGNCP', 'GBOX', 'NBIX', 'MSEX', 'VLGEA', 'CSPI', 'DCPH', 'TZPSU', 'CRBP', 'CYBR', 'HA', 'QQQX', 'ATRS', 'AMCI', 'EFSC', 'DOMO', 'ZS', 'MAXN', 'TENB', 'VOD', 'VERY', 'JAQC', 'SAL', 'DOX', 'SANM', 'CHMG', 'TRVN', 'PDFS', 'GEEXU', 'OEG', 'ARYD', 'CNTG', 'AGRIW', 'USLM', 'APP', 'TASK', 'ISUN', 'TOMZ', 'BTCS', 'GNTX', 'FLNT', 'HIVE', 'BLNK', 'BLNGU', 'NICK', 'VRDN', 'AMRN', 'ANIX', 'STRC', 'SIDU', 'HIII', 'FOXA', 'PMCB', 'ENJY', 'EFSCP', 'CZR', 'AEAEU', 'MLKN', 'SPRB', 'TMPMU', 'NIU', 'FOLD', 'MCFE', 'LE', 'GRFS', 'EXFY', 'PALT', 'OTRKP', 'AIMC', 'BRZE', 'SEDG', 'MTC', 'REPL', 'BWC', 'FMTX', 'MITO', 'CFBK', 'IAS', 'NSIT', 'STER', 'ACOR', 'EML', 'DCOM', 'MASS', 'CYTO', 'IMAC', 'FITBO', 'KNBE', 'DDOG', 'VYNT', 'EQ', 'GSAQU', 'CVCY', 'BOSC', 'DLCA', 'VVPR', 'EWBC', 'SBAC', 'PYCR', 'FBMS', 'EXLS', 'AUTO', 'ALGS', 'PSEC', 'TIPT', 'ISRG', 'FONR', 'PTCT', 'SYNH', 'MGTA', 'ENTA', 'IFRX', 'EXPO', 'LGIH', 'KARO', 'ACLS', 'NXGN', 'FAT', 'ABSI', 'BCOW', 'UONE', 'HYW', 'EGLX', 'TXG', 'SNTG', 'WWACU', 'TCPC', 'DHC', 'FARM', 'TPBA', 'PLPC', 'CCMP', 'LOB', 'INTA', 'GFAI', 'GTLB', 'SATL', 'FMBH', 'NYXH', 'GGGV', 'AMSC', 'TCBI', 'RIDE', 'GBS', 'SEAT', 'CPHC', 'HYMC', 'LAKE', 'TTCF', 'GNFT', 'MERC', 'RBBN', 'BIDU', 'PCAR', 'GLRE', 'GIACU', 'AUGX', 'SAMAU', 'CVGI', 'LIND', 'AMSF', 'VRSK', 'PME', 'PSAG', 'APVO', 'CLPS', 'SFT', 'NYMX', 'BLZE', 'NRACU', 'DUNE', 'NVEC', 'CDAK', 'IVCPU', 'FINMU', 'RXRAU', 'HAAC', 'PETV', 'WHLM', 'IPAX', 'QTT', 'ORMP', 'CTHR', 'TSLA', 'SGH', 'SHQAU', 'PHAS', 'ALOT', 'TSIB', 'DHBCU', 'INPX', 'BLBD', 'MARA', 'CYT', 'UTSI', 'MACAU', 'LPSN', 'ZCMD', 'OCAX', 'FICVU', 'ASPAU', 'VVOS', 'LLNW', 'KRUS', 'ANZUU', 'MEAC', 'LOAN', 'QCRH', 'NOVV', 'FORM', 'NMFC', 'NLSP', 'POWRU', 'WMPN', 'UTHR', 'LFUS', 'SILC', 'RIOT', 'SOVO', 'DRAYU', 'FFIE', 'IXAQU', 'SWAV', 'MLACU', 'CGEN', 'OTLK', 'EVAX', 'VNOM', 'OSTK', 'CPAA', 'IQMDW', 'CARA', 'REVE', 'SLVRU', 'ADES', 'VERB', 'FWRG', 'ILPT', 'CLRB', 'KELYB', 'CNOBP', 'IDYA', 'MDRR', 'THAC', 'AFAQU', 'LQDA', 'VTYX', 'GNUS', 'IBTX', 'BOLT', 'FYBR', 'PRPO', 'NNDM', 'LANDM', 'BTRS', 'GASS', 'GVCI', 'SIGA', 'STRN', 'PXSAP', 'CHW', 'PETZ', 'AURC', 'MDWD', 'HEPA', 'ACAH', 'EXPI', 'ESSCU', 'LBAI', 'ESEA', 'PHICU', 'CDZIP', 'ARTAU', 'SNCR', 'EVOJ', 'PAQCU', 'BOOM', 'AGRX', 'UTMD', 'MREO', 'SLCR', 'WISA', 'PSTI', 'SELF', 'ESGRP', 'SRSAU', 'ESGRO', 'MVST', 'ESSA', 'TANH', 'BBCP', 'AUUD', 'GLLI', 'JACK', 'MQ', 'MEIP', 'CASH', 'ASRT', 'GTXAP', 'PRSRU', 'BL', 'OAS']
+[0.17630267299815672, 1.8830592866190219, 0.39024599453403996, 0.9483299769561654, 1.1817165222524628, 1.1027640771469143, 0.8959568154274029, 0.9178598211739597, 1.4137167162308795, 0.9958793551364661, 0.08183733332512838, 0.8962536916282139, 0.9944000708374809, 0.7789893447506282, 0.9894988508713064]
+0.08214050846667413
+[5555.315588112553, 2611.8306228863585, 4053.612586652767, 22394.32695776297, 11489.881157586693, 3723.6280878125003]
+8304.765833468975
+[0.9480557480643023, 0.7038675735899722, 0.35109927377380057, 1.0534223190691079, 1.1259803674036475, 1.2022942369392942, 0.9995644530139663, 1.0199547272830727, 1.494246714781149, 1.0002798123164227, -0.10134213964607036, 0.8995688660332742, 1.0070621430642743, 0.8582312895155687, 0.9800856107880261]
+0.06540554181165274
+[3483.3736482114177, 2968.7189587801045, 2582.1674360475786, 7024.051776606954, 7352.25708087996, 1476.8883260928128]
+4147.909537769805
+[0.7156069078013837, 1.2566726912828672, 0.06523267133362612, 1.0642842803017647, 1.062484154513062, 1.0682742475435023, 0.8323999308245389, 0.9950944719116182, 1.4026785948636828, 0.9947979822471208, 0.3313113295218532, 0.8896470443164536, 0.9887137616970758, 0.8105756838803878, 0.9852705337556618]
+0.08964585108596612
+[12938.434144284798, 3114.551401556659, 12642.630924685005, 2464.956721825871, 3658.2683721139633, 20271.569855497706]
+9181.735236660666
+[0.34771142032498037, 1.6965053969918449, 0.16518517004288744, 1.0003612475380086, 1.1977463026427073, 1.1558926264930864, 0.9931228777734088, 0.915357809431826, 1.2366035309339583, 0.9904876530473614, -0.2660867291934358, 0.8901154846400102, 0.9904873694872035, 0.8561641714193137, 0.9704848894851922]
+0.020283541299970453
+[5263.267400534287, 8426.984509344054, 14391.267294015555, 5719.717967852744, 6003.6076659183245, 9635.484347400754]
+8240.05486417762
+[0.19647994518350775, 0.43963914228974, 0.24515042851186417, 1.0798127833996, 1.3543036871814569, 1.1375138173143968, 0.8262411431281175, 1.0835088140008406, 1.4404838518019036, 1.0050423163033055, -0.24020884719330118, 0.9025792605663858, 0.9958775879248215, 0.840206269794018, 0.9894505631892193]
+0.04230278529838446
+[6969.853648730631, 2378.974798536111, 15202.146376622872, 6919.153226888619, 8257.47901386243, 5049.642175203168]
+7462.874873307304
+[0.9775354859889918, 1.544817031774373, 0.21427834301209323, 0.9456187196092881, 1.3355241378502414, 1.0641946984560553, 0.9525408854330412, 0.9844386197012619, 1.4453010489399687, 0.9963842672023095, -0.08452746553272371, 0.9456479199481855, 0.9935690417880604, 0.844788136111171, 0.9847197394411932]
+0.09359218535746816
+[3012.386263776648, 1411.560045752918, 2449.5108363957347, 6882.817249469163, 6272.227143784311, 421.96145605994576]
+3408.4104992064536
+[0.6702158019834459, 0.6387710945625583, -0.06768676319264436, 0.9757635706932422, 1.2215593772336488, 1.0140334862273832, 0.8487644900579697, 0.8206654343929422, 1.2721795261152802, 0.9896361049898826, -0.06799778420374447, 0.9107882923563668, 1.0018538360679954, 0.8620778431950413, 0.9841215634853485]
+0.010050778323859847
+[6234.586110176355, 12274.7426658334, 13272.158359689725, 9340.042714500343, 12713.516793518995, 8402.901681398866]
+10372.991387519614
+[0.18150763541437842, 1.0440948222965254, 0.3932515187129211, 0.9271777867633292, 1.1490178296206173, 1.2682883286286741, 0.8092073995830887, 0.9649132997936708, 1.293928725203934, 1.0040811495014201, 0.03119845142556726, 0.8419740464062205, 1.001275985961621, 0.8012353398998381, 0.9861579313063619]
+0.029556099990734868
+[6798.608537722953, 3933.613177102657, 7568.672115528314, 3778.996164133735, 7319.106732635439, 9069.004111532193]
+6411.333473109215
+[0.8815687702434618, 2.3895593012059124, -0.07078237228844789, 1.0367475040227068, 1.1747029668841031, 1.2291269469616937, 0.9087033424347795, 0.8086589382315922, 1.4205305827776722, 0.9922681653677998, -0.03220149581918132, 0.9374584575220575, 1.0083003670985822, 0.8084786560140095, 0.9818767985878546]
+0.034263879509144855
+[12424.006940954148, 9339.454080690815, 12353.339780854552, 13114.449349347302, 8047.278429582377, 4630.812108407617]
+9984.890114972803
+[0.7717993837841315, 1.1715246950881266, 0.35778926764220564, 0.9350985613443825, 1.203805254902211, 1.1155364120484907, 0.8599471217046459, 0.8109128467956794, 1.4493208280784706, 0.9928485640574276, -0.20120499304703776, 0.9092709384148326, 0.9973506978308759, 0.8396710415223925, 0.9843997540555679]
+0.024790907239412723
+[8836.577868512368, 7780.808390434185, 17285.839108814682, 6624.319322114074, 9844.674691845985, 10610.107093759709]
+10163.721079246834
+[0.32799784323609416, 0.6437135573867268, 0.15292995173398474, 0.9000918387324957, 1.1581243401484853, 1.0888105010851838, 0.9830174936586119, 0.9331897430839012, 1.255792801857629, 0.9916845677262918, 0.09351643522501585, 0.913370023676485, 0.9940618313872224, 0.8072051583755518, 0.9879710051877552]
+0.01116801609410841
+[6029.283966830338, 9279.440321400143, 8978.53506854127, 5746.800408447889, 8469.32309267165, 4997.7223356292225]
+7250.184198920087
+[0.683295077617912, 0.3582434282228286, -0.038325939065948195, 0.9569311493800075, 1.0959688675316412, 1.060565950071929, 0.8366376038659658, 0.9563238835565376, 1.202385207218296, 0.9937734965882418, -0.2787104252535872, 0.9705023144926752, 0.99527398951796, 0.8473621868019043, 0.9881481052656376]
+0.03813644648061835
+[4585.446295990359, 2273.3747694363537, 3348.7485142015425, 3921.721611058029, 3651.036661134261, 4353.62899066699]
+3688.9928070812553
+[0.02375326843335246, 0.8531145481747281, 0.21679204374187364, 0.9511462790391226, 1.1859765654306798, 1.2564395927487717, 0.8861546036934883, 1.0129668542492427, 1.3665776204754032, 1.0003628623601808, -0.15962252882128133, 0.8231593984350392, 0.9997564352518511, 0.800963824239898, 0.9942819606235818]
+0.03417953971765164
+[4503.668342765722, 4365.9996161950685, 4665.729228260541, 6869.673149849097, 7099.59549121165, 4168.554299645267]
+5278.870021321224
+[0.0747444990008892, 1.0678244212462846, -0.09114693745643107, 0.9477912736446255, 1.0189620541334417, 1.0780462923672192, 0.9572053814408581, 0.9328619332067194, 1.485077860666868, 0.9987130507035085, -0.2389461941895779, 0.8912417871366266, 0.9964149370949856, 0.7988721537727472, 0.9873591306727431]
+0.0191679591533603
+[6353.788976299358, 6105.768858062784, 6859.870036807613, 5192.992857694196, 6210.806878599348, 7292.6116165349695]
+6335.973203999712
+[0.5853596671985738, 1.780068934307628, 0.01626832198155695, 0.995850118451972, 1.3136860166675204, 1.1235280920535693, 0.8498210818837671, 0.9754593673415425, 1.28118829615091, 1.003770497407433, 0.035504929769960634, 1.0005693333321002, 0.9969685368742601, 0.7888938470119887, 0.9872345287428113]
+0.07164568073086779
+[1025.0610237877336, 259.10032594897024, 324.7622399815437, 858.6465749809422, 1928.6180021927419, 636.0451077360727]
+838.7055457713341
+[0.6027279263492256, 0.6262235364593182, 0.31340978446867185, 0.953772258592959, 1.2511634562343634, 1.1617245147209339, 0.9911121250157563, 0.9807100287964268, 1.487628985994975, 0.9866919821996438, -0.17985570233773465, 0.8729538110153046, 0.9909895127311888, 0.8025090572095587, 0.9804388649713329]
+0.06349152534248304
+[5214.37712727098, 6737.996768348288, 7969.155029575183, 9825.989339920416, 22336.340859348667, 1646.8626812494308]
+8955.120300952161
+[0.9255874391100843, 0.7034664227783787, 0.32269191403394715, 0.9186499080455862, 1.1157560553588755, 1.2871454074969124, 0.9197899985382701, 0.9367512015646797, 1.400738559906904, 1.004370915114792, -0.04436257848475146, 0.9020622302792808, 0.9939515702733309, 0.7767903694327443, 0.9859917408657576]
+0.04972193344437555
+[11779.00596165808, 4059.9769264195584, 23938.067987194583, 11898.541807907675, 9551.512021906025, 20332.860280859288]
+13593.327497657536
+[0.6775650217207415, 1.488624030718371, 0.2857790236257385, 1.0270388191174318, 1.3301656572128557, 1.0491147054471828, 0.8422858005743986, 1.0787327389773638, 1.2612573246693162, 0.991957051454687, 0.1375776690801311, 0.9754791448573379, 0.9991350342425104, 0.9349416354977491, 0.9788819687764451]
+0.03325566516820596
+[3639.0081001937683, 10018.100226954984, 4237.428355536753, 2741.744089628445, 7855.8260786990495, 1751.6621734786552]
+5040.62817074861
+[0.6301061489485104, 0.548083385890586, 0.20658731977494513, 0.9714383660585445, 1.1479837422031998, 1.1619226156581035, 0.9722598423105575, 0.8266744892400838, 1.4973000758482133, 1.0109306846679824, 0.0941321269996557, 0.890132700319025, 1.0026968328729677, 0.8321951191069903, 0.9849455279596161]
+0.07499006921802535
+[49715.26977916222, 3692.1253214396147, 10834.36669788065, 13095.585736292614, 12028.623426526181, 9249.723311303514]
+16435.949045434132
+[0.4203972433163673, 0.5850194186591723, 0.23549518727647847, 1.042393496975397, 1.3149369389762895, 1.0190380062551558, 0.8956559015236777, 0.8474003468792995, 1.387968039144669, 0.9878362149335732, 0.031607709558414236, 0.9176885851633101, 0.9847095276930865, 0.8801004676993548, 0.9813047974043987]
+0.03736636862722009
+[12229.50394687756, 14382.616670076906, 23806.875629916838, 6055.516346857133, 17998.69537510237, 8143.179141909144]
+13769.39785178999
+[0.321281354700943, 1.9452769747547252, -0.06378189470234205, 1.005029499523964, 1.2127744699449794, 1.1152825457224398, 0.9998170825741743, 0.835178213859575, 1.415545775843588, 0.9952916348909077, -0.1281350791251232, 0.9089128910210679, 0.9918084282316155, 0.8366507816996807, 0.9911282558001169]
+0.024447918271145157
+[6300.981491098498, 7184.128651082032, 6415.483866750598, 6222.87452905416, 6208.751689754033, 9026.87578539941]
+6893.182668856454
+[0.5265499532306209, 2.03792227132703, 0.19128330266431345, 0.9428039249976717, 1.1092599004732528, 1.1122730347114467, 0.9662255948067358, 0.9676246374676959, 1.2814285371978311, 0.9708492033988274, 0.01565450012507241, 0.8156039267288704, 0.9906477454554337, 0.8057196075463239, 0.9672029799552587]
+0.08760101684171036
+[15949.856296074144, 8420.90400566036, 24481.249439751806, 2967.5969487750835, 5141.533411090537, 31587.482769020073]
+14758.103811728668
+[0.07722276440160247, 0.6365860075783171, 0.07787520739641104, 1.0872128375821357, 1.2280302529721738, 1.1732542185908146, 0.8523146419089427, 0.8249676994216746, 1.205949386356531, 1.004647030119833, -0.06401733057529162, 0.9155638482280513, 0.9949901122966445, 0.8627050316071656, 0.9817739669438825]
+0.0919783840005765
+[6141.169969049123, 3291.3327733859496, 11429.414636008092, 988.4747198972568, 2426.9333771537895, 16704.191350338628]
+6830.252804305474
+[0.2789216995361721, 2.115865857374888, 0.1914657430657072, 1.0600368753717282, 1.2288823248470213, 1.252078524641962, 0.8508748778447857, 1.099034899514111, 1.4333769174024045, 0.9875138840774539, -0.1676593094900406, 0.9090485893111333, 0.9967494640302869, 0.9045920526125855, 0.9751629296183879]
+0.07045141564271902
+[21381.898846946195, 8465.22617554988, 23219.92046685674, 5006.956278186924, 5719.296454554831, 18204.19443265583]
+13666.248775791733
+[0.37584337484229646, 1.3089703513689739, 0.03979339680727653, 0.9010580119446131, 1.1817206764961605, 1.1698631247415943, 0.910418586897542, 1.07623459231948, 1.488495013272972, 0.9868117713250156, -0.15198004908483945, 0.8552909785204621, 0.9917793875903682, 0.8268186364361122, 0.9914424284947587]
+0.06477499376196054
+[10955.46172882263, 7124.155863131487, 8800.359820937363, 14923.158719928268, 18031.28058240628, 3580.520374099446]
+10569.156181554246
+[0.1489022926094049, 1.7409533918698104, -0.06954252692641247, 0.9166401638648892, 1.2692195490377516, 1.1895883237991076, 0.9709662355741766, 1.0812502570585774, 1.2481332848072688, 1.006332071875492, 0.13702732205287335, 0.9102974425316779, 0.994456344655069, 0.8400623216039652, 0.9853043031512339]
+0.0375041215490289
+[3801.6166059445786, 1254.9171443390019, 2786.9703504452636, 2391.111588803672, 4840.313023110994, 3764.503234157642]
+3139.905324466859
+[0.5884908069316384, 2.395955288671896, 0.20191258200654819, 1.0901291925830554, 1.3665781571737983, 1.068162154792806, 0.8940882898729257, 0.8130708529042322, 1.2149383939087965, 0.9925646671258055, 0.1416470169558661, 0.9263358567150162, 0.9966444828566093, 0.9060604752849717, 0.9849326663889417]
+0.092423650266605
+[4645.999670597106, 9862.60983271769, 22580.463382481703, 101.134782287427, 2466.5884518121006, 3265.3000194360698]
+7153.682689888684
+[0.28067178889010624, 1.6768451766864074, 0.39583484752486453, 0.903732842656429, 1.2832328519374214, 1.0359304093198651, 0.8637579918140428, 1.0203314668011438, 1.4727138203473689, 1.0004032846362665, -0.23768630068919328, 0.9388306792300679, 0.9994257776185635, 0.8895737276088284, 0.9854893981026311]
+0.08771181226640423
+[5927.267171475186, 1077.1497222937871, 3383.668544538821, 8550.920602626973, 4503.110886828376, 1066.0062445605681]
+4084.687195387285
+[0.8222299065666918, 2.3719648506879136, 0.20836450040646506, 1.001808027338016, 1.0409200604324433, 1.0688590616412375, 0.9011683499833809, 1.0032578205568252, 1.356360566728027, 0.9931760895066926, 0.18838424066752837, 0.9379739821094635, 0.9972905994774884, 0.8923593578313622, 0.9810140049232454]
+0.016227917283528015
+[5842.374871587795, 9877.04565223607, 8712.098755547717, 6789.436057291946, 10250.407383485126, 5074.696890142408]
+7757.676601715178
+[0.9490851107726761, 1.5642237104845618, 0.06735206274362884, 1.0482164343366758, 1.104200835566535, 1.2741997668917817, 0.903460081994152, 1.0764616377625542, 1.3067316909718922, 0.9883768663219684, -0.052293575290943375, 1.0101465165752392, 0.9984645889656387, 0.807610755907238, 0.9948793952924417]
+0.06447611438317254
+[11403.898552771727, 2353.7135383467753, 4542.066736233565, 4380.322302747727, 3674.9044213743173, 9265.14562050425]
+5936.675195329727
+[0.7056098558908835, 0.8450609095491801, 0.3594583219156853, 0.9201110132246154, 1.2051777819976448, 1.0893425827619807, 0.8287875411011789, 0.8807607233948738, 1.4215678785813162, 0.9974726206114007, -0.12118953994072133, 0.9217385201632317, 0.995861600085581, 0.8840416567669014, 0.9948995499099197]
+0.03886451430306104
+[3739.840749974905, 9318.44335172708, 7082.966448749326, 5695.1716266587, 10660.58516392088, 1977.5253022775723]
+6412.422107218077
+[0.7089289491065521, 0.40780590194158417, -0.04809987942971786, 1.0504431025451038, 1.2791188707228731, 1.1428942122192747, 0.9360275140168027, 1.0756527121421728, 1.2151472185034298, 0.9929094024513341, -7.500956595969473e-05, 0.8917276272317315, 0.9886208423525071, 0.8756724600714066, 0.98014484472683]
+0.0632145212042099
+[14936.750220306389, 2294.291557048018, 6720.051252438433, 3277.5865267279505, 3037.6960810549713, 6415.870503090865]
+6113.707690111104
+[0.7210215073551627, 2.3971770730766244, -0.047565084020242704, 0.9497911993086812, 1.0865924345575488, 1.0777511999673528, 0.8224847046588756, 1.0049162467875457, 1.4793199414648122, 0.985868355174151, 0.11498640989171856, 0.8939762920397989, 0.9958935397218279, 0.8663515633935114, 0.9839475693754614]
+0.08252294066273302
+[3742.8636693264907, 1242.958250189846, 1841.6349967322328, 8043.033864995054, 4566.034038155949, 1353.3853742656706]
+3464.9850322775405
+[0.0533566512428173, 0.5312474417143433, 0.26196855770116767, 0.9691919236211423, 1.127443853408467, 1.1133966208625976, 0.8548193467206429, 1.0575136609947466, 1.4392875695286926, 0.9875170161019969, -0.2217689315683098, 0.8803163975507708, 0.9941328869897477, 0.8267999878541384, 0.9923240248217171]
+0.07747240589562636
+[10986.561397871428, 7307.837087059523, 6279.765500431187, 20930.230944335955, 17523.700746306826, 3343.6613846332543]
+11061.95951010636
+[0.43745682845443523, 2.400427395036905, 0.025696794556543084, 1.0952091709878542, 1.2642453468998138, 1.0569000309233694, 0.938044203835895, 1.0090010777383507, 1.47343266165139, 0.9873703491589143, 0.1897665597105196, 0.8483531369588136, 0.9966102432941849, 0.7940215290371455, 0.9802506776914041]
+0.0388207858845245
+[9394.55289961158, 5125.2808666641695, 8940.195591786278, 3926.457031982748, 5529.389813047488, 9366.969926961461]
+7047.141021675622
+[0.6612647230835257, 0.8133021526516643, 0.3841818410689837, 0.9198112916333506, 1.3631036452454302, 1.0074808398686048, 0.860443254099141, 0.8339426775865805, 1.239196547712588, 0.9927517224101191, 0.04933690979020561, 0.9777193263717789, 1.005846208660607, 0.8712525925199919, 0.9851370354545006]
+0.03328671676515301
+[8152.573168280222, 17694.308734880287, 13117.187610754841, 8703.6847296138, 20308.80992211207, 3905.914196298193]
+11980.413060323235
+[0.6692430746503253, 2.298408273645967, 0.3679712743221891, 0.9557907170628646, 1.2419661275491414, 1.1106202049413447, 0.8943897228289901, 1.0834971463764658, 1.3422603208147488, 0.9852797380048883, -0.21596199299084917, 0.9248640559047949, 0.9927231806704444, 0.8746661425456942, 0.9862224490688538]
+0.04531672279263329
+[9744.65946067792, 3842.4157112543685, 6216.142776760349, 6245.252591571804, 6651.716241919682, 3575.40546263709]
+6045.9320408035355
+[0.9535479094392697, 0.6007624365992514, 0.3309367383294629, 0.9835125344869269, 1.0182027883331226, 1.1978747589981262, 0.8601462591426909, 0.9608365764234796, 1.2480451197789633, 0.9921626531535606, -0.3187578531667663, 0.9808909457376858, 0.9999744598169571, 0.826584440847952, 0.9920108991392046]
+0.04208481351457438
+[5927.609706886576, 4429.586039459254, 8786.178283680822, 3751.058007009875, 4531.131634096667, 12392.529451542581]
+6636.348853779295
+[0.29423145364076975, 1.982436591877744, 0.316244869252142, 0.9422668587896991, 1.1105738637132805, 1.1186346468021298, 0.8710078989642601, 0.8769489364414507, 1.3883482741972841, 0.9932794336433017, 0.13446060163229367, 0.8515536644314419, 1.002406513594064, 0.8410852839237017, 0.9852522125215716]
+0.06522588130342728
+[25736.19631265781, 11273.745127102664, 35384.20663705743, 9080.127646066963, 11943.099503959527, 35050.55082533168]
+21411.321008696013
+[0.6038734369749761, 0.7596706436751122, 0.027798631343042585, 0.9621139602333442, 1.0604966360319952, 1.061499702366621, 0.8700512562652041, 0.8970234646923771, 1.3148130213788791, 0.993295248289063, 0.07705860380349466, 0.9261569575992329, 0.9918951038914203, 0.8029416744587873, 0.9815908738410504]
+0.019775029745399946
+[4428.517413263807, 5491.263831807286, 6338.475005200337, 2315.6415557491177, 4199.746314099435, 4809.948885425573]
+4597.265500924258
+[0.5165756458733847, 1.8456258400038954, 0.24531519891480288, 0.9042590219942428, 1.2207477760386352, 1.0080333175727492, 0.8185748282548032, 0.9279320064147284, 1.4907173708437984, 0.9870741570996056, -0.12946393645062906, 0.9104672104913787, 1.0078590201734852, 0.8045392956902052, 0.99232735170338]
+0.04860771087131699
+[3040.383361854632, 2043.6703177999048, 2352.100008434966, 6320.6849426571935, 4475.54491020483, 2904.850570544111]
+3522.8723519159394
+[0.16605856771852867, 2.3750429858590922, 0.09813659528873844, 0.9415946157770329, 1.3827506132608491, 1.0006537064026515, 0.9719089645829208, 0.9182737128828115, 1.4023695180338767, 0.9954175114021726, -0.009543442407485045, 0.8424873028667345, 0.9940955649304275, 0.8392104642795734, 0.9852086161314781]
+0.07685803050460212
+[8119.793115471128, 2941.4320115611126, 11158.18670810529, 4038.5462680682003, 9582.553857308176, 949.5734989330101]
+6131.680909907819
+[0.9664279475201586, 1.6794383995246347, 0.34646524388637967, 0.9117537141604503, 1.1456495623183987, 1.2636765130287417, 0.8414737674202866, 0.9481560504733116, 1.2143874476329255, 1.0000058250013202, -0.2175239206411455, 0.9767654834241156, 0.9968458755449813, 0.7882257265031928, 0.9873090740053928]
+0.010164272426073465
+[4399.0778615134095, 5786.895034874057, 7019.396120167758, 3489.7492239383673, 6900.153777449291, 6584.349986100582]
+5696.603667340577
+[0.6508692132311202, 1.6782538197630101, 0.03624031864593699, 1.0086187164317117, 1.3496136184078438, 1.2908496062845924, 0.9796011918805159, 0.8306194170189164, 1.4029983818802305, 1.0047436873555429, -0.03565117962470813, 0.9399139084370762, 0.9924577051191951, 0.8481638166209663, 0.9853754960573955]
+0.054828600287922656
+[21954.724689265717, 2456.7567263967744, 12133.751899687399, 8267.791460897472, 10283.67088578158, 8109.642619089926]
+10534.389713519811
+[0.08634471042174385, 1.4462448768176355, 0.11365073460039202, 0.9572866934994377, 1.0441076935627673, 1.1629875696657628, 0.8185359143415628, 0.8962885244562323, 1.361496909606923, 1.0012901246174528, 0.1412706267920042, 0.9230488979080402, 0.9895912486223216, 0.8607813112307755, 0.9846144119208698]
+0.04035106171420688
+[8141.495075893757, 5189.766773529995, 5489.4556898630335, 8625.753537800065, 6902.132439379389, 8360.388530882772]
+7118.165341224835
+[0.5730615228994819, 0.6919901852717973, 0.23393758645287124, 0.9582721785116639, 1.1349369244966967, 1.2425720537238245, 0.9058642111150437, 1.0137805738532697, 1.4761452109409146, 1.0025662055138018, -0.05593774871112944, 0.8702985259135025, 1.0048144937159258, 0.8463569535546422, 0.9830131975608646]
+0.08263640598030049
+[5387.500948043756, 3005.253248512565, 4061.854606696338, 18140.790757901214, 9587.6811356844, 1991.621489538861]
+7029.117031062856
+[0.5831650034604138, 1.2884649744367584, 0.20867228116120404, 1.0746875637234394, 1.0417157467689455, 1.2962791015915045, 0.8659227035324546, 0.8996425865360689, 1.2045498492794395, 0.9950049490213178, 0.007998472698113704, 0.8792233867068402, 0.9923750773897138, 0.8212607415999054, 0.9780564900972714]
+0.014789903091555404
+[2407.079737460158, 4065.264604852445, 4465.587490603105, 1398.2596325128213, 2656.145322562244, 2736.762609286216]
+2954.849899546165
+[0.038766973843354924, 2.207827269789924, 0.293512786615606, 1.0083283501597395, 1.0843237452438672, 1.1969536329028476, 0.9526193135860832, 1.016723360931963, 1.3876606631372317, 0.9979321754018561, 0.28972872933022226, 0.9077999005888324, 0.9904849762491641, 0.862031388163206, 0.9823084776573643]
+0.0649669369930667
+[5696.206198665111, 18510.5334417311, 9200.442605985441, 16923.49112313033, 17498.94918974555, 2436.602813261207]
+11711.037562086456
+[0.35580564120519775, 0.966435507988179, 0.23293839976598932, 1.0001055966255386, 1.242928916635914, 1.2397676230837462, 0.9840313663278063, 0.8598609321541633, 1.2303361012793577, 1.0109676996832224, -0.4413298153198378, 0.9539339073681128, 1.0044419647509308, 0.9327153056239554, 0.9879968185565274]
+0.0571557975096754
+[6343.643817968919, 24166.142488914506, 11959.52987307488, 13024.393498015905, 23266.075172427245, 3554.844508554001]
+13719.104893159243
+[0.2291960030232889, 0.792459448483405, 0.3479443848584174, 0.9068250464018449, 1.2838011898150448, 1.059311197935735, 0.8337001516502287, 0.9101056858977226, 1.281996059826213, 0.9872074714411212, -0.0697307328537116, 0.9176345604140201, 0.9936816639935225, 0.7721478908552475, 0.9864737072906117]
+0.06510389128485827
+[5445.586935613299, 15485.177080453861, 8233.167254732038, 9435.1226277732, 32751.61996825057, 2489.9149279886215]
+12306.764799135264
+[0.9985632435525746, 2.0484708871435306, 0.30831118036151495, 0.9231953801011228, 1.0095279670460844, 1.0742141540876444, 0.8899500479926624, 1.093330367131208, 1.2145346994892467, 0.9897448895261096, 0.18093758930244572, 0.9362074210522594, 0.9950725302167482, 0.8049933528268903, 0.9886968667211885]
+0.08939944615531625
+[7181.367951555627, 46933.56949727796, 36817.435962566546, 1844.5613447719065, 22029.81180491282, 7183.320361319837]
+20331.677820400782

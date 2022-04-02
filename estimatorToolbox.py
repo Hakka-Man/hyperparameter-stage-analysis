@@ -7,6 +7,15 @@ from datetime import datetime
 
 ### CONSTANT VARIABLES ###
 
+####### #       #########
+#     # #              #
+#     # #             #
+####### #            #
+#       #           #
+#       #          #
+#       #         #
+#       ######   ########
+
 ## Mutation Noise 
 mutationNoises = []
 mutationNoises.append(np.random.normal(0, 0.025)) # 0 - Five Year High
@@ -91,7 +100,7 @@ def evalReturn(individual):
                 try:
                     # print(df.at[date,'MA30Slope'],df.at[date,'RS'])
                     # print(individual[0][9],individual[0][10])
-                    if  df.at[date,'MA30Slope'] > individual[0][9] or df.at[date,'RS'] > individual[0][10]:
+                    if  df.at[date,'MA30Slope'] > individual[0][9] and df.at[date,'RS'] > individual[0][10]:
                         if df.at[date,'close'] > df.at[date,'MA30']:
                             # print(df.at[date,'ticker'])
                             listOfSector.append(df.at[date,'ticker'])
@@ -103,7 +112,7 @@ def evalReturn(individual):
     stockStageEstimator = StockStageEstimator(individual[0], goodSectorDf)
     scores = stockStageEstimator.score()
     result = stockStageEstimator.result()
-    debugFile = open("debug.txt","a")
+    debugFile = open("estimatorData/debug"+date.today().strftime('%Y-%m-%d')+".txt","a")
     debugFile.write(str(individual[0])+"\n")
     debugFile.write(str(np.average(scores))+"\n")
     debugFile.write(str(stockStageEstimator.getReturns())+"\n")
@@ -113,11 +122,11 @@ def evalReturn(individual):
         return 0,
     if np.average(scores) >  0.1:
         return 0,
-    paramFile = open("params.txt","a")
+    paramFile = open("estimatorData/params"+date.today().strftime('%Y-%m-%d')+".txt","a")
     paramFile.write(str(individual[0])+"\n")
     paramFile.write(str(result)+"\n")
     paramFile.close()
-    resultFile = open("resultML.txt","a")
+    resultFile = open("estimatorData/resultML"+date.today().strftime('%Y-%m-%d')+".txt","a")
     resultFile.write(str(individual[0])+"\n")
     resultFile.write(str(np.average(scores))+"\n")
     resultFile.write(str(stockStageEstimator.getReturns())+"\n")
