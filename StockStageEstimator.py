@@ -123,7 +123,6 @@ class StockStageEstimator(BaseEstimator):
             self.returns[i*2+1] = self.evalFit(self.sets[i%4], self.goodSectorDf)
             if self.returns[i*2+1] == -1:
                 return -1
-            
         return 0
     
     def score(self):
