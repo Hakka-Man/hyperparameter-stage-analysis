@@ -9,7 +9,34 @@ import yahoo_fin.stock_info as yf
 from sklearn.model_selection import train_test_split
 import warnings
 import pickle
-from multiprocessing import Pool
+import mariadb
+import sys
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+### ENV CONSTANT
+DB_PASSWORD = os.getenv('DB_PASSWORD')
+DB_HOST = os.getenv('DB_HOST')
+DB_USER = os.getenv('DB_USER')
+
+### Connect To DB
+try:
+    conn = mariadb.connect(
+        user=DB_USER,
+        password=DB_PASSWORD,
+        host=DB_HOST,
+        port=3306,
+        database="stock",
+        autocommit=True
+    )
+except mariadb.Error as e:
+    print(f"Error connecting to MariaDB Platform: {e}")
+    sys.exit(1)
+cur = conn.cursor()
+
+# from multiprocessing import Pool
 
 ## Warning Statements
 warnings.filterwarnings("ignore", category=pd.errors.PerformanceWarning) 
@@ -90,12 +117,16 @@ with open('testSetPickle/trainSetRatio.pkl', 'wb') as f:
 
 
 pop = toolbox.population(n=512)
+for ind in pop:
+    paramStr = ' '.join(map(str, ind[0]))
+    print(paramStr)
+    cur.execute("INSERT INTO Params (param,result) VALUES (?, NULL)", (paramStr,))
 # Evaluate the entire population
 # here
-pool = Pool()
+# pool = Pool()
 # tempResult = pool.map(toolbox.evaluate, pop)
-fitnesses = pool.map(toolbox.evaluate, pop)
-print(fitnesses)
+fitnesses = map(toolbox.evaluate, pop)
+# print(fitnesses)
 # here
 # pool.close()
 for ind, fit in zip(pop, fitnesses):
@@ -110,7 +141,7 @@ while len(badInd)!=0:
         pop[index] = temp
         del pop[index].fitness.values
     badInd = [ind for ind in pop if not ind.fitness.valid]
-    fitnesses = pool.map(toolbox.evaluate, badInd)
+    fitnesses = map(toolbox.evaluate, badInd)
     for ind, fit in zip(badInd, fitnesses):
         ind.fitness.values = fit
         if ind.fitness.values[0]<=100:
@@ -181,7 +212,7 @@ for g in range(10):
     # pool = Pool()
     # fitnesses = pool.map(toolbox.evaluate, invalid_ind)
     # pool.close()
-    fitnesses = pool.map(toolbox.evaluate, invalid_ind)
+    fitnesses = map(toolbox.evaluate, invalid_ind)
     for ind, fit in zip(invalid_ind, fitnesses):
         ind.fitness.values = fit
     
