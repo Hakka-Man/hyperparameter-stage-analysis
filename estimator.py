@@ -65,20 +65,6 @@ toolbox.register("select", tools.selTournament, tournsize=3)
 ## Initialize Variables 
 now = datetime.now()
 
-# Initialize Test/Train Stock Lists
-nasdaqList = pd.read_pickle("stockData/tickerList.pkl")
-train, test = train_test_split(nasdaqList, test_size=0.3, shuffle=True)
-trainSet1, trainSet2, trainSet3  = np.array_split(train,3)
-trainSets = [trainSet1, trainSet2, trainSet3]
-with open('testSetPickle/trainSet.pkl', 'wb') as f:
-    pickle.dump(trainSets, f)
-
-#Initilize Output File & Write Testsets to the TXT File
-resultFile = open("estimatorData/resultML"+date.today().strftime('%Y-%m-%d')+".txt","a")
-resultFile.write("trainSets "+str(trainSets)+"\n")
-resultFile.write("test "+str(test)+"\n")
-resultFile.close()
-
 #Initilize Backtest Transaction Database
 transactionTemplate = yf.get_data('AAPL', start_date="1995-01-06",end_date= now, index_as_date = True).drop(['open','high','low','close','adjclose','volume','ticker'],axis=1)
 transactionTemplate['Dates'] = pd.to_datetime(transactionTemplate.index)
@@ -86,35 +72,87 @@ transactionTemplate = transactionTemplate[transactionTemplate['Dates'].dt.weekda
 transactionTemplate = transactionTemplate.drop('Dates', axis = 1)
 transactionTemplate = transactionTemplate[~transactionTemplate.index.duplicated()]
 transactionTemplate.to_pickle("transactionTemplate.pkl")
+
 ## Get list of returns of tickers
-listOfDf = calculateGroupReturn(train)
+nasdaqList = pd.read_pickle("stockData/tickerList.pkl")
+listOfDf = calculateGroupReturn(nasdaqList)
+
+## Initialize Test/Train Stock Lists and Check test vs train return
+train, test = train_test_split(nasdaqList, test_size=0.3, shuffle=True)
+testTrainR = []
+def calculateTestTrainRatio(train,test):
+    testTrainRatio = [1,1]
+    for i in range(2):
+        if i == 0:
+            l = test
+        else:
+            l = train
+        index = 0
+        while index != len(l):
+            if l[index] not in listOfDf.columns:
+                l = np.delete(l, index)
+            else:
+                index += 1
+        for index, element in listOfDf[l].iterrows():
+            #print(element.to_list())
+            listOfStockRet = element.to_list()
+            while 1.0 in listOfStockRet:
+                listOfStockRet.remove(1.0)
+            if len(listOfStockRet) != 0:
+                testTrainRatio[i] = testTrainRatio[i] * np.mean(listOfStockRet)     
+    testTrainRatio[1] = testTrainRatio[1] / testTrainRatio[0]
+    testTrainRatio[0] = 1
+    return testTrainRatio
+testTrainR = calculateTestTrainRatio(train,test)
+while(abs(1-testTrainR[1])/np.average(testTrainR)>0.2):
+    train, test = train_test_split(nasdaqList, test_size=0.3, shuffle=True)
+    testTrainR = calculateTestTrainRatio(train,test)
 
 ## Calculate (and normalize) returns of each folds 
-ratio = [1,1,1,1,1,1]
-for i in range(6):
-    if i < 3:
-        l = trainSets[i]
-    else:
-        l = np.concatenate((trainSets[(i+1)%3],trainSets[(i+2)%3]))
-    index = 0
-    while index != len(l):
-        if l[index] not in listOfDf.columns:
-            l = np.delete(l, index)
+trainSet1, trainSet2, trainSet3  = np.array_split(train,3,)
+trainSets = [trainSet1, trainSet2, trainSet3]
+trainSetsR = []
+def trainSetsRatio(ratio):
+    ratio = [1,1,1,1,1,1]
+    for i in range(6):
+        if i < 3:
+            l = trainSets[i]
         else:
-            index += 1
-    for index, element in listOfDf[l].iterrows():
-        #print(element.to_list())
-        listOfStockRet = element.to_list()
-        while 1.0 in listOfStockRet:
-            listOfStockRet.remove(1.0)
-        if len(listOfStockRet) != 0:
-            ratio[i] = ratio[i] * np.mean(listOfStockRet)     
-for i in range(1,6):
-    ratio[i] = ratio[i] / ratio[0]
-ratio[0] = 1.0
-with open('testSetPickle/trainSetRatio.pkl', 'wb') as f:
-    pickle.dump(ratio, f)
+            l = np.concatenate((trainSets[(i+1)%3],trainSets[(i+2)%3]))
+        index = 0
+        while index != len(l):
+            if l[index] not in listOfDf.columns:
+                l = np.delete(l, index)
+            else:
+                index += 1
+        for index, element in listOfDf[l].iterrows():
+            #print(element.to_list())
+            listOfStockRet = element.to_list()
+            while 1.0 in listOfStockRet:
+                listOfStockRet.remove(1.0)
+            if len(listOfStockRet) != 0:
+                ratio[i] = ratio[i] * np.mean(listOfStockRet)     
+    for i in range(1,6):
+        ratio[i] = ratio[i] / ratio[0]
+    ratio[0] = 1.0
+    return ratio
+trainSetsR = trainSetsRatio(trainSetsR)
+while(np.std(trainSetsR)/np.average(trainSetsR)>0.2):
+        np.random.shuffle(train)
+        trainSet1, trainSet2, trainSet3  = np.array_split(train,3)
+        trainSets = [trainSet1, trainSet2, trainSet3]
+        trainSetsR = trainSetsRatio(trainSetsR)
 
+with open('testSetPickle/trainSet.pkl', 'wb') as f:
+    pickle.dump(trainSets, f)
+with open('testSetPickle/trainSetRatio.pkl', 'wb') as f:
+    pickle.dump(trainSetsR, f)
+
+#Initilize Output File & Write Testsets to the TXT File
+resultFile = open("estimatorData/resultML"+date.today().strftime('%Y-%m-%d')+".txt","a")
+resultFile.write("trainSets "+str(trainSets)+"\n")
+resultFile.write("test "+str(test)+"\n")
+resultFile.close()
 
 pop = toolbox.population(n=512)
 for ind in pop:
