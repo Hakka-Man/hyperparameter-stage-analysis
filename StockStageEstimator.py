@@ -112,7 +112,7 @@ class StockStageEstimator(BaseEstimator):
             print(stockHolding)
             print(transactionFitCopy.iloc[-1]['total'])
             return -1
-        if transactionFitCopy.iloc[-1]['total'] < 5000:
+        if transactionFitCopy.iloc[-1]['total'] < 1000:
             return -1
         return transactionFitCopy.iloc[-1]['total']
 
