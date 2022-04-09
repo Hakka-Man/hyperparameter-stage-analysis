@@ -114,6 +114,7 @@ class StockStageEstimator(BaseEstimator):
             return -1
         if transactionFitCopy.iloc[-1]['total'] < 1000:
             return -1
+        transactionFitCopy.to_pickle("transactionDfs/transactionDf"+str(self.paramList[0])+".pkl")
         return transactionFitCopy.iloc[-1]['total']
 
     def fit(self):
