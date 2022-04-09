@@ -3,12 +3,12 @@ import pandas as pd
 import numpy as np
 import random
 from datetime import datetime
-import mariadb
+# import mariadb
 import sys
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 ### ENV CONSTANT
 DB_PASSWORD = os.getenv('DB_PASSWORD')
@@ -16,19 +16,19 @@ DB_HOST = os.getenv('DB_HOST')
 DB_USER = os.getenv('DB_USER')
 
 ### Connect To DB
-try:
-    conn = mariadb.connect(
-        user=DB_USER,
-        password=DB_PASSWORD,
-        host=DB_HOST,
-        port=3306,
-        database="stock",
-        autocommit=True
-    )
-except mariadb.Error as e:
-    print(f"Error connecting to MariaDB Platform: {e}")
-    sys.exit(1)
-cur = conn.cursor()
+# try:
+#     conn = mariadb.connect(
+#         user=DB_USER,
+#         password=DB_PASSWORD,
+#         host=DB_HOST,
+#         port=3306,
+#         database="stock",
+#         autocommit=True
+#     )
+# except mariadb.Error as e:
+#     print(f"Error connecting to MariaDB Platform: {e}")
+#     sys.exit(1)
+# cur = conn.cursor()
 
 ### CONSTANT VARIABLES ###
 
@@ -143,7 +143,7 @@ def evalReturn(individual):
     paramFile.write(str(result)+"\n")
     paramFile.close()
     
-    cur.execute("INSERT INTO Params (param,result) VALUES (?, ?)", (individual[0], result))
+    # cur.execute("INSERT INTO Params (param,result) VALUES (?, ?)", (individual[0], result))
 
     resultFile = open("estimatorData/resultML"+date.today().strftime('%Y-%m-%d')+".txt","a")
     resultFile.write(str(individual[0])+"\n")
