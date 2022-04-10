@@ -1,3 +1,11 @@
+1. Required Packages:
+ - Use environment.yml Conda Environment
+2. Main file - Estimator.py    
+
+
+
+
+
 create an env file
 
 ```
