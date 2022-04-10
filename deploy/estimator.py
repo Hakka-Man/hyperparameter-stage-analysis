@@ -50,7 +50,7 @@ from estimatorToolbox import mutate
 
 ## Initialize Creator & Toolbox
 # Initialize Deap Creator Objects
-creator.create("FitnessMax", base.Fitness, weights=(1.0,))
+creator.create("FitnessMax", base.Fitness, weights=(1.0,1,0))
 creator.create("Individual", list, fitness=creator.FitnessMax)
 # Initialize Toolbox
 toolbox = base.Toolbox()

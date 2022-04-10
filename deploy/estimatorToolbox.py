@@ -136,7 +136,9 @@ def evalReturn(individual):
     debugFile.close()
     if scores == -1:
         return 0,
-    if np.average(scores) >  0.1:
+    if np.average(scores[0]) >  0.1:
+        return 0,
+    if np.average(scores[1]) > 1.2:
         return 0,
     paramFile = open("estimatorData/params"+date.today().strftime('%Y-%m-%d')+".txt","a")
     paramFile.write(str(individual[0])+"\n")
@@ -151,7 +153,7 @@ def evalReturn(individual):
     resultFile.write(str(stockStageEstimator.getReturns())+"\n")
     resultFile.write(str(result)+"\n")
     resultFile.close()
-    return result,
+    return result
 
 ### DEAP Evolutionary Functions ###
 
