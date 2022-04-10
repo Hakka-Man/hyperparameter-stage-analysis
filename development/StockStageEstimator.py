@@ -15,7 +15,7 @@ class StockStageEstimator(BaseEstimator):
         self.goodSectorDf = goodSectorDf
         self.returns = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]]
         self.sets = pd.read_pickle("testSetPickle/trainSet.pkl")
-        self.scores = [[0,0],[0,0],[0,0]]
+        self.scores = [[0,0,0],[0,0,0]]
         # self.ratio = pd.read_pickle("testSetPickle/trainSetRatio.pkl")
     
     ## Calculate Returns base
@@ -124,12 +124,16 @@ class StockStageEstimator(BaseEstimator):
         for i in range(3):
             setsCombined = np.concatenate((self.sets[(i+1)%3],self.sets[(i+2)%3]))
             self.returns[i*2] = self.evalFit(setsCombined, self.goodSectorDf)
-            if self.returns[i*2] == -1:
+            if self.returns[i*2][0] == -1:
+                return -1
+            if self.returns[i*2][1] < 0.5:
                 return -1
             if self.returns[i*2][1] < 0.5:
                 return -1
             self.returns[i*2+1] = self.evalFit(self.sets[i%4], self.goodSectorDf)
-            if self.returns[i*2+1] == -1:
+            if self.returns[i*2+1][0] == -1:
+                return -1
+            if self.returns[i*2+1][1] < 0.5:
                 return -1
             if self.returns[i*2+1][1] < 0.5:
                 return -1
@@ -139,12 +143,11 @@ class StockStageEstimator(BaseEstimator):
         if self.fit() == -1:
             return -1
         for i in range(3):
-            self.scores[i][0] = np.absolute(((self.returns[i*2][0])/100)**(1/22)-((self.returns[i*2+1][0])/100)**(1/22))
-            self.scores[i][1] = max(self.returns[i*2][1], self.returns[i*2+1][1]) / min(self.returns[i*2][1], self.returns[i*2+1][1])
+            self.scores[0][i] = np.absolute(((self.returns[i*2][0])/100)**(1/22)-((self.returns[i*2+1][0])/100)**(1/22))
+            self.scores[1][i] = max(self.returns[i*2][1], self.returns[i*2+1][1]) / min(self.returns[i*2][1], self.returns[i*2+1][1])
         return self.scores
     
     def result(self):
-        return np.average(self.returns)
-    
+        return [np.average(self.returns[0:5][0]),np.average(self.returns[0:5][1])]
     def getReturns(self):
         return self.returns

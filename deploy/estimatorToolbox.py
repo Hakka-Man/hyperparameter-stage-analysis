@@ -127,18 +127,22 @@ def evalReturn(individual):
             index = index + 1
     stockStageEstimator = StockStageEstimator(individual[0], goodSectorDf)
     scores = stockStageEstimator.score()
-    result = stockStageEstimator.result()
     debugFile = open("estimatorData/debug"+date.today().strftime('%Y-%m-%d')+".txt","a")
     debugFile.write(str(individual[0])+"\n")
-    debugFile.write(str(np.average(scores))+"\n")
+    if scores == -1:
+        debugFile.write(str(np.average(scores))+"\n")
+        debugFile.write(str(stockStageEstimator.getReturns())+"\n")
+        debugFile.close()
+        return 0,
+    result = stockStageEstimator.result()
+    debugFile.write(str(np.average(scores[0]))+"\n")
+    debugFile.write(str(np.average(scores[1]))+"\n")
     debugFile.write(str(stockStageEstimator.getReturns())+"\n")
     debugFile.write(str(result)+"\n")
     debugFile.close()
-    if scores == -1:
-        return 0,
     if np.average(scores[0]) >  0.1:
         return 0,
-    if np.average(scores[1]) > 1.2:
+    if np.average(scores[1]) > 1.3:
         return 0,
     paramFile = open("estimatorData/params"+date.today().strftime('%Y-%m-%d')+".txt","a")
     paramFile.write(str(individual[0])+"\n")
@@ -149,7 +153,8 @@ def evalReturn(individual):
 
     resultFile = open("estimatorData/resultML"+date.today().strftime('%Y-%m-%d')+".txt","a")
     resultFile.write(str(individual[0])+"\n")
-    resultFile.write(str(np.average(scores))+"\n")
+    resultFile.write(str(np.average(scores[0]))+"\n")
+    resultFile.write(str(np.average(scores[1]))+"\n")
     resultFile.write(str(stockStageEstimator.getReturns())+"\n")
     resultFile.write(str(result)+"\n")
     resultFile.close()
