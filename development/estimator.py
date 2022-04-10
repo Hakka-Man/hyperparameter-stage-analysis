@@ -23,19 +23,19 @@ DB_HOST = os.getenv('DB_HOST')
 DB_USER = os.getenv('DB_USER')
 
 ### Connect To DB
-try:
-    conn = mariadb.connect(
-        user=DB_USER,
-        password=DB_PASSWORD,
-        host=DB_HOST,
-        port=3306,
-        database="stock",
-        autocommit=True
-    )
-except mariadb.Error as e:
-    print(f"Error connecting to MariaDB Platform: {e}")
-    sys.exit(1)
-cur = conn.cursor()
+# try:
+#     conn = mariadb.connect(
+#         user=DB_USER,
+#         password=DB_PASSWORD,
+#         host=DB_HOST,
+#         port=3306,
+#         database="stock",
+#         autocommit=True
+#     )
+# except mariadb.Error as e:
+#     print(f"Error connecting to MariaDB Platform: {e}")
+#     sys.exit(1)
+# cur = conn.cursor()
 
 
 
@@ -159,7 +159,7 @@ pop = toolbox.population(n=512)
 for ind in pop:
     paramStr = ' '.join(map(str, ind[0]))
     print(paramStr)
-    cur.execute("INSERT INTO Params (param,result) VALUES (?, NULL)", (paramStr,))
+    # cur.execute("INSERT INTO Params (param,result) VALUES (?, NULL)", (paramStr,))
 # Evaluate the entire population
 # here
 pool = Pool()
