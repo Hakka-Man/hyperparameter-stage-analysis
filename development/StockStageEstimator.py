@@ -117,7 +117,9 @@ class StockStageEstimator(BaseEstimator):
         if transactionFitCopy.iloc[-1]['total'] < 5000:
             return -1
         transactionFitCopy.to_pickle("transactionDfs/transactionDf"+str(self.paramList[0])+".pkl")
+        transactionFitCopy = transactionFitCopy[df.index - pd.to_datetime('1999-06-01') > timedelta(0)]
         dailyRet = transactionFitCopy.loc[:, 'total'].pct_change()
+        dailyRet[dailyRet == 0] = 0.04/52
         excessRet = dailyRet - 0.04/52
         sharpeRatio = np.sqrt(52)*np.mean(excessRet) / np.std(excessRet)
         return transactionFitCopy.iloc[-1]['total'], sharpeRatio
