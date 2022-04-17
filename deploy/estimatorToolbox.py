@@ -87,7 +87,6 @@ def calculateGroupReturn(list):
 
 ## Calculate Goodsector & Initialize Estimator Object 
 def evalReturn(individual):
-    print(individual[0])
     now = datetime.now()
     now = now.strftime("%Y-%m-%d-%H:%M")
     transaction = pd.read_pickle("transactionTemplate.pkl")

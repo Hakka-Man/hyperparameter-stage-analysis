@@ -110,11 +110,11 @@ class StockStageEstimator(BaseEstimator):
         transactionFitCopy.to_csv("estimatorTest.csv")
         for i in transactionFitCopy.iterrows():
             stockHolding += len(i[1]['holding'])
-        if stockHolding/noBearishCount<(len(tickers)/1000) or transactionFitCopy.iat[-1,TOTAL]<=100:
+        if stockHolding/noBearishCount<(len(tickers)/1000) or transactionFitCopy.iat[-1,TOTAL]<=5000:
+            print(self.paramList)
             print(stockHolding)
             print(transactionFitCopy.iloc[-1]['total'])
-            return -1
-        if transactionFitCopy.iloc[-1]['total'] < 5000:
+            print(sharpeRatio)
             return -1
         transactionFitCopy.to_pickle("transactionDfs/transactionDf"+str(self.paramList[0])+".pkl")
         transactionFitCopy = transactionFitCopy[df.index - pd.to_datetime('1999-06-01') > timedelta(0)]
@@ -122,6 +122,12 @@ class StockStageEstimator(BaseEstimator):
         dailyRet[dailyRet == 0] = 0.04/52
         excessRet = dailyRet - 0.04/52
         sharpeRatio = np.sqrt(52)*np.mean(excessRet) / np.std(excessRet)
+        if sharpeRatio < 0.5:
+            print(self.paramList)
+            print(stockHolding)
+            print(transactionFitCopy.iloc[-1]['total'])
+            print(sharpeRatio)
+            return -1
         return transactionFitCopy.iloc[-1]['total'], sharpeRatio
 
     def fit(self):
@@ -130,12 +136,8 @@ class StockStageEstimator(BaseEstimator):
             self.returns[i*2] = self.evalFit(setsCombined, self.goodSectorDf)
             if self.returns[i*2] == -1:
                 return -1
-            if self.returns[i*2][1] < 0.5:
-                return -1
             self.returns[i*2+1] = self.evalFit(self.sets[i%4], self.goodSectorDf)
             if self.returns[i*2+1] == -1:
-                return -1
-            if self.returns[i*2+1][1] < 0.5:
                 return -1
         return 0
     

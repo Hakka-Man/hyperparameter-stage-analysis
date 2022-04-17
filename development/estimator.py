@@ -158,7 +158,6 @@ resultFile.close()
 pop = toolbox.population(n=512)
 for ind in pop:
     paramStr = ' '.join(map(str, ind[0]))
-    print(paramStr)
     # cur.execute("INSERT INTO Params (param,result) VALUES (?, NULL)", (paramStr,))
 # Evaluate the entire population
 # here
