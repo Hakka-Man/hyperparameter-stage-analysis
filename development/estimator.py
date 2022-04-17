@@ -10,12 +10,12 @@ from sklearn.model_selection import train_test_split
 import warnings
 import pickle
 from multiprocessing import Pool
-import mariadb
+# import mariadb
 import sys
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 ### ENV CONSTANT
 DB_PASSWORD = os.getenv('DB_PASSWORD')
