@@ -3,12 +3,12 @@ import pandas as pd
 import numpy as np
 import random
 from datetime import datetime
-import mariadb
+# import mariadb
 import sys
 import os
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 ### ENV CONSTANT
 DB_PASSWORD = os.getenv('DB_PASSWORD')
@@ -158,7 +158,7 @@ def evalReturn(individual):
     resultFile.write(str(stockStageEstimator.getReturns())+"\n")
     resultFile.write(str(result)+"\n")
     resultFile.close()
-    return result
+    return result,
 
 ### DEAP Evolutionary Functions ###
 

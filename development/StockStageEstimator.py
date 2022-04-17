@@ -124,16 +124,12 @@ class StockStageEstimator(BaseEstimator):
         for i in range(3):
             setsCombined = np.concatenate((self.sets[(i+1)%3],self.sets[(i+2)%3]))
             self.returns[i*2] = self.evalFit(setsCombined, self.goodSectorDf)
-            if self.returns[i*2][0] == -1:
-                return -1
-            if self.returns[i*2][1] < 0.5:
+            if self.returns[i*2] == -1:
                 return -1
             if self.returns[i*2][1] < 0.5:
                 return -1
             self.returns[i*2+1] = self.evalFit(self.sets[i%4], self.goodSectorDf)
-            if self.returns[i*2+1][0] == -1:
-                return -1
-            if self.returns[i*2+1][1] < 0.5:
+            if self.returns[i*2+1] == -1:
                 return -1
             if self.returns[i*2+1][1] < 0.5:
                 return -1
@@ -148,6 +144,11 @@ class StockStageEstimator(BaseEstimator):
         return self.scores
     
     def result(self):
-        return [np.average(self.returns[0:5][0]),np.average(self.returns[0:5][1])]
+        totalReturn = 0
+        totalSharpRatio = 0
+        for i in range(6):
+            totalReturn += self.returns[i][0]
+            totalSharpRatio += self.returns[i][1]
+        return [totalReturn/6,totalSharpRatio/6]
     def getReturns(self):
         return self.returns

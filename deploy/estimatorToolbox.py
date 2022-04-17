@@ -158,7 +158,7 @@ def evalReturn(individual):
     resultFile.write(str(stockStageEstimator.getReturns())+"\n")
     resultFile.write(str(result)+"\n")
     resultFile.close()
-    return result
+    return result,
 
 ### DEAP Evolutionary Functions ###
 
