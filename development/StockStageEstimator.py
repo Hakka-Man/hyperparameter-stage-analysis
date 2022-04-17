@@ -66,6 +66,7 @@ class StockStageEstimator(BaseEstimator):
         transactionFitCopy = transactionFit
         transactionFitCopy['total'] = 0
         transactionFitCopy.to_csv("onlyShare.csv")
+        noBearishCount = 0
         #print("Reach #3")
         for index, element in transactionFitCopy.iterrows():
             indexNum = transactionFitCopy.index.get_loc(index)
@@ -79,6 +80,7 @@ class StockStageEstimator(BaseEstimator):
                 # print(i,transactionFitCopy.iat[i,1],"#2")
                 continue
             else:
+                noBearishCount = noBearishCount + 1
                 prevData = transactionFitCopy.iat[indexNum-1, 0]
                 if len(prevData):
                     total = 0
@@ -108,14 +110,16 @@ class StockStageEstimator(BaseEstimator):
         transactionFitCopy.to_csv("estimatorTest.csv")
         for i in transactionFitCopy.iterrows():
             stockHolding += len(i[1]['holding'])
-        if stockHolding/(transactionFitCopy.shape[0])<(len(tickers)/1000) or transactionFitCopy.iat[-1,TOTAL]<=100:
+        if stockHolding/noBearishCount<(len(tickers)/1000) or transactionFitCopy.iat[-1,TOTAL]<=100:
             print(stockHolding)
             print(transactionFitCopy.iloc[-1]['total'])
             return -1
         if transactionFitCopy.iloc[-1]['total'] < 5000:
             return -1
         transactionFitCopy.to_pickle("transactionDfs/transactionDf"+str(self.paramList[0])+".pkl")
+        transactionFitCopy = transactionFitCopy[df.index - pd.to_datetime('1999-06-01') > timedelta(0)]
         dailyRet = transactionFitCopy.loc[:, 'total'].pct_change()
+        dailyRet[dailyRet == 0] = 0.04/52
         excessRet = dailyRet - 0.04/52
         sharpeRatio = np.sqrt(52)*np.mean(excessRet) / np.std(excessRet)
         return transactionFitCopy.iloc[-1]['total'], sharpeRatio
