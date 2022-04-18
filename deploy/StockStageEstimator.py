@@ -110,23 +110,17 @@ class StockStageEstimator(BaseEstimator):
         transactionFitCopy.to_csv("estimatorTest.csv")
         for i in transactionFitCopy.iterrows():
             stockHolding += len(i[1]['holding'])
-        if stockHolding/noBearishCount<(len(tickers)/1000) or transactionFitCopy.iat[-1,TOTAL]<=5000:
-            print(self.paramList)
-            print(stockHolding)
-            print(transactionFitCopy.iloc[-1]['total'])
-            print(sharpeRatio)
-            return -1
         transactionFitCopy.to_pickle("transactionDfs/transactionDf"+str(self.paramList[0])+".pkl")
-        transactionFitCopy = transactionFitCopy[df.index - pd.to_datetime('1999-06-01') > timedelta(0)]
+        transactionFitCopy = transactionFitCopy[transactionFitCopy.index - pd.to_datetime('1999-06-01') > timedelta(0)]
         dailyRet = transactionFitCopy.loc[:, 'total'].pct_change()
         dailyRet[dailyRet == 0] = 0.04/52
         excessRet = dailyRet - 0.04/52
         sharpeRatio = np.sqrt(52)*np.mean(excessRet) / np.std(excessRet)
-        if sharpeRatio < 0.5:
-            print(self.paramList)
-            print(stockHolding)
-            print(transactionFitCopy.iloc[-1]['total'])
-            print(sharpeRatio)
+        print(self.paramList)
+        print(stockHolding/noBearishCount)
+        print(transactionFitCopy.iloc[-1]['total'])
+        print(sharpeRatio)
+        if (stockHolding/noBearishCount)<(len(tickers)/1000) or transactionFitCopy.iat[-1,TOTAL]<=5000 or sharpeRatio < 0.5:
             return -1
         return transactionFitCopy.iloc[-1]['total'], sharpeRatio
 
