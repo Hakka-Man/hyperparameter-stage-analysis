@@ -10,6 +10,7 @@ from sklearn.model_selection import train_test_split
 import warnings
 import pickle
 from multiprocessing import Pool
+import mysqlToolbox as mysql
 # import mariadb
 import sys
 import os
@@ -36,6 +37,8 @@ DB_USER = os.getenv('DB_USER')
 #     print(f"Error connecting to MariaDB Platform: {e}")
 #     sys.exit(1)
 # cur = conn.cursor()
+connection = mysql.create_server_connection(DB_HOST, DB_USER, DB_PASSWORD, 'stock')
+
 
 
 

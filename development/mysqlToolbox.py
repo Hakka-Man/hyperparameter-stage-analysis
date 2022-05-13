@@ -33,4 +33,9 @@ def addIndividual(connection, tableName, params):
     print(query)
     execute_query(connection=connection, query = query)
 
+def updateIndividual(connection, tableName, colName, val, identifierCol, identifierVal):
+    query = "UPDATE " + tableName + " set " + colName + " = " + str(val) + " where " + identifierCol + " = " + str(identifierVal)
+    print(query)
+    execute_query(connection=connection, query= query)
+
     
