@@ -1,0 +1,138 @@
+XLP
+
+Tobacco	
+Soft Drinks	
+Drug Retailers	
+Distillers & Vintners	
+Food Products	
+Food Retailers & Wholesalers
+Nondurable Household Products
+Brewers	
+Personal Products	
+
+XLU	
+
+Gas Distribution	
+Multiutilities	
+Conventional Electricity
+Water	
+
+XLV	
+
+Pharmaceuticals
+Medical Supplies	
+Health Care Providers	
+Medical Equipment	
+Biotechnology	
+
+XLF
+
+Financial Administration	
+Insurance Brokers	
+Specialty Finance		
+Full Line Insurance		
+Consumer Finance	
+Asset Managers
+Investment Services		
+Reinsurance		
+Property & Casualty Insurance	
+Life Insurance	
+Mortgage Finance		
+Banks
+
+	
+XLE
+
+Coal	
+Integrated Oil & Gas	
+Pipelines	
+Exploration & Production	
+Oil Equipment & Services	
+	
+XLI	
+
+Trucking	
+Railroad	
+Defense	
+Marine Transportation	
+Industrial Machinery	
+Diversified Industrials	
+Waste & Disposal Services	
+Heavy Construction	
+Building Materials & Fixtures	
+Transportation Services	
+Aerospace	
+Delivery Services	
+Commercial Vehicles & Trucks	
+Industrial Suppliers
+Business Support Services	
+Airlines	
+
+XLC
+
+Media Agencies	
+Internet	
+Publishing	
+Broadcasting & Entertainment	
+Mobile Telecommunications		
+Fixed Line Telecommunications
+
+	
+XLB
+
+Steel
+Nonferrous Metals
+Commodity Chemicals
+Aluminum
+Containers & Packaging
+Specialty Chemicals
+Paper
+Mining
+Gold Mining
+	
+XLRE
+
+Real Estate Services
+Industrial & Office REITs
+Specialty REITs
+Residential REITs
+Retail REITs
+Diversified REITs
+Hotel & Lodging REITs
+Mortgage REITs
+Real Estate Holding & Development	
+
+XLK	
+
+Renewable Energy Equipment
+Semiconductors
+Computer Hardware
+Software
+Electronic Equipment
+Electrical Components & Equipment
+Computer Services
+Telecommunications Equipment
+
+XLY
+
+Automobiles
+Recreational Services
+Broadline Retailers
+Tires
+Footwear
+Travel & Tourism
+Specialty Retailers
+Home Construction
+	Auto Parts
+Business Training & Employment Agencies
+Clothing & Accessories
+	Restaurants & Bars
+Home Improvement Retailers
+	Furnishings
+Specialized Consumer Services
+Hotels
+	Recreational Products
+	Gambling
+	Durable Household Products
+	Toys
+Apparel Retailers
