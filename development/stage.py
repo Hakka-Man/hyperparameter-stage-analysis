@@ -10,8 +10,8 @@ from yahoo_fin.stock_info import get_data
 goodSector = pd.DataFrame()
 spdf = pd.read_pickle("stockData/Spy.pkl")
 sectorOfTicker = pd.read_pickle("stockData/nasdaq.pkl")
-sectorOfNyse = pd.read_pickle("stockData/nyse.pkl")
-sectorOfTicker.update(sectorOfNyse)
+# sectorOfNyse = pd.read_pickle("stockData/nyse.pkl")
+# sectorOfTicker.update(sectorOfNyse)
 
 #CONSTANTS
 CLOSE = 0

@@ -1,0 +1,137 @@
+XLP
+
+DJ Tobacco
+DJ Soft Drinks
+DJ Drug Retailers	
+DJ Distillers & Vintners	
+DJ Food Product Makers
+DJ Food Retail & Wholesale
+DJ Nondurable Household
+DJ Brewers	
+DJ Personal Products
+
+XLU	
+
+DJ Gas Distribution	
+DJ Multiutilities	
+DJ Conventional Electricity
+DJ Water
+
+XLV	
+
+DJ Pharmaceuticals
+DJ Medical Supplies	
+DJ Health Care Providers	
+DJ Medical Equipment	
+DJ Biotechnology	
+
+XLF
+
+DJ Financial Administration	
+DJ Insurance Brokers	
+DJ Specialty Finance
+DJ Full Line Insurance		
+DJ Consumer Finance	
+DJ Asset Managers
+DJ Investment Services		
+DJ Reinsurance		
+DJ Property & Casualty Insurance
+DJ Life Insurance	
+DJ Mortgage Finance		
+DJ Banks
+
+	
+XLE
+
+DJ Coal	
+DJ Integrated Oil & Gas	
+DJ Pipelines	
+DJ Exploration & Production	
+DJ Oil Equipment & Services	
+	
+XLI	
+
+DJ Trucking	
+DJ Railroads	
+DJ Defense	
+DJ Marine Transportation	
+DJ Industrial Machinery	
+DJ Diversified Industrials	
+DJ Waste & Disposal Services
+DJ Heavy Construction	
+DJ Building Materials & Fixtures	
+DJ Transportation Services
+DJ Aerospace	
+DJ Delivery Services	
+DJ Commercial Vehicles & Trucks	
+DJ Industrial Suppliers
+DJ Support Services
+DJ Airlines	
+
+XLC
+
+DJ Media Agencies	
+DJ Internet	
+DJ Publishing	
+DJ Broadcasting & Entertainment	
+DJ Mobile Telecom		
+DJ Fixed Line Telecom
+
+	
+XLB
+
+DJ Iron & Steel
+DJ Nonferrous Metals
+DJ Commodity Chemicals
+DJ Aluminum
+DJ Containers & Packaging
+DJ Specialty Chemicals
+DJ Paper
+DJ Mining
+DJ Gold Mining
+	
+XLRE
+
+DJ RE Services
+DJ Industrial & Office REITs
+DJ Specialty REITs
+DJ Residential
+DJ Retail REITs
+DJ Diversified REITs
+DJ Hotel & Lodging REITs
+DJ Mortgage
+DJ Real Estate Holding & Development
+
+XLK	
+
+DJ Semiconductors
+DJ Technology Hardware & Equipment
+DJ Software
+DJ Electronic Equipment
+DJ Electrical Components & Equipment
+DJ Computer Services
+DJ Telecom Equipment
+
+XLY
+
+DJ Automobiles
+DJ Recreational Services
+DJ Broadline Retailers
+DJ Tires
+DJ Footwear
+DJ Travel & Tourism
+DJ Specialty Retailers
+DJ Home Construction
+DJ Auto Parts Makers
+DJ Business Training & Employment Agencies
+DJ Clothing & Accessories
+DJ Restaurants & Bars
+DJ Home Improvement Retailers
+DJ Furnishings
+DJ Specialized Consumer Services
+DJ Hotels
+DJ Recreational Products
+DJ Gambling
+DJ Durable Household Products
+DJ Toys
+DJ Apparel Retailers
