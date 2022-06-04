@@ -70,7 +70,7 @@ toolbox.register("select", tools.selTournament, tournsize=3)
 now = datetime.now()
 
 #Initilize Backtest Transaction Database
-transactionTemplate = pd.read_pickle('stockData/industriesData/XLB/DJMining.pkl')
+transactionTemplate = pd.read_pickle('stockData/industriesData/XLB/DJMining.pkl').drop(['Open','High','Low','Close','Volume','Currency'],axis = 1)
 transactionTemplate['Dates'] = pd.to_datetime(transactionTemplate.index)
 transactionTemplate = transactionTemplate[transactionTemplate['Dates'].dt.weekday == 6]
 transactionTemplate = transactionTemplate.drop('Dates', axis = 1)
@@ -78,11 +78,12 @@ transactionTemplate = transactionTemplate[~transactionTemplate.index.duplicated(
 transactionTemplate.to_pickle("transactionTemplate.pkl")
 
 ## Get list of returns of tickers
-nasdaqList = pd.read_pickle("stockData/tickerList.pkl")
-listOfDf = calculateGroupReturn(nasdaqList)
+industryList = pd.read_pickle("stockData/industryList.pkl")
+listOfDf = calculateGroupReturn(industryList)
 
 ## Initialize Test/Train Stock Lists and Check test vs train return
-train, test = train_test_split(nasdaqList, test_size=0.3, shuffle=True)
+
+train, test = train_test_split(industryList, test_size=0.3, shuffle=True)
 testTrainR = []
 def calculateTestTrainRatio(train,test):
     testTrainRatio = [1,1]
@@ -109,7 +110,7 @@ def calculateTestTrainRatio(train,test):
     return testTrainRatio
 testTrainR = calculateTestTrainRatio(train,test)
 while(abs(1-testTrainR[1])/np.average(testTrainR)>0.2):
-    train, test = train_test_split(nasdaqList, test_size=0.3, shuffle=True)
+    train, test = train_test_split(industryList, test_size=0.3, shuffle=True)
     testTrainR = calculateTestTrainRatio(train,test)
 
 ## Calculate (and normalize) returns of each folds 
