@@ -57,14 +57,14 @@ def calculateGroupReturn(list):
     monthlyReturn.index = monthlyReturn.index.strftime("%Y:%m")
     currentColumn = -1
     for symbol in list:
-        if symbol in monthlyReturn.columns:
+        if industry in monthlyReturn.columns:
             continue
         try:
-            df = pd.read_pickle("stockData/nyseNasdaq/"+symbol+".pkl")
+            df = pd.read_pickle("stockData/industriesData/"+symbol[0]+'/'+symbol[1]+".pkl")
         except:
             print(symbol)
             continue
-        if not (df['close'] != 0).all() or df.empty:
+        if not (df['Close'] != 0).all() or df.empty:
             if df.empty:
                 print(symbol)
             continue

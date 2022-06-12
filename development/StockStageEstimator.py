@@ -23,9 +23,10 @@ class StockStageEstimator(BaseEstimator):
         transactionFit = pd.read_pickle("transactionTemplate.pkl")
         transactionFit['holding'] = np.empty((len(transactionFit), 0)).tolist()
         #print("Reach #1")
-        for symbol in tickers:
-            df = getStage(symbol,self.paramList,goodSectorDf)
-            buyDf = pd.read_pickle('stockData/nyseNasdaq/'+symbol+'Buy.pkl')
+        for industry in tickers:
+            df = getStage(industry,self.paramList,goodSectorDf)
+            symbol = industry[1]
+            buyDf = pd.read_pickle('stockData/'+str(industry[0])+'/'+symbol+'.pkl')
             inStage = False
             buyTwice = False
             if df.empty:
