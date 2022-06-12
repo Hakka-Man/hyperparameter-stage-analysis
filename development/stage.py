@@ -5,7 +5,6 @@ import pandas as pd
 pd.options.mode.chained_assignment = None  # default='warn'
 import numpy as np
 from datetime import datetime, timedelta
-from yahoo_fin.stock_info import get_data
 
 goodSector = pd.DataFrame()
 spdf = pd.read_pickle("stockData/Spy.pkl")

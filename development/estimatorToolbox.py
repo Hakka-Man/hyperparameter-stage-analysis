@@ -1,3 +1,4 @@
+from symtable import Symbol
 from StockStageEstimator import StockStageEstimator
 import pandas as pd
 import numpy as np
@@ -56,11 +57,12 @@ def calculateGroupReturn(list):
     monthlyReturn = monthlyReturn.resample('M').mean()
     monthlyReturn.index = monthlyReturn.index.strftime("%Y:%m")
     currentColumn = -1
-    for symbol in list:
-        if industry in monthlyReturn.columns:
+    for industry in list:
+        symbol = industry[1]
+        if symbol in monthlyReturn.columns:
             continue
         try:
-            df = pd.read_pickle("stockData/industriesData/"+symbol[0]+'/'+symbol[1]+".pkl")
+            df = pd.read_pickle("stockData/industriesData/"+industry[0]+'/'+symbol+".pkl")
         except:
             print(symbol)
             continue

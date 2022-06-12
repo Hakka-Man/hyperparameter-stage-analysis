@@ -5,12 +5,11 @@ import random
 from stage import fullPrint, getStage
 from datetime import datetime, date
 import pandas as pd
-import yahoo_fin.stock_info as yf
 from sklearn.model_selection import train_test_split
 import warnings
 import pickle
 from multiprocessing import Pool
-import mysqlToolbox as mysql
+# import mysqlToolbox
 # import mariadb
 import sys
 import os
@@ -37,7 +36,7 @@ DB_USER = os.getenv('DB_USER')
 #     print(f"Error connecting to MariaDB Platform: {e}")
 #     sys.exit(1)
 # cur = conn.cursor()
-connection = mysql.create_server_connection(DB_HOST, DB_USER, DB_PASSWORD, 'stock')
+# connection = mysqlToolbox.create_server_connection(DB_HOST, DB_USER, DB_PASSWORD, 'stock')
 
 
 
@@ -93,12 +92,13 @@ def calculateTestTrainRatio(train,test):
         else:
             l = train
         index = 0
+        industries = [x[1] for x in l]
         while index != len(l):
-            if l[index] not in listOfDf.columns:
-                l = np.delete(l, index)
+            if industries[index] not in list(listOfDf.columns):
+                lindustries = np.delete(industries, index)
             else:
                 index += 1
-        for index, element in listOfDf[l].iterrows():
+        for index, element in listOfDf[industries].iterrows():
             #print(element.to_list())
             listOfStockRet = element.to_list()
             while 1.0 in listOfStockRet:
@@ -124,19 +124,20 @@ def trainSetsRatio(ratio):
             l = trainSets[i]
         else:
             l = np.concatenate((trainSets[(i+1)%3],trainSets[(i+2)%3]))
+        industries = [x[1] for x in l]
         index = 0
         while index != len(l):
-            if l[index] not in listOfDf.columns:
-                l = np.delete(l, index)
+            if industries[index] not in list(listOfDf.columns):
+                industries[index] = np.delete(industries, index)
             else:
                 index += 1
-        for index, element in listOfDf[l].iterrows():
+        for index, element in listOfDf[industries].iterrows():
             #print(element.to_list())
             listOfStockRet = element.to_list()
             while 1.0 in listOfStockRet:
                 listOfStockRet.remove(1.0)
             if len(listOfStockRet) != 0:
-                ratio[i] = ratio[i] * np.mean(listOfStockRet)     
+                ratio[i] = ratio[i] * np.mean(listOfStockRet)
     for i in range(1,6):
         ratio[i] = ratio[i] / ratio[0]
     ratio[0] = 1.0
@@ -208,13 +209,14 @@ for g in range(10):
             l = trainSets[i]
         else:
             l = np.concatenate((trainSets[(i+1)%3],trainSets[(i+2)%3]))
+        industries = [x[1] for x in l]
         index = 0
         while index != len(l):
-            if l[index] not in listOfDf.columns:
-                l = np.delete(l, index)
+            if industries[index] not in listOfDf.columns:
+                industries = np.delete(industries, index)
             else:
                 index += 1
-        for index, element in listOfDf[l].iterrows():
+        for index, element in listOfDf[industries].iterrows():
             #print(element.to_list())
             listOfStockRet = element.to_list()
             while 1.0 in listOfStockRet:

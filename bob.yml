@@ -1,0 +1,13 @@
+name: titanicM
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pandas
+  - ipykernel
+  - scikit-learn
+  - mysql-connector-python
+  - deap
+  - swifter
+prefix: /Users/exitialium/miniforge3/envs/titanicM
