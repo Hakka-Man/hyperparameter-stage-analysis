@@ -1,5 +1,5 @@
 from sklearn.base import BaseEstimator
-from stage import getStage
+from stage import getIndustryStage
 import pandas as pd
 import numpy as np
 from datetime import timedelta
@@ -24,7 +24,7 @@ class StockStageEstimator(BaseEstimator):
         transactionFit['holding'] = np.empty((len(transactionFit), 0)).tolist()
         #print("Reach #1")
         for industry in tickers:
-            df = getStage(industry,self.paramList,goodSectorDf)
+            df = getIndustryStage(industry,self.paramList,goodSectorDf)
             symbol = industry[1]
             buyDf = pd.read_pickle('stockData/industriesData/'+str(industry[0])+'/'+symbol+'.pkl')
             inStage = False
