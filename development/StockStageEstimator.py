@@ -24,7 +24,7 @@ class StockStageEstimator(BaseEstimator):
         transactionFit['holding'] = np.empty((len(transactionFit), 0)).tolist()
         #print("Reach #1")
         for industry in tickers:
-            df = getIndustryStage(industry,self.paramList,goodSectorDf)
+            df =  (industry,self.paramList,goodSectorDf)
             symbol = industry[1]
             buyDf = pd.read_pickle('stockData/industriesData/'+str(industry[0])+'/'+symbol+'.pkl')
             inStage = False
