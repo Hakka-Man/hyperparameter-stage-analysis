@@ -18,9 +18,9 @@ import os
 # load_dotenv()
 
 ### ENV CONSTANT
-DB_PASSWORD = os.getenv('DB_PASSWORD')
-DB_HOST = os.getenv('DB_HOST')
-DB_USER = os.getenv('DB_USER')
+# DB_PASSWORD = os.getenv('DB_PASSWORD')
+# DB_HOST = os.getenv('DB_HOST')
+# DB_USER = os.getenv('DB_USER')
 
 ### Connect To DB
 # try:
@@ -69,7 +69,7 @@ toolbox.register("select", tools.selTournament, tournsize=3)
 now = datetime.now()
 
 #Initilize Backtest Transaction Database
-transactionTemplate = pd.read_pickle('stockData/industriesData/XLB/DJMining.pkl').drop(['Open','High','Low','Close','Volume','Currency'],axis = 1)
+transactionTemplate = pd.read_pickle('stockData/industriesData/XLB/DJMining.pkl').index
 transactionTemplate['Dates'] = pd.to_datetime(transactionTemplate.index)
 transactionTemplate = transactionTemplate[transactionTemplate['Dates'].dt.weekday == 6]
 transactionTemplate = transactionTemplate.drop('Dates', axis = 1)
