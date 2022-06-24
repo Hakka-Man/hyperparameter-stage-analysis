@@ -84,8 +84,6 @@ def checkIfStage2(indexNum,price,volumePerc, RS, slope, wMA30,prevStage,prevClos
         return "Price" +" " + str(wMA30) +" " + str(param[4])
     if price > prevClose*param[8]:
         return "Short"  + " " +str(prevClose) + " " +str(param[8])
-
-    
     if price > prevClose:
         # peak
         dfSorted.iat[indexNum,PEAK] = price
@@ -118,22 +116,12 @@ def returnStageDf(dfSorted, param, goodSectorDf):
     return dfSorted[["close", "Stage", "support"]]
 
 def getStage(ticker, param, goodSectorDf):
-    # today = date.today()
-    # #200->1000
-    # today = today.strftime('%Y-%m-%d')
-    # startDate = startDate.strftime('%Y-%m-%d')
-    # df = get_data(ticker, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
     df = pd.read_pickle("stockData/nyseNasdaq/"+ticker+".pkl")
     if df.empty:
         return pd.DataFrame()
     return returnStageDf(df, param, goodSectorDf)
 
 def getIndustryStage(industry, param, goodSectorDf):
-    # today = date.today()
-    # #200->1000
-    # today = today.strftime('%Y-%m-%d')
-    # startDate = startDate.strftime('%Y-%m-%d')
-    # df = get_data(ticker, start_date=startDate, end_date=today, index_as_date = True, interval="1wk")
     df = pd.read_pickle('stockData/industriesData/'+str(industry[0])+'/'+industry[1]+'.pkl')
     if df.empty:
         return pd.DataFrame()
