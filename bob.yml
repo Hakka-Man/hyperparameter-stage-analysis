@@ -1,4 +1,4 @@
-name: titanicM
+name: bob
 channels:
   - defaults
   - conda-forge
@@ -10,4 +10,3 @@ dependencies:
   - mysql-connector-python
   - deap
   - swifter
-prefix: /Users/exitialium/miniforge3/envs/titanicM
