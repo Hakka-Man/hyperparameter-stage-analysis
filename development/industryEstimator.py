@@ -74,7 +74,6 @@ if __name__ == '__main__':
     transactionTemplate = pd.read_pickle('stockData/industriesData/XLB/DJMining.pkl')
     transactionTemplate = transactionTemplate.drop(transactionTemplate.columns, axis = 1)
     transactionTemplate['Dates'] = pd.to_datetime(transactionTemplate.index)
-    transactionTemplate = transactionTemplate[transactionTemplate['Dates'].dt.weekday == 6]
     transactionTemplate = transactionTemplate.drop('Dates', axis = 1)
     transactionTemplate = transactionTemplate[~transactionTemplate.index.duplicated()]
     transactionTemplate.to_pickle("transactionTemplate.pkl")
