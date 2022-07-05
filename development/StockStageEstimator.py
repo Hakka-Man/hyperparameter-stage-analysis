@@ -24,7 +24,7 @@ class StockStageEstimator(BaseEstimator):
         transactionFit['holding'] = np.empty((len(transactionFit), 0)).tolist()
         #print("Reach #1")
         for industry in industries:
-            df =  (industry,self.paramList,goodSectorDf)
+            df = getIndustryStage(industry,self.paramList,goodSectorDf)
             symbol = industry[1]
             inStage = False
             buyTwice = False
@@ -34,7 +34,7 @@ class StockStageEstimator(BaseEstimator):
                 open = 0
                 i = transactionFit.index.get_loc(index)
                 if element.Stage == "Stage 2" or element.Stage == "Buy":
-                    open = element.close
+                    open = element.Close
                     #delete
                     transactionFit.iat[int(i),HOLDING].append((symbol,open,0))
                     if buyTwice:
@@ -45,7 +45,7 @@ class StockStageEstimator(BaseEstimator):
                     inStage = True
                     continue
                 if "Sell" == element.Stage[0:4]:
-                    open = element.close
+                    open = element.Close
                     transactionFit.iat[i, HOLDING].append((symbol,open,-1))
                     if buyTwice:
                         transactionFit.iat[i, HOLDING].append((symbol,open,-1))
