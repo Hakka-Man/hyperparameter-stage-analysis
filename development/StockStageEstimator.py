@@ -19,29 +19,22 @@ class StockStageEstimator(BaseEstimator):
         # self.ratio = pd.read_pickle("testSetPickle/trainSetRatio.pkl")
     
     ## Calculate Returns base
-    def evalFit(self, tickers, goodSectorDf):
+    def evalFit(self, industries, goodSectorDf):
         transactionFit = pd.read_pickle("transactionTemplate.pkl")
         transactionFit['holding'] = np.empty((len(transactionFit), 0)).tolist()
         #print("Reach #1")
-        for industry in tickers:
+        for industry in industries:
             df =  (industry,self.paramList,goodSectorDf)
             symbol = industry[1]
-            buyDf = pd.read_pickle('stockData/industriesData/'+str(industry[0])+'/'+symbol+'.pkl')
             inStage = False
             buyTwice = False
             if df.empty:
                 continue
-            if buyDf['open'].eq(0).any().any():
-                continue
             for index, element in df.iterrows():
                 open = 0
-                monday = index + timedelta(3)
                 i = transactionFit.index.get_loc(index)
                 if element.Stage == "Stage 2" or element.Stage == "Buy":
-                    if monday in buyDf.index:
-                        open = buyDf.at[monday,'open']
-                    else:
-                        open = element.close
+                    open = element.close
                     #delete
                     transactionFit.iat[int(i),HOLDING].append((symbol,open,0))
                     if buyTwice:
@@ -52,10 +45,7 @@ class StockStageEstimator(BaseEstimator):
                     inStage = True
                     continue
                 if "Sell" == element.Stage[0:4]:
-                    if monday in buyDf.index:
-                        open = buyDf.at[monday,'open']
-                    else:
-                        open = element.close
+                    open = element.close
                     transactionFit.iat[i, HOLDING].append((symbol,open,-1))
                     if buyTwice:
                         transactionFit.iat[i, HOLDING].append((symbol,open,-1))
@@ -121,7 +111,7 @@ class StockStageEstimator(BaseEstimator):
         print(stockHolding/noBearishCount)
         print(transactionFitCopy.iloc[-1]['total'])
         print(sharpeRatio)
-        if (stockHolding/noBearishCount)<(len(tickers)/1000) or transactionFitCopy.iat[-1,TOTAL]<=5000 or sharpeRatio < 0.5:
+        if (stockHolding/noBearishCount)<(len(industries)/1000) or transactionFitCopy.iat[-1,TOTAL]<=5000 or sharpeRatio < 0.5:
             return -1
         return transactionFitCopy.iloc[-1]['total'], sharpeRatio
 
