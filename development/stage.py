@@ -201,7 +201,9 @@ def getIndustryStage(industry, param, goodSectorDf):
     df = pd.read_pickle('stockData/industriesData/'+str(industry[0])+'/'+industry[1]+'.pkl')
     if df.empty:
         return pd.DataFrame()
-    return returnIndustryStageDf(df, param, goodSectorDf)
+    resDf = returnIndustryStageDf(df, param, goodSectorDf)
+    resDf.to_csv('sampleIndustryDfs/' + str(industry[1]) + '.csv')
+    return resDf
 
 # def getFullDf(ticker,param):
 #     dfSorted = pd.read_pickle("stockData/nyseNasdaq/"+ticker+".pkl")

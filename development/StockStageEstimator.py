@@ -108,7 +108,13 @@ class StockStageEstimator(BaseEstimator):
         excessRet = dailyRet - 0.04/52
         sharpeRatio = np.sqrt(52)*np.mean(excessRet) / np.std(excessRet)
         print(self.paramList)
-        print(stockHolding/noBearishCount)
+        if transactionFitCopy.iloc[-1]['total'] != 100:
+            transactionFitCopy.to_pickle('test.pkl')
+        return transactionFitCopy.iloc[-1]['total'], sharpeRatio
+        if noBearishCount == 0:
+            return -1
+        if noBearishCount != 0:
+            print(stockHolding/noBearishCount)
         print(transactionFitCopy.iloc[-1]['total'])
         print(sharpeRatio)
         if (stockHolding/noBearishCount)<(len(industries)/1000) or transactionFitCopy.iat[-1,TOTAL]<=5000 or sharpeRatio < 0.5:
