@@ -2,15 +2,16 @@ import torch
 import numpy as np
 from util import DataLoaderS
 
-model = torch.load('model-exchange-3.pt')
+model = torch.load('modelCPU.pt', map_location=torch.device('cpu'))
 print(model)
-device = 'cuda'
+device = 'cpu'
 data_dir = './multivariate-time-series-data/exchange_rate.txt'
 data = DataLoaderS(data_dir, 0.6, 0.2, device, 3, 24*7)
 X = data.test[0]
 Y = data.test[1]
 batch_size = 4
 
+model.to('cpu')
 model.eval()
 predict = None
 test = None
