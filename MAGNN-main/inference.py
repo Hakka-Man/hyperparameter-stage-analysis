@@ -6,13 +6,12 @@ import copy
 
 model = torch.load('modelNoNormalization.pt')
 print(model)
-device = 'cuda'
+device = 'cpu'
 data_dir = './multivariate-time-series-data/exchange_rate.txt'
 data = DataLoaderS(data_dir, 0.6, 0.2, device, 3, 24*7)
 X = data.train[0]
 Y = data.train[1]
 batch_size = 4
-
 
 model.eval()
 predict = None
