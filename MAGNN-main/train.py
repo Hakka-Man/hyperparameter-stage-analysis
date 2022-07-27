@@ -122,7 +122,7 @@ parser.add_argument('--save', type=str, default='model/model.pt',
                     help='path to save the final model')
 parser.add_argument('--optim', type=str, default='adam')
 parser.add_argument('--L1Loss', type=bool, default=True)
-parser.add_argument('--normalize', type=int, default=2)
+parser.add_argument('--normalize', type=int, default=0)
 parser.add_argument('--device',type=str,default='cuda:0',help='')
 parser.add_argument('--gcn_depth',type=int,default=2,help='graph convolution depth')
 parser.add_argument('--num_nodes',type=int,default=137,help='number of nodes/variables')
