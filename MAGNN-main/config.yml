@@ -20,7 +20,7 @@ assessor:
     threshold: 0.9
 
 trial:
-  command: CUDA_LAUNCH_BLOCKING=1 python train.py --save ./modelNoNormalization.pt --data exchange_rate.txt --num_nodes 8 --batch_size 4 --epochs 50 --horizon 3
+  command: CUDA_LAUNCH_BLOCKING=1 python train.py --save ./modelNoNormalization.pt --num_nodes 22 --batch_size 4 --epochs 50 --horizon 3
   codeDir: .
   gpuNum: 1
 localConfig:

@@ -13,7 +13,13 @@ import os
 from torchsummaryX import summary
 import nni
  
- 
+import pandas as pd
+
+stockList = pd.read_pickle('../datasets/stockList.pkl')
+stockList = list(stockList)
+dataDirs = []
+for stock in stockList:
+    dataDirs.append('../datasets/trainingDataset' + stock + '.txt')
 os.environ['CUDA_VISIBLE_DEVICE']='1'
 
 
@@ -114,8 +120,9 @@ def train(data, X, Y, model, criterion, optim, batch_size):
     return total_loss / n_samples
 
 
+
 parser = argparse.ArgumentParser(description='PyTorch Time series forecasting')
-parser.add_argument('--data', type=str, default='solar-energy/solar_AL.txt',
+parser.add_argument('--data', type=str, default=dataDirs,
                     help='location of the data file')
 parser.add_argument('--log_interval', type=int, default=2000, metavar='N', help='report interval')
 parser.add_argument('--save', type=str, default='model/model.pt',
@@ -160,7 +167,7 @@ def main(params):
     conv_channels = params['conv_channels']
     scale_channels = conv_channels
     gnn_channels = conv_channels
-    data_dir = "multivariate-time-series-data/" + args.data
+    data_dir = args.data
     
     Data = DataLoaderS(data_dir, 0.6, 0.2, device, args.horizon, args.seq_in_len, args.normalize)
 
