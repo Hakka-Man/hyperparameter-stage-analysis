@@ -11,18 +11,22 @@ def normal_std(x):
 
 class DataLoaderS(object):
     # train and valid is the ratio of training set and validation set. test = 1 - train - valid
-    def __init__(self, file_name, train, valid, device, horizon, window, normalize=0):
+    def __init__(self, files, train, valid, device, horizon, window, normalize=0):
         self.P = window
         self.h = horizon
-        fin = open(file_name)
-        self.rawdat = np.loadtxt(fin, delimiter=',')
-        
-        print("input data size:" + str(self.rawdat.shape))
-        self.dat = np.zeros(self.rawdat.shape)
-        self.n, self.m = self.dat.shape
+        self.rawdat = list()
+        self.dat = list()
+        for file in files:
+            fin = open(file)
+            self.dat.append(np.loadtxt(fin, delimiter=','))
+            # self.dat.append(np.zeros(self.rawdat[-1].shape))
+
+        print("input data size:" + str(self.dat[0].shape))
+        # self.dat = np.zeros(self.rawdat.shape)
+        self.n, self.m = self.dat[0].shape
         # self.normalize = 2
         self.scale = np.ones(self.m)
-        self._normalized(normalize)
+        # self._normalized(normalize)
         self._split(int(train * self.n), int((train + valid) * self.n), self.n)
 
         self.scale = torch.from_numpy(self.scale).float()
@@ -53,7 +57,6 @@ class DataLoaderS(object):
                 self.dat[:, i] = self.rawdat[:, i] / np.max(np.abs(self.rawdat[:, i]))
 
     def _split(self, train, valid, test):
-
         train_set = range(self.P + self.h - 1, train)
         valid_set = range(train, valid)
         test_set = range(valid, self.n)
@@ -63,13 +66,14 @@ class DataLoaderS(object):
 
     def _batchify(self, idx_set, horizon):
         n = len(idx_set)
-        X = torch.zeros((n, self.P, self.m))
-        Y = torch.zeros((n, self.m))
-        for i in range(n):
-            end = idx_set[i] - self.h + 1
-            start = end - self.P
-            X[i, :, :] = torch.from_numpy(self.dat[start:end, :])
-            Y[i, :] = torch.from_numpy(self.dat[idx_set[i], :])
+        X = torch.zeros((len(self.dat)*n, self.P, self.m))
+        Y = torch.zeros((len(self.dat)*n, self.m))
+        for j in range(len(self.dat)):
+            for i in range(n):
+                end = idx_set[i] - self.h + 1
+                start = end - self.P
+                X[j*n + i, :, :] = torch.from_numpy(self.dat[j][start:end, :])
+                Y[j*n + i, :] = torch.from_numpy(self.dat[j][idx_set[i], :])
         return [X, Y]
 
     def get_batches(self, inputs, targets, batch_size, shuffle=True):
@@ -88,6 +92,7 @@ class DataLoaderS(object):
             Y = Y.to(self.device)
             yield Variable(X), Variable(Y)
             start_idx += batch_size
+
 
 
 
